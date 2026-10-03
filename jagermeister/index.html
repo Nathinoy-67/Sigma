@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jägermeister — The Hunter's Hour</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  body { display: grid; place-items: center; font-family: system-ui, sans-serif; }
+  canvas#film { display: block; width: 100vw; height: 56.25vw; max-height: 100vh; max-width: 177.78vh; background: #000; }
+  #ui { position: fixed; inset: 0; display: grid; place-items: center; background: #000; color: #e9dcc0; transition: opacity .6s; }
+  #ui.hidden { opacity: 0; pointer-events: none; }
+  #ui button { font: 500 12px/1 system-ui, sans-serif; letter-spacing: .4em; text-transform: uppercase; color: #e9dcc0; background: transparent; border: 1px solid rgba(233, 220, 192, .45); padding: 18px 28px 18px 34px; cursor: pointer; }
+  #ui button:hover { border-color: #ff6a13; color: #ff6a13; }
+  #ui small { display: block; margin-top: 16px; font-size: 10px; letter-spacing: .3em; opacity: .5; text-align: center; }
+</style>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
+</head>
+<body>
+<canvas id="film"></canvas>
+<div id="ui"><div><button id="play">Play film</button><small id="status">loading…</small></div></div>
+<audio id="score" src="audio/soundtrack.mp3" preload="auto"></audio>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
