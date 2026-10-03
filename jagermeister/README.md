@@ -7,7 +7,8 @@ WebGL2 shaders for the picture and NumPy synthesis for the score. There's no sto
 | Deliverable | |
 |---|---|
 | `out/jagermeister-the-hunters-hour.mp4` | master · 1920×1080 · 30 fps · H.264 ~7 Mbps + AAC 256k (44 MB) |
-| `out/jagermeister-the-hunters-hour-share.mp4` | lighter 1080p copy for messaging apps (26 MB) |
+| `out/jagermeister-the-hunters-hour-hevc.mp4` | **best quality per MB**: 1080p HEVC, 27 MB, closest to the source (SSIM 0.983). Plays on iPhone and most recent Android phones |
+| `out/jagermeister-the-hunters-hour-share.mp4` | lighter 1080p H.264 copy that plays everywhere (26 MB) |
 | `out/jagermeister-realtime.html` | the same film running live in a browser (one self-contained file) |
 | `out/poster.jpg` | end-card still |
 
