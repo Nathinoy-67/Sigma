@@ -62,7 +62,7 @@ export function buildStag() {
     // start at the lower vertex
     return pa[1] > pb[1] ? { a: pa, b: pb, order } : { a: pb, b: pa, order };
   });
-  const verts = Object.entries(pts).map(([k, p]) => ({ p, order: clamp((188 - p[1]) / 340) * 0.85 + rand() * 0.15, tw: rand() }));
+  const verts = Object.entries(pts).map(([k, p]) => ({ p, order: clamp((188 - p[1]) / 340) * 0.85 + rand() * 0.15, tw: rand(), sp: [rand(), rand(), rand(), rand()] }));
   const facets = tris.map((t) => {
     const P = t.map((k) => pts[k]);
     const cx = (P[0][0] + P[1][0] + P[2][0]) / 3, cy = (P[0][1] + P[1][1] + P[2][1]) / 3;
@@ -91,6 +91,26 @@ export function buildStag() {
     return { pts: catmull(pts2, 12), w0: d.w, w1: 1.3, anchor: best / (beam.length - 1) };
   });
   return { pts, edges, verts, facets, beam, tines, eye: R.H, star: [0, -404] };
+}
+
+// 3D pose of the constellation: the head turns towards us as it forms.
+export function stagPose(t) {
+  const u = ease.outCubic(remap(t, CUE.stagStart - 0.4, CUE.stagDone + 0.6));
+  return { yaw: lerp(0.62, 0.0, u) + 0.018 * Math.sin(t * 0.9), pitch: lerp(0.16, 0.0, u) };
+}
+// stag design space (y down) → posed and projected; returns [x, y, X, Y, Z] (Z towards the viewer)
+export function stagProjector(pose, D = 1700) {
+  const cy = Math.cos(pose.yaw), sy = Math.sin(pose.yaw), cp = Math.cos(pose.pitch), sp = Math.sin(pose.pitch);
+  return (x, y, antler, zOverride) => {
+    const ax = Math.abs(x);
+    const z = zOverride ?? (antler ? -0.3 * ax - 0.18 * Math.max(0, -150 - y) : 45 * clamp((y + 150) / 338) - 0.42 * ax);
+    const X = x * cy + z * sy;
+    const Z1 = -x * sy + z * cy;
+    const Y = y * cp + Z1 * sp;
+    const Z = -y * sp + Z1 * cp;
+    const k = D / (D - Z);
+    return [X * k, Y * k, X, Y, Z];
+  };
 }
 
 export function taper(ctx, pts, w0, w1, prog, mirror) {
@@ -144,14 +164,14 @@ export class Overlay {
     this.W = W;
     this.H = H;
     this.S = H / 1080;
-    const mk = () => {
+    this.mk = () => {
       const c = document.createElement('canvas');
       c.width = W;
       c.height = H;
       return c;
     };
-    this.tc = mk();
-    this.gc = mk();
+    this.tc = this.mk();
+    this.gc = this.mk();
     this.t = this.tc.getContext('2d');
     this.g = this.gc.getContext('2d');
     const tex = (c) => {
@@ -171,8 +191,19 @@ export class Overlay {
   }
 
   begin() {
-    if (this.dirtyText) this.t.clearRect(0, 0, this.W, this.H);
-    if (this.dirtyGlow) this.g.clearRect(0, 0, this.W, this.H);
+    // Fresh canvases instead of clearing: in Chromium, a full-canvas clear (clearRect, reset()
+    // or a width reset) right after the canvas was uploaded as a WebGL texture can be dropped,
+    // which leaves the previous frame's typography behind.
+    if (this.dirtyText) {
+      this.tc = this.mk();
+      this.t = this.tc.getContext('2d');
+      this.textTex.image = this.tc;
+    }
+    if (this.dirtyGlow) {
+      this.gc = this.mk();
+      this.g = this.gc.getContext('2d');
+      this.glowTex.image = this.gc;
+    }
     this.usedText = this.usedGlow = false;
   }
   upload() {
@@ -253,44 +284,54 @@ export class Overlay {
   }
 
   // ---------------------------------------------------------------------------
-  // The stag constellation. u: 0..1 build progress (with sub-phases), cx/cy/scale in design px
+  // The stag constellation, posed in 3D. u: 0..1 build progress (with sub-phases),
+  // cx/cy/scale in design px, o.pose = { yaw, pitch }.
   stagFigure(u, cx, cy, scale, o = {}) {
     const S = this.S;
     const g = this.ctx(true);
     const st = this.stag;
     const bright = o.bright ?? 1;
     const time = o.time ?? 0;
+    const pr = stagProjector(o.pose || { yaw: 0, pitch: 0 });
     g.save();
     g.translate(cx * S, cy * S);
     g.scale(scale * S, scale * S);
     g.lineJoin = 'round';
     g.lineCap = 'round';
 
-    // facets
+    // facets, shaded by their 3D orientation (they turn with the head)
     const fu = remap(u, 0.45, 0.85);
     if (fu > 0) {
       for (const f of st.facets) {
-        const a = smooth(remap(fu, f.order * 0.6, f.order * 0.6 + 0.4)) * f.shade * 0.16 * bright;
+        const P = f.P.map((p) => pr(p[0], p[1], false));
+        const ux = P[1][2] - P[0][2], uy = P[1][3] - P[0][3], uz = P[1][4] - P[0][4];
+        const vx = P[2][2] - P[0][2], vy = P[2][3] - P[0][3], vz = P[2][4] - P[0][4];
+        let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
+        const nl = Math.hypot(nx, ny, nz) || 1;
+        if (nz < 0) { nx = -nx; ny = -ny; nz = -nz; }
+        const lit = Math.max(0, (nx * -0.42 + ny * -0.68 + nz * 0.6) / nl);
+        const a = smooth(remap(fu, f.order * 0.6, f.order * 0.6 + 0.4)) * (0.1 + 0.9 * lit) * 0.2 * bright;
         if (a <= 0.003) continue;
         g.fillStyle = rgba(GOLD, a);
         g.beginPath();
-        g.moveTo(f.P[0][0], f.P[0][1]);
-        g.lineTo(f.P[1][0], f.P[1][1]);
-        g.lineTo(f.P[2][0], f.P[2][1]);
+        g.moveTo(P[0][0], P[0][1]);
+        g.lineTo(P[1][0], P[1][1]);
+        g.lineTo(P[2][0], P[2][1]);
         g.closePath();
         g.fill();
       }
     }
     // edges
     const eu = remap(u, 0.12, 0.62);
-    g.lineWidth = 1.5 / scale;
+    g.lineWidth = 1.6 / scale;
+    g.strokeStyle = rgba(GOLD, 0.85 * bright);
     for (const e of st.edges) {
       const p = ease.outCubic(remap(eu, e.order * 0.7, e.order * 0.7 + 0.3));
       if (p <= 0) continue;
-      g.strokeStyle = rgba(GOLD, 0.85 * bright);
+      const a = pr(e.a[0], e.a[1], false), b = pr(e.b[0], e.b[1], false);
       g.beginPath();
-      g.moveTo(e.a[0], e.a[1]);
-      g.lineTo(lerp(e.a[0], e.b[0], p), lerp(e.a[1], e.b[1], p));
+      g.moveTo(a[0], a[1]);
+      g.lineTo(lerp(a[0], b[0], p), lerp(a[1], b[1], p));
       g.stroke();
     }
     // vertices — twinkle in like stars
@@ -298,34 +339,38 @@ export class Overlay {
     for (const v of st.verts) {
       const a = remap(vu, v.order * 0.75, v.order * 0.75 + 0.25);
       if (a <= 0) continue;
+      const q = pr(v.p[0], v.p[1], false);
       const pop = Math.exp(-Math.pow((a - 0.15) * 4.0, 2)) * 2.2;
       const tw = 0.75 + 0.25 * Math.sin(time * (3 + v.tw * 5) + v.tw * 30);
       const r = (2.1 + pop * 2.4) / scale;
       g.fillStyle = rgba([255, 232, 190], clamp(a * 3) * tw * bright);
       g.beginPath();
-      g.arc(v.p[0], v.p[1], r, 0, Math.PI * 2);
+      g.arc(q[0], q[1], r, 0, Math.PI * 2);
       g.fill();
     }
-    // antlers
+    // antlers, growing like branches
     const au = remap(u, 0.25, 0.92);
     const beamP = ease.inOutCubic(remap(au, 0, 0.8));
     const tips = [];
-    for (const mirror of [false, true]) {
+    for (const side of [1, -1]) {
+      const P = (pts) => pts.map(([x, y]) => pr(side * x, y, true));
+      const beam = P(st.beam);
+      const tines = st.tines.map((tn) => ({ ...tn, pts: P(tn.pts) }));
       g.fillStyle = rgba([226, 160, 82], 0.95 * bright);
-      const tip = taper(g, st.beam, 11, 2.6, beamP, mirror);
+      const tip = taper(g, beam, 11, 2.6, beamP, false);
       if (tip && beamP < 0.999) tips.push(tip);
-      for (const tn of st.tines) {
+      for (const tn of tines) {
         const tp = ease.outCubic(remap(beamP, tn.anchor, Math.min(1, tn.anchor + 0.32)));
         const tp2 = Math.min(tp, remap(au, 0, 1) * 1.5);
-        const tt = taper(g, tn.pts, tn.w0, tn.w1, tp2, mirror);
+        const tt = taper(g, tn.pts, tn.w0, tn.w1, tp2, false);
         if (tt && tp2 < 0.999) tips.push(tt);
       }
       // bright filament core
       g.fillStyle = rgba([255, 230, 180], 0.9 * bright);
-      taper(g, st.beam, 3.2, 0.8, beamP, mirror);
-      for (const tn of st.tines) {
+      taper(g, beam, 3.2, 0.8, beamP, false);
+      for (const tn of tines) {
         const tp = ease.outCubic(remap(beamP, tn.anchor, Math.min(1, tn.anchor + 0.32)));
-        taper(g, tn.pts, 1.8, 0.5, Math.min(tp, remap(au, 0, 1) * 1.5), mirror);
+        taper(g, tn.pts, 1.8, 0.5, Math.min(tp, remap(au, 0, 1) * 1.5), false);
       }
     }
     // sparks at the growing tips
@@ -337,7 +382,7 @@ export class Overlay {
     }
     // the Hubertus star between the antlers (end card emblem)
     if (o.star > 0) {
-      const [sx, sy] = st.star;
+      const [sx, sy] = pr(st.star[0], st.star[1], false, -40);
       const k = o.star;
       const tw = 0.85 + 0.15 * Math.sin(time * 6.0);
       const rg = g.createRadialGradient(sx, sy, 0, sx, sy, 60);
@@ -362,14 +407,63 @@ export class Overlay {
     const eyeA = remap(u, 0.86, 1.0) * (o.eyes ?? 1);
     if (eyeA > 0) {
       for (const sx of [1, -1]) {
-        const [ex, ey] = st.eye;
+        const [ex, ey] = pr(st.eye[0] * sx, st.eye[1], false);
         g.fillStyle = rgba([255, 150, 50], eyeA * bright);
         g.beginPath();
-        g.ellipse(ex * sx, ey, 9, 4.2, sx * -0.18, 0, Math.PI * 2);
+        g.ellipse(ex, ey, 9, 4.2, sx * -0.18, 0, Math.PI * 2);
         g.fill();
         g.fillStyle = rgba([255, 235, 200], eyeA * bright);
         g.beginPath();
-        g.arc(ex * sx, ey, 2.2, 0, Math.PI * 2);
+        g.arc(ex, ey, 2.2, 0, Math.PI * 2);
+        g.fill();
+      }
+    }
+    g.restore();
+  }
+
+  // Sparks of light streaking in from the forest to become the stag's vertices.
+  stagSparks(t, cx, cy, scale, pose, bright) {
+    const S = this.S;
+    const g = this.ctx(true);
+    const pr = stagProjector(pose);
+    const span = CUE.stagDone - CUE.stagStart;
+    g.save();
+    g.lineCap = 'round';
+    for (const v of this.stag.verts) {
+      const tArr = CUE.stagStart + span * 0.3 * v.order;
+      const dur = 0.75 + 0.35 * v.sp[3];
+      const s0 = (t - (tArr - dur)) / dur;
+      if (s0 <= 0 || s0 > 1.35) continue;
+      const q = pr(v.p[0], v.p[1], false);
+      const ex = cx + q[0] * scale, ey = cy + q[1] * scale;
+      const ang = Math.PI / 2 + (v.sp[0] - 0.5) * 2.6;
+      const dist = 380 + 520 * v.sp[1];
+      const sx = ex + Math.cos(ang) * dist * 1.3, sy = ey + Math.sin(ang) * dist;
+      const curl = (v.sp[2] - 0.5) * 0.9 * dist;
+      const mx = (sx + ex) / 2 - Math.sin(ang) * curl, my = (sy + ey) / 2 + Math.cos(ang) * curl;
+      const at = (s) => {
+        const e = ease.inOutCubic(clamp(s));
+        const a = (1 - e) * (1 - e), b = 2 * (1 - e) * e, c = e * e;
+        return [a * sx + b * mx + c * ex, a * sy + b * my + c * ey];
+      };
+      const fade = 1 - smooth(remap(s0, 1.0, 1.35));
+      let prev = at(s0);
+      for (let k = 1; k <= 10; k++) {
+        const p = at(s0 - k * 0.035);
+        const w = (1 - k / 11) * 2.6;
+        g.strokeStyle = rgba([255, 196, 120], (1 - k / 11) * 0.9 * fade * bright);
+        g.lineWidth = Math.max(0.4, w) * S;
+        g.beginPath();
+        g.moveTo(prev[0] * S, prev[1] * S);
+        g.lineTo(p[0] * S, p[1] * S);
+        g.stroke();
+        prev = p;
+      }
+      if (s0 < 1.0) {
+        const h = at(s0);
+        g.fillStyle = rgba([255, 240, 214], 0.95 * bright);
+        g.beginPath();
+        g.arc(h[0] * S, h[1] * S, 2.4 * S, 0, Math.PI * 2);
         g.fill();
       }
     }
@@ -381,50 +475,30 @@ export class Overlay {
     const W1 = 1920 * (this.W / this.H) / (1920 / 1080); // design width at 1080p height
     const CX = W1 / 2;
 
-    // ACT I — epigraph
-    if (t > CUE.poemIn && t < CUE.poemOut + 0.7) {
-      const out = 1 - smooth(remap(t, CUE.poemOut - 0.2, CUE.poemOut + 0.6));
-      const lines = ['Das ist des Jägers Ehrenschild,', 'daß er beschützt und hegt sein Wild'];
-      lines.forEach((s, li) => {
-        const t0 = CUE.poemIn + li * 0.75;
-        const y = 498 + li * 74;
-        const per = (i, n) => {
-          const lt = remap(t, t0 + i * 0.032, t0 + i * 0.032 + 0.7);
-          return { a: smooth(lt) * out, blur: (1 - lt) * 7, dy: (1 - ease.outCubic(lt)) * 8 };
-        };
-        this.text(s, { x: CX, y, family: 'Frak', size: 58, color: [233, 214, 172], perChar: per });
-        this.text(s, {
-          x: CX, y, family: 'Frak', size: 58, color: [255, 170, 80], glow: true, alpha: 0.6,
-          perChar: (i, n) => {
-            const lt = remap(t, t0 + i * 0.032, t0 + i * 0.032 + 0.7);
-            return { a: Math.sin(Math.PI * clamp(lt)) * out, blur: 3 };
-          },
-        });
-      });
-      const ta = smooth(remap(t, CUE.poemIn + 1.7, CUE.poemIn + 2.6)) * out;
-      this.text("THIS IS THE HUNTER'S BADGE OF HONOUR — THAT HE GUARDS AND TENDS HIS GAME", {
-        x: CX, y: 652, family: 'Mont', weight: 500, size: 11.5, tracking: 0.42, color: [190, 176, 146], alpha: ta * 0.85,
-      });
-    }
+    // ACT 0 — title card
+    if (t > CUE.titleIn - 0.1 && t < CUE.titleOut + 0.2) this.title(t, CX);
 
     // ACT I — location
     if (t > CUE.locIn && t < CUE.locOut + 0.1) {
       const a = smooth(remap(t, CUE.locIn, CUE.locIn + 1.0)) * (1 - smooth(remap(t, CUE.locOut - 0.9, CUE.locOut)));
-      const tr = lerp(1.15, 0.72, ease.outCubic(remap(t, CUE.locIn, CUE.locIn + 2.6)));
-      this.text('WOLFENBÜTTEL', { x: CX, y: 842, family: 'Mont', weight: 500, size: 15, tracking: tr, color: CREAM, alpha: a * 0.92 });
+      const tr = lerp(1.15, 0.6, ease.outCubic(remap(t, CUE.locIn, CUE.locIn + 2.8)));
+      this.text('LOWER SAXONY · GERMANY', { x: CX, y: 842, family: 'Mont', weight: 500, size: 15, tracking: tr, color: CREAM, alpha: a * 0.92 });
       const lw = 46 * ease.inOutCubic(remap(t, CUE.locIn + 0.4, CUE.locIn + 1.4));
       this.line(CX - lw, 862, CX + lw, 862, { color: ORANGE, width: 1.2, alpha: a });
-      this.text('Lower Saxony · 1934', {
-        x: CX, y: 900, family: 'Corm', style: 'italic', weight: 400, size: 27, color: [214, 200, 170], alpha: a * smooth(remap(t, CUE.locIn + 0.6, CUE.locIn + 1.6)),
+      this.text('Winter, 1934', {
+        x: CX, y: 900, family: 'Corm', style: 'italic', weight: 400, size: 28, color: [214, 200, 170], alpha: a * smooth(remap(t, CUE.locIn + 0.6, CUE.locIn + 1.6)),
       });
     }
 
     // ACT I — the stag
-    if (t > CUE.stagStart && t < CUE.burst + 0.5 && info.stag) {
+    if (t > CUE.stagStart - 1.2 && t < CUE.burst + 0.5 && info.stag) {
       const u = remap(t, CUE.stagStart, CUE.stagDone);
-      const igniteFade = 1 - smooth(remap(t, CUE.ignite + 0.15, CUE.burst + 0.1));
+      const igniteFade = 1 - 0.75 * smooth(remap(t, CUE.ignite + 0.15, CUE.burst - 0.1)) - 0.25 * smooth(remap(t, CUE.burst - 0.1, CUE.burst + 0.15));
       const flare = Math.exp(-Math.pow((t - CUE.ignite - 0.05) * 5, 2)) * 0.8;
-      this.stagFigure(u, info.stag.x, info.stag.y, info.stag.scale, { bright: (0.85 + flare) * igniteFade * info.stag.alpha, time: t });
+      const pose = stagPose(t);
+      const sg = info.stag;
+      this.stagSparks(t, sg.x, sg.y, sg.scale, pose, sg.alpha);
+      if (u > 0) this.stagFigure(u, sg.x, sg.y, sg.scale, { bright: (0.85 + flare) * igniteFade * sg.alpha, time: t, pose });
     }
 
     // ACT II — 56 botanicals
@@ -456,65 +530,7 @@ export class Overlay {
     }
 
     // ACT II — 365 days in oak
-    if (t > CUE.countStart - 0.6 && t < CUE.freeze + 0.6) {
-      const out = 1 - smooth(remap(t, CUE.freeze - 0.3, CUE.freeze + 0.5));
-      const cy = 500;
-      const ringA = smooth(remap(t, CUE.countStart - 0.6, CUE.countStart + 0.2)) * out;
-      const prog = ease.outQuart(remap(t, CUE.countStart, CUE.countEnd));
-      const n = Math.max(1, Math.round(prog * 365));
-      // year ring with week ticks
-      const g = this.ctx(false);
-      const S = this.S;
-      g.save();
-      g.translate(CX * S, cy * S);
-      g.strokeStyle = rgba(CREAM, 0.16 * ringA);
-      g.lineWidth = 1 * S;
-      g.beginPath();
-      g.arc(0, 0, 236 * S, 0, Math.PI * 2);
-      g.stroke();
-      for (let k = 0; k < 52; k++) {
-        const ang = -Math.PI / 2 + (k / 52) * Math.PI * 2;
-        const major = k % 13 === 0;
-        const on = k / 52 <= prog;
-        const len = major ? 14 : 6;
-        g.strokeStyle = on ? rgba(GOLD, (major ? 0.95 : 0.7) * ringA) : rgba(CREAM, 0.22 * ringA);
-        g.lineWidth = (major ? 1.6 : 1) * S;
-        g.beginPath();
-        g.moveTo(Math.cos(ang) * (250) * S, Math.sin(ang) * 250 * S);
-        g.lineTo(Math.cos(ang) * (250 + len) * S, Math.sin(ang) * (250 + len) * S);
-        g.stroke();
-      }
-      g.restore();
-      // progress arc on glow
-      const gg = this.ctx(true);
-      gg.save();
-      gg.translate(CX * S, cy * S);
-      gg.strokeStyle = rgba([255, 170, 80], 0.95 * ringA);
-      gg.lineWidth = 2.2 * S;
-      gg.lineCap = 'round';
-      gg.beginPath();
-      gg.arc(0, 0, 236 * S, -Math.PI / 2, -Math.PI / 2 + Math.max(0.001, prog) * Math.PI * 2);
-      gg.stroke();
-      const ha = -Math.PI / 2 + prog * Math.PI * 2;
-      gg.fillStyle = rgba([255, 230, 190], ringA);
-      gg.beginPath();
-      gg.arc(Math.cos(ha) * 236 * S, Math.sin(ha) * 236 * S, 3.2 * S, 0, Math.PI * 2);
-      gg.fill();
-      gg.restore();
-      // digits in fixed slots
-      const digits = String(n).padStart(3, '0');
-      const da = smooth(remap(t, CUE.countStart - 0.2, CUE.countStart + 0.4)) * out;
-      const slot = 118;
-      for (let k = 0; k < 3; k++) {
-        const isLead = digits.slice(0, k + 1).split('').every((c) => c === '0') && k < 2;
-        this.text(digits[k], { x: CX + (k - 1) * slot, y: cy + 62, family: 'Cinzel', weight: 400, size: 176, color: CREAM, alpha: da * (isLead ? 0.18 : 1) });
-      }
-      const ca = smooth(remap(t, CUE.daysText, CUE.daysText + 0.8)) * out;
-      const ctr = lerp(1.4, 0.75, ease.outQuart(remap(t, CUE.daysText, CUE.daysText + 2.2)));
-      this.text('DAYS IN OAK', { x: CX, y: cy + 128, family: 'Mont', weight: 500, size: 16, tracking: ctr, color: [255, 150, 70], alpha: ca });
-      const ia = smooth(remap(t, CUE.daysText + 0.7, CUE.daysText + 1.5)) * out;
-      this.text('a full year at rest, before a single bottle is filled', { x: CX, y: 826, family: 'Corm', style: 'italic', weight: 400, size: 27, color: [222, 204, 170], alpha: ia });
-    }
+    if (t > CUE.countStart - 0.6 && t < CUE.freeze + 0.6) this.counter(t, CX);
 
     // ACT II — ice cold
     if (t > CUE.coldText && t < CUE.shatter) {
@@ -529,6 +545,119 @@ export class Overlay {
 
     // ACT III — end card
     if (t > CUE.endcard - 0.05) this.endcard(t, info);
+  }
+
+  title(t, CX) {
+    const S = this.S;
+    const out = 1 - smooth(remap(t, CUE.titleOut - 0.7, CUE.titleOut));
+    const y = 548;
+    const str = "THE HUNTER'S HOUR";
+    const n = str.length;
+    const per = (i) => {
+      const fromC = Math.abs(i - (n - 1) / 2) / ((n - 1) / 2);
+      const t0 = CUE.titleIn + fromC * 0.55;
+      const lt = remap(t, t0, t0 + 1.1);
+      const o = remap(t, CUE.titleOut - 0.8 + fromC * 0.25, CUE.titleOut - 0.1 + fromC * 0.2);
+      return { a: smooth(lt) * (1 - smooth(o)), blur: (1 - lt) * 10 + o * 8, dy: (1 - ease.outCubic(lt)) * 10 - o * 6 };
+    };
+    const tr = lerp(0.42, 0.3, ease.outCubic(remap(t, CUE.titleIn, CUE.titleOut)));
+    this.text(str, { x: CX, y, family: 'Cinzel', weight: 400, size: 84, tracking: tr, color: [238, 226, 198], perChar: per });
+    // warm glow copy + a light sweep across the letters
+    const sweep = remap(t, CUE.titleIn + 1.2, CUE.titleIn + 2.6);
+    this.text(str, {
+      x: CX, y, family: 'Cinzel', weight: 400, size: 84, tracking: tr, color: [255, 160, 70], glow: true,
+      perChar: (i) => {
+        const c = per(i);
+        const sx = i / (n - 1);
+        const band = Math.exp(-Math.pow((sx - lerp(-0.2, 1.2, sweep)) / 0.09, 2)) * (sweep > 0 && sweep < 1 ? 1 : 0);
+        return { a: c.a * (0.22 + 0.9 * band), blur: 2 + c.blur, dy: c.dy };
+      },
+    });
+    // rules either side + subtitle
+    const rw = 150 * ease.inOutCubic(remap(t, CUE.titleIn + 0.6, CUE.titleIn + 1.8));
+    const ra = out * smooth(remap(t, CUE.titleIn + 0.5, CUE.titleIn + 1.2));
+    this.line(CX - rw, 584, CX + rw, 584, { color: ORANGE, width: 1.2, alpha: ra * 0.9 });
+    this.text('a legend from the forest', {
+      x: CX, y: 634, family: 'Corm', style: 'italic', weight: 400, size: 28, color: [214, 200, 170],
+      alpha: out * smooth(remap(t, CUE.titleIn + 0.9, CUE.titleIn + 1.9)), blur: (1 - smooth(remap(t, CUE.titleIn + 0.9, CUE.titleIn + 1.9))) * 5,
+    });
+    // a single glint above the title: the first sign of the light
+    const gk = Math.exp(-Math.pow((t - (CUE.titleIn + 2.0)) / 0.5, 2)) * out;
+    if (gk > 0.01) {
+      const g = this.ctx(true);
+      const gx = CX * S, gy = 448 * S;
+      g.save();
+      g.fillStyle = rgba([255, 226, 180], gk);
+      g.beginPath();
+      for (let i = 0; i < 8; i++) {
+        const a = (i / 8) * Math.PI * 2 - Math.PI / 2;
+        const rr = i % 2 === 0 ? (i === 4 ? 30 : 20) * S * (0.6 + 0.4 * gk) : 1.8 * S;
+        g.lineTo(gx + Math.cos(a) * rr, gy + Math.sin(a) * rr);
+      }
+      g.closePath();
+      g.fill();
+      g.restore();
+    }
+  }
+
+  counter(t, CX) {
+    const out = 1 - smooth(remap(t, CUE.freeze - 0.3, CUE.freeze + 0.5));
+    const cy = 500;
+    const ringA = smooth(remap(t, CUE.countStart - 0.6, CUE.countStart + 0.2)) * out;
+    const prog = ease.outQuart(remap(t, CUE.countStart, CUE.countEnd));
+    const n = Math.max(1, Math.round(prog * 365));
+    // year ring with week ticks
+    const g = this.ctx(false);
+    const S = this.S;
+    g.save();
+    g.translate(CX * S, cy * S);
+    g.strokeStyle = rgba(CREAM, 0.16 * ringA);
+    g.lineWidth = 1 * S;
+    g.beginPath();
+    g.arc(0, 0, 236 * S, 0, Math.PI * 2);
+    g.stroke();
+    for (let k = 0; k < 52; k++) {
+      const ang = -Math.PI / 2 + (k / 52) * Math.PI * 2;
+      const major = k % 13 === 0;
+      const on = k / 52 <= prog;
+      const len = major ? 14 : 6;
+      g.strokeStyle = on ? rgba(GOLD, (major ? 0.95 : 0.7) * ringA) : rgba(CREAM, 0.22 * ringA);
+      g.lineWidth = (major ? 1.6 : 1) * S;
+      g.beginPath();
+      g.moveTo(Math.cos(ang) * 250 * S, Math.sin(ang) * 250 * S);
+      g.lineTo(Math.cos(ang) * (250 + len) * S, Math.sin(ang) * (250 + len) * S);
+      g.stroke();
+    }
+    g.restore();
+    // progress arc on glow
+    const gg = this.ctx(true);
+    gg.save();
+    gg.translate(CX * S, cy * S);
+    gg.strokeStyle = rgba([255, 170, 80], 0.95 * ringA);
+    gg.lineWidth = 2.2 * S;
+    gg.lineCap = 'round';
+    gg.beginPath();
+    gg.arc(0, 0, 236 * S, -Math.PI / 2, -Math.PI / 2 + Math.max(0.001, prog) * Math.PI * 2);
+    gg.stroke();
+    const ha = -Math.PI / 2 + prog * Math.PI * 2;
+    gg.fillStyle = rgba([255, 230, 190], ringA);
+    gg.beginPath();
+    gg.arc(Math.cos(ha) * 236 * S, Math.sin(ha) * 236 * S, 3.2 * S, 0, Math.PI * 2);
+    gg.fill();
+    gg.restore();
+    // digits in fixed slots
+    const digits = String(n).padStart(3, '0');
+    const da = smooth(remap(t, CUE.countStart - 0.2, CUE.countStart + 0.4)) * out;
+    const slot = 118;
+    for (let k = 0; k < 3; k++) {
+      const isLead = digits.slice(0, k + 1).split('').every((c) => c === '0') && k < 2;
+      this.text(digits[k], { x: CX + (k - 1) * slot, y: cy + 62, family: 'Cinzel', weight: 400, size: 176, color: CREAM, alpha: da * (isLead ? 0.18 : 1) });
+    }
+    const ca = smooth(remap(t, CUE.daysText, CUE.daysText + 0.8)) * out;
+    const ctr = lerp(1.4, 0.75, ease.outQuart(remap(t, CUE.daysText, CUE.daysText + 2.2)));
+    this.text('DAYS IN OAK', { x: CX, y: cy + 128, family: 'Mont', weight: 500, size: 16, tracking: ctr, color: [255, 150, 70], alpha: ca });
+    const ia = smooth(remap(t, CUE.daysText + 0.7, CUE.daysText + 1.5)) * out;
+    this.text('a full year at rest, before a single bottle is filled', { x: CX, y: 826, family: 'Corm', style: 'italic', weight: 400, size: 27, color: [222, 204, 170], alpha: ia });
   }
 
   callouts(t, list) {

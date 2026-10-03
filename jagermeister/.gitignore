@@ -2,3 +2,4 @@ node_modules/
 frames/
 *.log
 audio/soundtrack.wav
+audio/__pycache__/

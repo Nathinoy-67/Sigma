@@ -2,12 +2,12 @@ import * as THREE from 'three';
 import { FSPass, GLSL_COMMON } from '../gl.js';
 
 // Act II: macro of the herbal liqueur swirling in backlight (365 days in oak),
-// then it freezes: frost creeps in, "−18°C" crystallises, the ice cracks.
+// then it freezes: frost creeps in and "−18°C" crystallises (the shards scene breaks it).
 
 const FRAG = /* glsl */ `
 ${GLSL_COMMON}
 uniform vec2 uRes;
-uniform float uTime, uFlow, uFreeze, uFrost, uFrostText, uCrack, uPush;
+uniform float uTime, uFlow, uFreeze, uFrost, uFrostText, uPush;
 uniform sampler2D uText;
 in vec2 vUv; out vec4 fragColor;
 
@@ -88,39 +88,12 @@ float frostPattern(vec2 p) {
   return max(f, 0.0);
 }
 
-float angD(float a, float b){ return abs(atan(sin(a - b), cos(a - b))); }
-// jagged radial fractures + broken concentric rings, grown out to radius R
-float crackDist(vec2 p, float R) {
-  float r = length(p);
-  float a = atan(p.y, p.x);
-  float d = 1e3;
-  for (int i = 0; i < 15; i++) {
-    float fi = float(i);
-    vec2 hh = h22(vec2(fi, 17.0));
-    float ai = (fi + hh.x * 0.8) / 15.0 * TAU;
-    float x1 = r * 5.0, x2 = r * 17.0;
-    float j1 = mix(h12(vec2(floor(x1), fi * 3.7)), h12(vec2(floor(x1) + 1.0, fi * 3.7)), fract(x1)) - 0.5;
-    float j2 = mix(h12(vec2(floor(x2), fi * 1.3 + 50.0)), h12(vec2(floor(x2) + 1.0, fi * 1.3 + 50.0)), fract(x2)) - 0.5;
-    float jit = j1 * 0.34 + j2 * 0.07;
-    float len = mix(0.45, 1.0, hh.y) * R;
-    float dd = angD(a, ai + jit * smoothstep(0.0, 0.12, r)) * r;
-    dd += smoothstep(len - 0.04, len, r) * 1e3;
-    d = min(d, dd);
-  }
-  for (int k = 0; k < 4; k++) {
-    float fk = float(k);
-    float rk = 0.07 + fk * 0.1 + (gnoise(vec2(a * 2.0, fk * 9.0)) - 0.5) * 0.04;
-    float seg = smoothstep(0.40, 0.46, gnoise(vec2(a * 1.6 + fk * 7.0, fk * 3.0)));
-    float dr = abs(r - rk) + (1.0 - seg) * 1e3 + step(R, rk) * 1e3;
-    d = min(d, dr);
-  }
-  return d;
-}
-
 void main(){
   vec2 uv = vUv;
   float asp = uRes.x / uRes.y;
   vec2 p = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y;
+  // a slow lens roll while the liqueur flows (it stops when it freezes) and a gentle push-in
+  p = rot2(-0.03 * uFlow) * p;
   p *= 1.0 - 0.012 * uPush;
 
   // --- liquid surface
@@ -185,17 +158,6 @@ void main(){
     float halo = smoothstep(-0.3, 0.0, sd) * (1.0 - step(0.0, sd)) * 0.06 * uFrostText;
     col = mix(col, col * 0.3, inside * 0.8);
     col += letters + iceC * halo;
-  }
-
-  // --- the ice cracks: lines of light racing out from the centre
-  if (uCrack > 0.0) {
-    vec2 cp = p - vec2(0.0, 0.03);
-    float R = pow(uCrack, 0.55) * 1.25;
-    float cd = crackDist(cp, R);
-    float px = 1.0 / uRes.y;
-    float line = smoothstep(1.3 * px, 0.2 * px, cd);
-    col += vec3(0.82, 0.94, 1.0) * line * (2.0 + 6.0 * uCrack);
-    col += vec3(0.5, 0.8, 1.0) * exp(-cd * 260.0) * 0.5 * uCrack;
   }
 
   fragColor = vec4(col, 0.0);
@@ -290,7 +252,7 @@ export class LiquidScene {
     const u = (v) => ({ value: v });
     this.pass = new FSPass(FRAG, {
       uRes: u(new THREE.Vector2(W, H)), uTime: u(0), uFlow: u(0), uFreeze: u(0), uFrost: u(0), uFrostText: u(0),
-      uCrack: u(0), uPush: u(0), uText: u(makeTextSDF(W, H)),
+      uPush: u(0), uText: u(makeTextSDF(W, H)),
     });
   }
   render(target, s) {
@@ -300,7 +262,6 @@ export class LiquidScene {
     U.uFreeze.value = s.freeze;
     U.uFrost.value = s.frost;
     U.uFrostText.value = s.frostText;
-    U.uCrack.value = s.crack;
     U.uPush.value = s.push;
     this.pass.render(this.r, target);
   }

@@ -1,44 +1,61 @@
-// Master timeline (seconds). Shared by the visuals and by audio/soundtrack.py
+// Master cue sheet (seconds) for v2 — picture, score and voice-over are all cut to it
 // (exported to audio/cues.json by render/export-cues.mjs).
 export const FPS = 30;
-export const DURATION = 50.0;
+export const DURATION = 60.0;
 
 export const CUE = {
-  // ACT I — MYTH
-  poemIn: 0.4,
-  poemOut: 3.3,
-  forestIn: 2.7,
-  locIn: 5.0,
-  locOut: 8.3,
-  stagStart: 8.0,
-  stagDone: 11.6,
-  ignite: 12.0, // Hubertus light — HIT
-  burst: 13.0, // light bursts into botanicals — HIT
+  // ACT 0 — TITLE
+  titleIn: 1.2,
+  titleOut: 4.6,
+  forestIn: 4.4,
+
+  // ACT I — THE FOREST
+  flightStart: 4.4, // camera flies along the trail
+  locIn: 7.0,
+  locOut: 10.4,
+  arrive: 12.0, // reaches the clearing
+  stagStart: 11.6,
+  stagDone: 15.4,
+  ignite: 16.0, // Hubertus light — HIT (end of "…a light shone")
+  burst: 17.3, // light bursts into botanicals — HIT
 
   // ACT II — CRAFT
-  formDone: 15.9,
-  botText: 15.5,
-  ingredients: 16.2,
-  disperse: 19.2,
-  whip: 20.0, // whip-pan into the liquid
-  countStart: 20.8,
-  countEnd: 23.4,
-  daysText: 23.0,
-  freeze: 26.0,
-  frostText: 27.3,
-  coldText: 28.6,
-  crack: 30.6,
-  shatter: 31.3, // HIT
+  formDone: 20.3,
+  botText: 20.0,
+  ingredients: 20.9,
+  disperse: 24.3,
+  whip: 25.0, // whip-pan into the liqueur
+  countStart: 25.8,
+  countEnd: 28.4,
+  daysText: 27.9,
+  freeze: 30.6,
+  frostText: 31.8,
+  coldText: 32.9,
+  crack: 34.9,
+  shatter: 35.6, // HIT — the ice explodes towards camera
 
-  // ACT III — NIGHT
-  bottleIn: 31.3,
-  drop: 36.0, // beat drop — HIT
+  // ACT III — THE NIGHT
+  bottleIn: 35.6,
+  drop: 41.8, // beat drop — HIT
   bpm: 120,
-  callouts: [36.5, 37.5, 38.5, 39.5],
-  beatEnd: 41.5,
-  endcard: 42.0, // wordmark — HIT
-  tagline: 43.2,
-  legal: 44.4,
-  fadeOut: 47.6,
-  fadeDone: 49.0,
+  callouts: [42.3, 43.3, 44.3, 45.3],
+  beatEnd: 47.8,
+  endcard: 47.8, // wordmark — HIT
+  tagline: 50.6,
+  legal: 52.6,
+  fadeOut: 57.0,
+  fadeDone: 58.6,
+
+  // voice-over line starts (audio/vo/<id>.wav)
+  vo: {
+    secrets: 0.7,
+    woods: 6.0,
+    antlers: 11.92, // ends on "shone" at the ignition
+    botanicals: 19.9,
+    oak: 26.3,
+    cold: 32.4,
+    master: 38.6,
+    brand: 48.75,
+    tagline: 50.75,
+  },
 };

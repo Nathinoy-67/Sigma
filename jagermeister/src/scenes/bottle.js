@@ -154,16 +154,16 @@ function makeLabel() {
     x.fill();
     x.restore();
   });
-  // poem
+  // the hunter's verse (English)
   g.fillStyle = 'rgba(236,224,196,0.82)';
-  g.font = '400 31px Frak';
-  ['Das ist des Jägers Ehrenschild,', 'daß er beschützt und hegt sein Wild,', "weidmännisch jagt, wie sich's gehört,", 'den Schöpfer im Geschöpfe ehrt.'].forEach((s, i) =>
+  g.font = '400 30px Frak';
+  ["This is the hunter's badge of pride:", 'to guard and keep the wild beside,', 'to hunt with honour, as is due,', 'and in the creature, praise its Maker too.'].forEach((s, i) =>
     g.fillText(s, w / 2, 968 + i * 44),
   );
   g.fillStyle = '#ff6a13';
   g.font = '600 34px Mont';
   g.letterSpacing = '12px';
-  g.fillText('KRÄUTERLIKÖR', w / 2 + 6, 1210);
+  g.fillText('HERBAL LIQUEUR', w / 2 + 6, 1210);
   both((x, c) => {
     x.fillStyle = c;
     x.fillRect(w / 2 - 150, 1240, 300, 2);
@@ -171,10 +171,10 @@ function makeLabel() {
   g.fillStyle = 'rgba(236,224,196,0.9)';
   g.font = '500 23px Mont';
   g.letterSpacing = '6px';
-  g.fillText('56 BOTANICALS · 35% VOL · 0,7 L', w / 2 + 3, 1292);
+  g.fillText('56 BOTANICALS · 35% VOL · 0.7 L', w / 2 + 3, 1292);
   g.font = '500 19px Mont';
   g.fillStyle = 'rgba(236,224,196,0.6)';
-  g.fillText('WOLFENBÜTTEL · GERMANY', w / 2 + 3, 1336);
+  g.fillText('MADE IN GERMANY · SINCE 1934', w / 2 + 3, 1336);
   const tex = (c) => {
     const t = new THREE.CanvasTexture(c);
     t.colorSpace = THREE.NoColorSpace;
@@ -383,6 +383,60 @@ void main(){
   fragColor = vec4(col, luma(col) * 1.6);
 }`;
 
+// Botanicals orbiting the bottle in a slow vortex; depth-tested so they pass behind it.
+const ORBIT_VERT = /* glsl */ `
+in vec4 aSeed;
+uniform float uTime, uSwirl, uGain, uFocus, uAperture, uRes, uBeat, uRise;
+out vec3 vColor; out float vR; out float vPS; out float vA;
+void main(){
+  float rad = position.x, h = position.y;
+  float spd = (0.55 + 0.9 * aSeed.x) * (0.45 / (rad + 0.12));
+  float ang = position.z + uSwirl * spd;
+  float y = h + 0.035 * sin(uTime * (0.7 + aSeed.z) + aSeed.w * 6.28) + uRise * (0.15 + 0.5 * aSeed.y);
+  vec3 p = vec3(cos(ang) * rad, y, sin(ang) * rad);
+  vec4 mv = modelViewMatrix * vec4(p, 1.0);
+  gl_Position = projectionMatrix * mv;
+  float dz = -mv.z;
+  float focal = projectionMatrix[1][1] * 0.5 * uRes;
+  float sz = mix(0.0018, 0.0042, aSeed.z * aSeed.z) * focal / dz;
+  float coc = abs(1.0 / dz - 1.0 / uFocus) * uAperture * focal;
+  float r = min(max(sz, 0.7) + coc, 0.03 * uRes);
+  vR = r; vPS = r * 2.0 + 3.0;
+  gl_PointSize = vPS;
+  float tw = 0.6 + 0.4 * sin(uTime * (2.0 + aSeed.w * 5.0) + aSeed.x * 40.0);
+  vA = uGain * tw * (1.0 + 1.5 * uBeat * aSeed.y) * (max(sz, 0.7) * max(sz, 0.7)) / (r * r) * smoothstep(0.0, 0.08, y) ;
+  vColor = aSeed.w < 0.14 ? vec3(0.45, 0.75, 0.25) : mix(vec3(1.0, 0.42, 0.1), vec3(1.0, 0.78, 0.45), aSeed.z);
+}`;
+const ORBIT_FRAG = /* glsl */ `
+in vec3 vColor; in float vR; in float vPS; in float vA;
+out vec4 fragColor;
+void main(){
+  vec2 c = (gl_PointCoord - 0.5) * vPS;
+  float r = length(c);
+  float a;
+  if (vR < 2.2) a = exp(-r * r / max(vR * vR * 0.55, 0.35)) * 1.3;
+  else a = smoothstep(vR + 0.8, vR - 0.8, r) * (0.7 + 0.5 * smoothstep(vR * 0.5, vR, r));
+  fragColor = vec4(vColor * vA * a, 0.0);
+}`;
+
+function orbitGeometry() {
+  let seed = 4021;
+  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const N = 1300;
+  const pos = new Float32Array(N * 3), sd = new Float32Array(N * 4);
+  for (let i = 0; i < N; i++) {
+    const band = rnd();
+    pos[i * 3] = band < 0.88 ? 0.25 + 0.36 * Math.pow(rnd(), 0.75) : 0.62 + 0.36 * rnd();
+    pos[i * 3 + 1] = 0.03 + Math.pow(rnd(), 1.15) * 1.12;
+    pos[i * 3 + 2] = rnd() * Math.PI * 2;
+    for (let k = 0; k < 4; k++) sd[i * 4 + k] = rnd();
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  g.setAttribute('aSeed', new THREE.BufferAttribute(sd, 4));
+  return g;
+}
+
 export class BottleScene {
   constructor(renderer, W, H) {
     this.r = renderer;
@@ -436,8 +490,34 @@ export class BottleScene {
     const floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), this.floorMat);
     floor.rotation.x = -Math.PI / 2;
 
+    this.orbitMat = new THREE.ShaderMaterial({
+      glslVersion: THREE.GLSL3,
+      vertexShader: ORBIT_VERT,
+      fragmentShader: ORBIT_FRAG,
+      uniforms: {
+        uTime: this.shared.uTime, uBeat: this.shared.uBeat, uSwirl: u(0), uGain: u(0), uFocus: u(2.5), uAperture: u(0.011),
+        uRes: u(H), uRise: u(0),
+      },
+      transparent: true,
+      depthTest: true,
+      depthWrite: false,
+      blending: THREE.CustomBlending,
+      blendEquation: THREE.AddEquation,
+      blendSrc: THREE.OneFactor,
+      blendDst: THREE.OneFactor,
+    });
+    const og = orbitGeometry();
+    this.orbit = new THREE.Points(og, this.orbitMat);
+    this.orbit.frustumCulled = false;
+    this.orbit.renderOrder = 2;
+    this.orbitMirror = new THREE.Points(og, this.orbitMat);
+    this.orbitMirror.frustumCulled = false;
+    this.orbitMirror.renderOrder = 0;
+    this.mirrorRoot.add(this.orbitMirror);
+    floor.renderOrder = 1;
+
     this.scene = new THREE.Scene();
-    this.scene.add(this.mirrorRoot, floor, this.bottle);
+    this.scene.add(this.mirrorRoot, floor, this.bottle, this.orbit);
 
     this.bg = new FSPass(BG_FRAG, {
       uRes: u(new THREE.Vector2(W, H)), uGlow: u(new THREE.Vector2(0, 0.1)), uBack: this.shared.uBack, uTime: this.shared.uTime,
@@ -475,9 +555,16 @@ export class BottleScene {
     S.uReveal.value = s.reveal;
     S.uTime.value = s.time;
     S.uBeat.value = s.beat;
+    const O = this.orbitMat.uniforms;
+    O.uSwirl.value = s.swirl ?? 0;
+    O.uGain.value = s.orbit ?? 0;
+    O.uRise.value = s.rise ?? 0;
+    O.uFocus.value = this.camera.position.distanceTo(new THREE.Vector3(0, 0.5, 0));
+    this.orbit.visible = this.orbitMirror.visible = O.uGain.value > 0;
     // backlight glow sits behind the bottle
     const g = new THREE.Vector3(0, 0.62, -1.2).project(this.camera);
     this.bg.uniforms.uGlow.value.set((g.x * 0.5 * this.W) / this.H, g.y * 0.5);
+    this.glowUV = [g.x * 0.5 + 0.5, g.y * 0.5 + 0.5];
     this.bg.render(this.r, target);
     this.r.setRenderTarget(target);
     this.r.render(this.scene, this.camera);

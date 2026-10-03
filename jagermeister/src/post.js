@@ -6,15 +6,30 @@ import { FSPass, makeRT, GLSL_COMMON } from './gl.js';
 
 const COMPOSITE = /* glsl */ `
 uniform sampler2D uScene, uText, uGlow, uRays;
-uniform float uTextGain, uGlowGain, uRaysStrength, uWhip;
-uniform vec3 uRaysTint;
+uniform float uTextGain, uGlowGain, uRaysStrength, uWhip, uAspect, uShockLight;
+uniform vec3 uRaysTint, uRadial;
+uniform vec4 uShock;
 uniform vec2 uShake;
 in vec2 vUv; out vec4 fragColor;
 vec3 toLin(vec3 c){ return pow(max(c, 0.0), vec3(2.2)); }
 void main(){
   vec2 uv = vUv + uShake;
+  // shockwave: a refractive ring travelling out from a point (xy centre, z radius, w strength)
+  float ring = 0.0;
+  if (uShock.w > 0.0) {
+    vec2 d = (uv - uShock.xy) * vec2(uAspect, 1.0);
+    float r = length(d);
+    float x = (r - uShock.z) / (0.03 + 0.05 * uShock.z);
+    ring = exp(-x * x);
+    uv -= d / max(r, 1e-4) / vec2(uAspect, 1.0) * x * ring * uShock.w * 0.018;
+  }
   vec3 col;
-  if (abs(uWhip) > 0.0005) {
+  if (uRadial.z > 0.0005) {
+    // zoom blur towards a point
+    vec3 s = vec3(0.0);
+    for (int i = 0; i < 28; i++) s += texture(uScene, mix(uv, uRadial.xy, float(i) / 27.0 * uRadial.z)).rgb;
+    col = s / 28.0;
+  } else if (abs(uWhip) > 0.0005) {
     vec3 s = vec3(0.0); float ws = 0.0;
     for (int i = 0; i < 32; i++) {
       float f = float(i) / 31.0 - 0.5;
@@ -23,6 +38,7 @@ void main(){
     }
     col = s / ws;
   } else col = texture(uScene, uv).rgb;
+  col += vec3(1.0, 0.78, 0.5) * ring * uShock.w * 0.06 * uShockLight;
   col += texture(uRays, uv).rgb * uRaysTint * uRaysStrength;
   vec4 g = texture(uGlow, vUv);
   col += toLin(g.rgb) * uGlowGain;
@@ -117,8 +133,9 @@ void main(){
 
 const FINAL = /* glsl */ `
 ${GLSL_COMMON}
-uniform sampler2D uComp, uBloom, uS1, uS2, uS3, uS4;
+uniform sampler2D uComp, uBloom, uS1, uS2, uS3, uS4, uGhostSrc;
 uniform vec2 uRes;
+uniform float uGhosts;
 uniform float uExposure, uBloomStrength, uStreakStrength, uCA, uVignette, uGrain, uFrame;
 uniform float uLetterbox, uFade, uSat, uContrast, uFlashAmt;
 uniform vec3 uStreakTint, uFlash, uSlope, uOffset, uPower, uShadowTint, uHighTint;
@@ -128,6 +145,25 @@ const mat3 ACESIn = mat3(vec3(0.59719, 0.07600, 0.02840), vec3(0.35458, 0.90834,
 const mat3 ACESOut = mat3(vec3(1.60475, -0.10208, -0.00327), vec3(-0.53108, 1.10813, -0.07276), vec3(-0.07367, -0.00605, 1.07602));
 vec3 rrt(vec3 v){ vec3 a = v * (v + 0.0245786) - 0.000090537; vec3 b = v * (0.983729 * v + 0.4329510) + 0.238081; return a / b; }
 vec3 aces(vec3 c){ c = ACESIn * (c / 0.6); c = rrt(c); c = ACESOut * c; return clamp(c, 0.0, 1.0); }
+
+// lens ghosts: scaled, mirrored, tinted copies of the brightest highlights
+vec3 ghosts(vec2 uv){
+  vec2 c = uv - 0.5;
+  vec3 acc = vec3(0.0);
+  const float K[5] = float[5](-0.62, -1.45, 0.38, -0.27, 2.3);
+  const vec3 TINT[5] = vec3[5](vec3(1.0, 0.55, 0.22), vec3(0.35, 0.75, 1.0), vec3(1.0, 0.8, 0.45), vec3(0.6, 1.0, 0.7), vec3(1.0, 0.45, 0.2));
+  for (int i = 0; i < 5; i++) {
+    vec2 q = c / K[i];
+    float w = clamp(1.0 - length(q * vec2(uRes.x / uRes.y, 1.0)) * 1.15, 0.0, 1.0);
+    if (w <= 0.0) continue;
+    vec3 s;
+    s.r = texture(uGhostSrc, 0.5 + q * 1.03).r;
+    s.g = texture(uGhostSrc, 0.5 + q).g;
+    s.b = texture(uGhostSrc, 0.5 + q * 0.97).b;
+    acc += s * TINT[i] * w * w / max(abs(K[i]), 0.6);
+  }
+  return acc;
+}
 
 void main(){
   vec2 uv = vUv;
@@ -140,6 +176,7 @@ void main(){
   vec3 bloom = texture(uBloom, uv).rgb;
   vec3 streak = texture(uS1, uv).rgb * 0.40 + texture(uS2, uv).rgb * 0.30 + texture(uS3, uv).rgb * 0.20 + texture(uS4, uv).rgb * 0.10;
   col += bloom * uBloomStrength + streak * uStreakTint * uStreakStrength;
+  if (uGhosts > 0.0) col += ghosts(uv) * uGhosts;
   col *= uExposure;
   float vr = length(d * vec2(uRes.x / uRes.y, 1.0));
   col *= 1.0 - uVignette * smoothstep(0.25, 1.05, vr);
@@ -180,6 +217,10 @@ export const DEFAULT_POST = () => ({
   raysDensity: 0.9,
   raysThreshold: 0.25,
   raysTint: [1, 1, 1],
+  shock: [0.5, 0.5, 0, 0],
+  shockLight: 1.0,
+  radial: [0.5, 0.5, 0],
+  ghosts: 0.0,
   textGain: 1.0,
   glowGain: 1.0,
   ca: 0.0,
@@ -222,8 +263,9 @@ export class Post {
     const u = (v) => ({ value: v });
     this.pComp = new FSPass(COMPOSITE, {
       uScene: u(null), uText: u(null), uGlow: u(null), uRays: u(null),
-      uTextGain: u(1), uGlowGain: u(1), uRaysStrength: u(0), uWhip: u(0),
+      uTextGain: u(1), uGlowGain: u(1), uRaysStrength: u(0), uWhip: u(0), uAspect: u(W / H), uShockLight: u(1),
       uRaysTint: u(new THREE.Vector3(1, 1, 1)), uShake: u(new THREE.Vector2()),
+      uShock: u(new THREE.Vector4(0.5, 0.5, 0, 0)), uRadial: u(new THREE.Vector3(0.5, 0.5, 0)),
     });
     this.pRays = new FSPass(RAYS, {
       uScene: u(null), uLightPos: u(new THREE.Vector2(0.5, 0.5)), uDensity: u(0.9), uDecay: u(0.96), uWeight: u(1), uThreshold: u(0.3),
@@ -233,8 +275,8 @@ export class Post {
     this.pSPre = new FSPass(STREAK_PRE, { uTex: u(null), uThreshold: u(2), uTexel: u(new THREE.Vector2()) });
     this.pSBlur = new FSPass(STREAK_BLUR, { uTex: u(null), uTexel: u(new THREE.Vector2()), uStep: u(1) });
     this.pFinal = new FSPass(FINAL, {
-      uComp: u(null), uBloom: u(null), uS1: u(null), uS2: u(null), uS3: u(null), uS4: u(null),
-      uRes: u(new THREE.Vector2(W, H)),
+      uComp: u(null), uBloom: u(null), uS1: u(null), uS2: u(null), uS3: u(null), uS4: u(null), uGhostSrc: u(null),
+      uRes: u(new THREE.Vector2(W, H)), uGhosts: u(0),
       uExposure: u(1), uBloomStrength: u(0.1), uStreakStrength: u(0), uCA: u(0), uVignette: u(0.5), uGrain: u(0.04), uFrame: u(0),
       uLetterbox: u(0), uFade: u(0), uSat: u(1), uContrast: u(1), uFlashAmt: u(0),
       uStreakTint: u(new THREE.Vector3()), uFlash: u(new THREE.Vector3()), uSlope: u(new THREE.Vector3(1, 1, 1)),
@@ -273,6 +315,9 @@ export class Post {
       U.uGlowGain.value = P.glowGain;
       U.uWhip.value = P.whip;
       U.uShake.value.set(P.shake[0], P.shake[1]);
+      U.uShock.value.set(...P.shock);
+      U.uShockLight.value = P.shockLight;
+      U.uRadial.value.set(...P.radial);
       this.pComp.render(r, this.comp);
     }
 
@@ -329,6 +374,8 @@ export class Post {
       U.uS2.value = sb ? this.s[2].texture : this.black;
       U.uS3.value = sb ? this.s[3].texture : this.black;
       U.uS4.value = sb ? this.s[4].texture : this.black;
+      U.uGhostSrc.value = this.down[2].texture;
+      U.uGhosts.value = P.ghosts;
       U.uExposure.value = P.exposure;
       U.uBloomStrength.value = P.bloom;
       U.uStreakStrength.value = P.streak;

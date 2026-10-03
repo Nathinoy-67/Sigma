@@ -1,0 +1,47 @@
+{
+  "secrets": {
+    "text": "They say the forest keeps its secrets.",
+    "dur": 2.91,
+    "sr": 24000
+  },
+  "woods": {
+    "text": "In the dark woods of Lower Saxony, a hunter once followed a light.",
+    "dur": 4.168,
+    "sr": 24000
+  },
+  "antlers": {
+    "text": "And there, between the antlers of a stag... a light shone.",
+    "dur": 4.064,
+    "sr": 24000
+  },
+  "botanicals": {
+    "text": "Fifty-six botanicals.",
+    "dur": 2.288,
+    "sr": 24000
+  },
+  "oak": {
+    "text": "A full year, in oak.",
+    "dur": 2.179,
+    "sr": 24000
+  },
+  "cold": {
+    "text": "Served ice cold.",
+    "dur": 2.025,
+    "sr": 24000
+  },
+  "master": {
+    "text": "Every night has its master.",
+    "dur": 2.557,
+    "sr": 24000
+  },
+  "brand": {
+    "text": "j\u02c8e\u026a\u0261\u025am\u02cca\u026ast\u025a.",
+    "dur": 1.534,
+    "sr": 24000
+  },
+  "tagline": {
+    "text": "Born in the forest. Made for the night.",
+    "dur": 2.934,
+    "sr": 24000
+  }
+}

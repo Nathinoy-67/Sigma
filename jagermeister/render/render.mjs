@@ -11,7 +11,7 @@ const args = Object.fromEntries(
 const W = +(args.w || 1920), H = +(args.h || 1080);
 const OUT = path.resolve(args.out || 'frames');
 const WORKERS = +(args.workers || 2);
-const FPS = 30, DURATION = 50;
+const FPS = 30, DURATION = 60;
 const total = Math.round(FPS * DURATION);
 const from = +(args.from || 0), to = Math.min(total, +(args.to || total)), step = +(args.step || 1);
 const quality = +(args.quality || 96);

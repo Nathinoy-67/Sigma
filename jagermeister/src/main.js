@@ -8,6 +8,7 @@ import { ForestScene } from './scenes/forest.js';
 import { ParticleScene } from './scenes/particles.js';
 import { LiquidScene } from './scenes/liquid.js';
 import { BottleScene } from './scenes/bottle.js';
+import { ShardScene } from './scenes/shards.js';
 import { Director } from './director.js';
 
 const qs = new URLSearchParams(location.search);
@@ -60,6 +61,7 @@ film.ready = (async () => {
     particles: new ParticleScene(renderer, W, H),
     liquid: new LiquidScene(renderer, W, H),
     bottle: new BottleScene(renderer, W, H),
+    shards: new ShardScene(renderer, W, H),
   };
   const director = new Director({ renderer, W, H, scenes, overlay, sceneRT, msaaRT });
   film.debug = { scenes, director, overlay, post, renderer };
@@ -90,7 +92,7 @@ film.ready = (async () => {
     return { sceneAndOverlayDraw: T[1] - T[0], upload: T[2] - T[1], post: T[3] - T[2] };
   };
   // warm-up: compile every program once
-  for (const t of [1, 6, 10, 12.2, 14, 17, 22, 28, 31, 33, 38, 44]) film.renderFrame(t);
+  for (const t of [2, 6, 10, 13, 16.2, 17.6, 22, 28, 32, 35.2, 36, 40, 44, 50]) film.renderFrame(t);
   renderer.getContext().finish();
   return true;
 })();
@@ -101,7 +103,7 @@ if (MODE === 'play') {
   const status = document.getElementById('status');
   const btn = document.getElementById('play');
   const audio = document.getElementById('score');
-  film.ready.then(() => (status.textContent = '50 seconds · sound on'));
+  film.ready.then(() => (status.textContent = '60 seconds · sound on'));
   let start = 0;
   let running = false;
   const tick = () => {
