@@ -7,9 +7,9 @@ models, no samples and no recordings.
 
 | Deliverable | |
 |---|---|
-| `out/jagermeister-the-hunters-hour.mp4` | master · 1920×1080 · 30 fps · H.264 ~7 Mbps + AAC 256k |
-| `out/jagermeister-the-hunters-hour-hevc.mp4` | **best quality per MB**: 1080p HEVC under 30 MB, closest to the source. Plays on iPhone and most recent Android phones |
-| `out/jagermeister-the-hunters-hour-share.mp4` | lighter 1080p H.264 copy under 30 MB that plays everywhere |
+| `out/jagermeister-the-hunters-hour.mp4` | master · 1920×1080 · 30 fps · H.264 ~7 Mbps + AAC 256k (55 MB) |
+| `out/jagermeister-the-hunters-hour-hevc.mp4` | **best quality per MB**: 1080p HEVC, 29 MB, closest to the source (SSIM 0.980). Plays on iPhone and most recent Android phones |
+| `out/jagermeister-the-hunters-hour-share.mp4` | lighter 1080p H.264 copy that plays everywhere (28 MB) |
 | `out/jagermeister-realtime.html` | the same film running live in a browser (one self-contained file) |
 | `out/poster.jpg` | end-card still |
 
