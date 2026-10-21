@@ -1,0 +1,128 @@
+{
+  "drop": {
+    "text": "Every legend begins with a single drop.",
+    "sub": "Every legend begins with a single drop.",
+    "phonemes": "ˈɛvɹi lˈɛdʒənd bɪɡˈɪnz wɪð ɐ sˈɪŋɡəl dɹˈɑːp.",
+    "dur": 3.354,
+    "sr": 24000
+  },
+  "germany": {
+    "text": "Germany, nineteen thirty-four.",
+    "sub": "Germany, 1934.",
+    "phonemes": "dʒˈɜːməni, nˈaɪntiːn θˈɜːɾifˈɔːɹ.",
+    "dur": 2.718,
+    "sr": 24000
+  },
+  "mast": {
+    "text": "In Wolfenbüttel, Curt Mast perfected a secret recipe.",
+    "sub": "In Wolfenbüttel, Curt Mast perfected a secret recipe.",
+    "phonemes": "ɪn vˈɑlfənbˌuːtəl, kˈɜːt mˈæst pɚfˈɛktᵻd ɐ sˈiːkɹᵻt ɹˈɛsᵻpˌiː.",
+    "dur": 4.28,
+    "sr": 24000
+  },
+  "named": {
+    "text": "He called it Jägermeister.",
+    "sub": "He called it Jägermeister.",
+    "phonemes": "hiː kˈɔːld ɪt jˈeɪɡɚmˌaɪstɚ.",
+    "dur": 2.468,
+    "sr": 24000
+  },
+  "hunter": {
+    "text": "The master hunter.",
+    "sub": "The master hunter.",
+    "phonemes": "ðə mˈæstɚ hˈʌntɚ.",
+    "dur": 2.004,
+    "sr": 24000
+  },
+  "botanicals": {
+    "text": "Fifty-six botanicals. A full year in oak.",
+    "sub": "Fifty-six botanicals. A full year in oak.",
+    "phonemes": "fˈɪftisˈɪks bətˈænɪkəlz. ɐ fˈʊl jˈɪɹ ɪn ˈoʊk.",
+    "dur": 3.516,
+    "sr": 24000
+  },
+  "ocean": {
+    "text": "Served ice cold, it crossed an ocean,",
+    "sub": "Served ice cold, it crossed an ocean…",
+    "phonemes": "sˈɜːvd ˈaɪs kˈoʊld, ɪt kɹˈɔst ɐn ˈoʊʃən,",
+    "dur": 3.032,
+    "sr": 24000
+  },
+  "night": {
+    "text": "and conquered the night.",
+    "sub": "…and conquered the night.",
+    "phonemes": "ænd kˈɑːŋkɚd ðə nˈaɪt.",
+    "dur": 2.1,
+    "sr": 24000
+  },
+  "tahoe": {
+    "text": "Decades later, in the snowy pines of Lake Tahoe,",
+    "sub": "Decades later, in the snowy pines of Lake Tahoe…",
+    "phonemes": "dˈɛkeɪdz lˈeɪɾɚ, ɪnðə snˈoʊi pˈaɪnz ʌv lˈeɪk tˈɑːhoʊ,",
+    "dur": 3.691,
+    "sr": 24000
+  },
+  "energy": {
+    "text": "a new kind of energy was hitting the bars.",
+    "sub": "…a new kind of energy was hitting the bars.",
+    "phonemes": "ɐ nˈuː kˈaɪnd ʌv ˈɛnɚdʒi wʌz hˈɪɾɪŋ ðə bˈɑːɹz.",
+    "dur": 3.153,
+    "sr": 24000
+  },
+  "nobody": {
+    "text": "Nobody knows for sure who dropped the first one.",
+    "sub": "Nobody knows for sure who dropped the first one.",
+    "phonemes": "nˈoʊbɑːdi nˈoʊz fɔːɹ ʃˈʊɹ hˌuː dɹˈɑːpt ðə fˈɜːst wˌʌn.",
+    "dur": 3.546,
+    "sr": 24000
+  },
+  "moment": {
+    "text": "But the moment that shot hit the glass,",
+    "sub": "But the moment that shot hit the glass…",
+    "phonemes": "bˌʌt ðə mˈoʊmənt ðæt ʃˈɑːt hˈɪt ðə ɡlˈæs,",
+    "dur": 2.834,
+    "sr": 24000
+  },
+  "born": {
+    "text": "a legend was born.",
+    "sub": "…a legend was born.",
+    "phonemes": "ɐ lˈɛdʒənd wʌz bˈɔːɹn.",
+    "dur": 2.312,
+    "sr": 24000
+  },
+  "one": {
+    "text": "One shot.",
+    "sub": "One shot.",
+    "phonemes": "wˈʌn ʃˈɑːt.",
+    "dur": 1.166,
+    "sr": 24000
+  },
+  "ice": {
+    "text": "Ice cold.",
+    "sub": "Ice cold.",
+    "phonemes": "ˈaɪs kˈoʊld.",
+    "dur": 1.427,
+    "sr": 24000
+  },
+  "dropit": {
+    "text": "Drop it.",
+    "sub": "Drop it.",
+    "phonemes": "dɹˈɑːp ɪt.",
+    "dur": 0.972,
+    "sr": 24000
+  },
+  "brand": {
+    "text": "Jägermeister.",
+    "sub": "Jägermeister.",
+    "phonemes": "jˈeɪɡɚmˌaɪstɚ.",
+    "dur": 1.615,
+    "sr": 24000
+  },
+  "tagline": {
+    "text": "Born in the forest. Dropped into legend.",
+    "sub": "Born in the forest. Dropped into legend.",
+    "phonemes": "bˈɔːɹn ɪnðə fˈɔːɹɪst. dɹˈɑːpt ˌɪntʊ lˈɛdʒənd.",
+    "dur": 3.308,
+    "sr": 24000
+  }
+}

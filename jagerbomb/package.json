@@ -1,0 +1,21 @@
+{
+  "name": "jagermeister-the-drop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cues": "node render/export-cues.mjs",
+    "audio": "node render/export-cues.mjs && python3 audio/soundtrack.py",
+    "still": "node render/still.mjs",
+    "render": "node render/render.mjs",
+    "encode": "bash render/encode.sh"
+  },
+  "dependencies": {
+    "@fontsource/cinzel": "^5.2.6",
+    "@fontsource/cormorant-garamond": "^5.2.6",
+    "@fontsource/grenze-gotisch": "^5.2.6",
+    "@fontsource/inter": "^5.2.6",
+    "@fontsource/montserrat": "^5.2.6",
+    "@fontsource/unifrakturmaguntia": "^5.2.6",
+    "three": "^0.186.1"
+  }
+}
