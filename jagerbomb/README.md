@@ -8,9 +8,9 @@ footage, no 3D models, no samples and no recordings.
 
 | Deliverable | |
 |---|---|
-| `out/jagermeister-the-drop.mp4` | master · 1920×1080 · 30 fps · H.264 ~7 Mbps + AAC 256k |
-| `out/jagermeister-the-drop-hevc.mp4` | **best quality per MB**: 1080p HEVC, under 30 MB. Plays on iPhone and most recent Android phones |
-| `out/jagermeister-the-drop-share.mp4` | lighter 1080p H.264 copy that plays everywhere, under 30 MB |
+| `out/jagermeister-the-drop.mp4` | master · 1920×1080 · 30 fps · H.264 ~7 Mbps + AAC 256k (67 MB) |
+| `out/jagermeister-the-drop-hevc.mp4` | **best quality per MB**: 1080p HEVC (29 MB). Plays on iPhone and most recent Android phones |
+| `out/jagermeister-the-drop-share.mp4` | lighter 1080p H.264 copy that plays everywhere (29 MB) |
 | `out/jagermeister-the-drop.en.srt` | the English subtitles as a sidecar file (they're also burned into the picture) |
 | `out/poster.jpg` | end-card still |
 
@@ -72,7 +72,7 @@ npm install
 sudo apt install fluidsynth musescore-general-soundfont-lossless
 pip install numpy scipy soundfile mido
 npm run audio                                    # audio/soundtrack.wav
-node render/render.mjs --w 1920 --h 1080         # frames/ (headless Chromium, several hours on 4 CPU cores)
+node render/render.mjs --w 1920 --h 1080         # frames/ (headless Chromium, about 3.5 h on 4 CPU cores)
 bash render/encode.sh frames                     # out/*.mp4
 ```
 
