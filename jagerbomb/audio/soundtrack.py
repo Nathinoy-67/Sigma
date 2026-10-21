@@ -207,8 +207,7 @@ fx_wet = fx.wet + club_wet
 # ============================================================================= 3 · voice-over
 vo = np.zeros((2, N))
 vo_meta = json.load(open(os.path.join(HERE, "vo", "lines.json")))
-vo_active = np.zeros(N)
-DUCK_DB = {"brand": 11.0, "tagline": 8.0, "one": 9.0, "ice": 9.0, "dropit": 9.0, "born": 7.0}
+spans = {}
 for key, t0 in C["vo"].items():
     y, sr = sf.read(os.path.join(HERE, "vo", f"{key}.wav"))
     y = signal.resample_poly(y, SR, sr)
@@ -221,9 +220,15 @@ for key, t0 in C["vo"].items():
     i0 = int(round(t0 * SR))
     n = min(len(y), N - i0)
     vo[:, i0 : i0 + n] += y[:n]
-    vo_active[i0 : i0 + n] = DUCK_DB.get(key, 6.0)
+    spans[key] = (i0, i0 + n)
 vo = S.compress(vo, thr_db=-26.0, ratio=3.0, att=0.004, rel=0.12) * 10 ** (8 / 20)
 vo = np.tanh(vo * 1.1) / 1.1
+# duck each line just enough to sit ~10 dB above the music and effects under it
+lvl = lambda x: 20 * np.log10(np.sqrt(np.mean(x ** 2)) + 1e-12)
+bed_raw = music + fx_mix
+vo_active = np.zeros(N)
+for key, (a_, b_) in spans.items():
+    vo_active[a_:b_] = np.clip(10.0 - (lvl(vo[:, a_:b_]) - lvl(bed_raw[:, a_:b_])), 4.0, 18.0)
 vo_ir = S.make_ir(1.6, seed=5, rt=(1.3, 1.1, 0.8, 0.4), predelay=0.012)
 vo_wet = S.convolve(vo, vo_ir)
 
@@ -240,7 +245,7 @@ duck = 10 ** (-env / 20)
 
 # ============================================================================= 4 · mix + master
 ir = S.make_ir(3.4)
-bed = music * duck + fx_mix * (0.6 + 0.4 * duck)
+bed = (music + fx_mix) * duck
 bed_wet = (music_wet * 0.8 + fx_wet) * duck
 mix = bed + S.convolve(bed_wet, ir) * 0.5 + vo + vo_wet * 0.12
 mix = np.nan_to_num(mix)
@@ -250,7 +255,7 @@ mix = S.compress(mix, thr_db=-22.0, ratio=1.8)
 peak = np.max(np.abs(mix))
 mix = mix / peak * 1.35
 mix = np.tanh(mix) / np.tanh(1.35)
-mix *= 10 ** (-1.0 / 20) / np.max(np.abs(mix))
+mix *= 10 ** (-1.6 / 20) / np.max(np.abs(mix))  # sample peak −1.6 dBFS keeps the true peak under −1 dBTP
 t = secs(N)
 mix *= np.clip((LEN - 0.05 - t) / 0.6, 0, 1)
 
@@ -259,6 +264,11 @@ if os.environ.get("DUMP"):  # components for analysis
     os.makedirs(d, exist_ok=True)
     for nm, x in [("music", music * duck), ("fx", fx_mix), ("vo", vo)] + [(k, v) for k, v in stems.items()]:
         sf.write(os.path.join(d, nm + ".wav"), (x / (np.abs(x).max() + 1e-9) * 0.5).T.astype(np.float32), SR)
+    # how far the voice sits above everything else, line by line
+    lvl = lambda x: 20 * np.log10(np.sqrt(np.mean(x ** 2)) + 1e-12)
+    for key, t0 in sorted(C["vo"].items(), key=lambda kv: kv[1]):
+        a_, b_ = ns(t0), ns(t0 + vo_meta[key]["dur"])
+        print(f"  {key:10s} voice over bed {lvl(vo[:, a_:b_]) - lvl(bed[:, a_:b_]):+5.1f} dB")
 
 out = os.path.join(HERE, "soundtrack.wav")
 sf.write(out, mix.T.astype(np.float32), SR, subtype="PCM_24")

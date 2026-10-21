@@ -640,14 +640,29 @@ export class Overlay {
       const W1 = 1920 * (this.W / this.H) / (1920 / 1080);
       const a = smooth(remap(u, 0.0, 0.6)) * (1 - smooth(remap(t, CUE.cuts[3] - 0.25, CUE.cuts[3])));
       const tr = lerp(0.5, 0.2, ease.outCubic(remap(u, 0, 1)));
+      // a soft dark scrim so the type reads over the bright drink
+      const S = this.S;
+      const sc = this.ctx(false);
+      sc.save();
+      sc.translate((W1 / 2) * S, 600 * S);
+      sc.scale(1, 0.42);
+      const rg = sc.createRadialGradient(0, 0, 0, 0, 0, 520 * S);
+      rg.addColorStop(0, `rgba(10,5,0,${0.6 * a})`);
+      rg.addColorStop(0.55, `rgba(10,5,0,${0.38 * a})`);
+      rg.addColorStop(1, 'rgba(10,5,0,0)');
+      sc.fillStyle = rg;
+      sc.fillRect(-520 * S, -520 * S, 1040 * S, 1040 * S);
+      sc.restore();
       this.text(CALL.value, { x: W1 / 2, y: 590, family: 'Cinzel', weight: 400, size: 150, tracking: tr * 0.3, color: [246, 250, 252], alpha: a, shadow: 'rgba(40,20,0,0.75)', shadowBlur: 40, blur: (1 - a) * 8 });
       this.text(CALL.label, { x: W1 / 2, y: 660, family: 'Mont', weight: 600, size: 16, tracking: lerp(1.0, 0.45, ease.outQuart(u)), color: [255, 246, 228], alpha: a, shadow: 'rgba(40,20,0,0.8)', shadowBlur: 16 });
       return;
     }
     const side = c.side;
     const [ax, ay] = c.anchor;
-    const ex = ax + side * 80, ey = ay - 60;
-    const lx = ex + side * 210;
+    // "Drop it." sits over a big top-down glass: a long leader, and the label set clear of it
+    const wide = c.i === 2;
+    const ex = ax + side * (wide ? 330 : 80), ey = ay - 60;
+    const lx = ex + side * (wide ? 40 : 210);
     const pu = ease.outCubic(remap(u, 0, 0.45));
     const pu2 = ease.outCubic(remap(u, 0.3, 0.8));
     const ta = smooth(remap(u, 0.45, 1.0));
@@ -666,7 +681,7 @@ export class Overlay {
     g.restore();
     this.line(ax + side * 6, ay - 6, lerp(ax, ex, pu), lerp(ay, ey, pu), { color: CREAM, alpha: 0.75, width: 1 });
     if (pu2 > 0) this.line(ex, ey, lerp(ex, lx, pu2), ey, { color: CREAM, alpha: 0.75, width: 1 });
-    const align = side > 0 ? 'right' : 'left';
+    const align = wide ? (side > 0 ? 'left' : 'right') : side > 0 ? 'right' : 'left';
     const slide = (1 - ease.outCubic(remap(u, 0.45, 1.0))) * 18;
     this.text(CALL.value, { x: lx - side * slide, y: ey - 16, family: 'Cinzel', weight: 400, size: 50, color: CREAM, alpha: ta, align });
     this.text(CALL.label, { x: lx - side * slide * 0.6, y: ey + 28, family: 'Mont', weight: 600, size: 13, tracking: 0.32, color: [255, 176, 110], alpha: ta, align });

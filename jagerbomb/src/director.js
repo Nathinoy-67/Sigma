@@ -591,14 +591,9 @@ export class Director {
         const u = ease.inOutSine(remap(t, CUE.rampUp, CUE.slam));
         cam = orbit(lerp(0.95, 1.25, u), lerp(1.2, 1.75, u), lerp(0.44, 0.38, u), lerp(0.37, 0.33, u), 30);
       }
-      const hp = D.project([0, YL0, 0]);
-      const huv = this.pxUV(hp);
       const ss = st.s;
-      if (t >= CUE.hit) {
-        P.shock = [huv[0], huv[1], 0.5 * (t - CUE.hit), 0.6 * after(t, CUE.hit, 0.5)];
-        P.shockLight = 0;
-      }
-      P.flashAmt = 0.25 * pulse(t, CUE.hit, 0.02, 0.18);
+      if (t >= CUE.hit) info.shockAt = [0, YL0, 0];
+      P.flashAmt = 0.16 * pulse(t, CUE.hit, 0.02, 0.14);
       P.flash = [1.0, 0.86, 0.66];
       P.streak = 0.45 + 0.6 * after(t, CUE.hit, 0.8);
       P.ca = 0.012 + 0.05 * after(t, CUE.hit, 0.4);
@@ -624,7 +619,7 @@ export class Director {
         cam = orbit(lerp(0.35, 0.1, ease.inOutSine(u)), lerp(1.12, 1.0, u), lerp(0.22, 0.19, u), 0.11, 26);
         s.backY = 0.1;
         s.backSize = 0.16;
-        info.callout = { i: 0, u, anchor: D.project([0.055, 0.15, 0.03]), side: 1 };
+        info.callout = { i: 0, u, at: [0.055, 0.15, 0.03], side: 1 };
       } else if (k === 2) {
         // "Ice cold." — condensation on the glass, in macro
         s = { ...base, fill: FILL0, foam: 0.006, fizz: 1.0, mix: 0, lights: [0.8, 1, 0.7, 1] };
@@ -638,7 +633,7 @@ export class Director {
         s = { ...base, ...st };
         cam = { pos: [0.04, 1.45 - 0.08 * u, 0.62], target: [0, 0.3, 0], fov: 24, roll: 0.0 };
         s.backY = 0.0;
-        info.callout = { i: 2, u, anchor: D.project([0, YL0, 0]), side: -1 };
+        info.callout = { i: 2, u, at: [0, YL0, 0], side: -1 };
       } else {
         // the finished Jägerbomb, the camera rising
         const st = bombState(physT(t));
@@ -659,6 +654,13 @@ export class Director {
     }
     s.cam = cam;
     D.render(this.rt, s);
+    // project only now that the scene camera is this frame's
+    if (info.callout && info.callout.at) info.callout.anchor = D.project(info.callout.at);
+    if (info.shockAt) {
+      const huv = this.pxUV(D.project(info.shockAt));
+      P.shock = [huv[0], huv[1], 0.5 * (t - CUE.hit), 0.6 * after(t, CUE.hit, 0.5)];
+      P.shockLight = 0;
+    }
     if (t < CUE.slam && t >= CUE.hover) info.shotUV = this.pxUV(D.project(s.shot.pos));
   }
 
