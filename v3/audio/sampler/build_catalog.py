@@ -104,7 +104,7 @@ def parse_name(fname, reldir):
     for i, t in enumerate(toks):
         tl = t.lower()
         m = NOTE_RE.match(t)
-        if note is None and m and (t[0].isupper() or n <= 4):
+        if note is None and m and (t[0].isupper() or i == 0):
             note = (m.group(1).upper(), m.group(2), m.group(3))
             continue
         m = VEL_RE.match(t)
@@ -266,6 +266,7 @@ def detect_timpani(x, sr, onset, end):
 def analyze(job):
     path, info = job
     out = dict(info)
+    out['path'] = path
     try:
         x, sr = sf.read(path, always_2d=True, dtype='float32')
     except Exception as e:  # unreadable file
@@ -451,7 +452,7 @@ def finalize(results):
         g['loud_db_median'] = round(float(np.median([r.get('loud_db', -99) for r in recs])), 1)
         samples = []
         for r in recs:
-            s = {k: r[k] for k in ('note', 'midi', 'vel_layer', 'vel_label', 'rr_index', 'path', 'sr', 'ch', 'len_s',
+            s = {k: r[k] for k in ('note', 'midi', 'vel_layer', 'vel_label', 'rr_index', 'file', 'path', 'sr', 'ch', 'len_s',
                                    'peak_db', 'rms_db', 'rms_active_db', 'loud_db', 'onset_s', 'peak_t_s', 'end_s')
                  if k in r}
             s['rr'] = s.pop('rr_index')
@@ -464,13 +465,216 @@ def finalize(results):
     return groups
 
 
+# Folders whose octave the detector cannot settle (short/inharmonic sounds); decided from the
+# instrument's physical range and from sibling folders recorded with the same naming scheme.
+OCTAVE_OVERRIDES = {
+    'VSCO-2-CE/Brass/Tuba/stac': 12,                      # same 'Tuba3_' naming as Tuba/sus (+12)
+    'VSCO-2-CE/Strings/Solo Contrabass/Spic': 12,         # E0 (20 Hz) impossible -> E1
+    'VSCO-2-CE/Strings/Solo Contrabass/Pizz': 12,
+    'VSCO-2-CE/Strings/Viola Section/pizz': 12,           # viola bottom C3, like the other viola folders
+    'VCSL/Idiophones/Struck Idiophones/Marimba': 12,      # same files as VSCO Percussion/Marimba (+12)
+    'VCSL/Idiophones/Struck Idiophones/Tubular Bells 1': 12,
+    'VCSL/Idiophones/Struck Idiophones/Vibraphone/Soft Mallets': 12,  # same naming as Hard Mallets
+}
+
+
+def decide_octaves(groups):
+    """Per-folder octave convention from the pitch detector votes (only -12/0/+12 are plausible
+    naming conventions; +-24 votes are detector errors), sibling folders and range sanity."""
+    votes_of = {}
+    for gkey, g in groups.items():
+        if g.get('pitch_source') != 'filename':
+            continue
+        v = Counter()
+        for s in g['samples']:
+            if 'f0_midi' in s and 'midi_named' in s:
+                o = int(round((s['f0_midi'] - s['midi_named']) / 12.0)) * 12
+                if o in (-12, 0, 12):
+                    v[o] += 1
+        votes_of[gkey] = v
+    for gkey, g in groups.items():
+        if gkey not in votes_of:
+            continue
+        v = votes_of[gkey]
+        tot = sum(v.values())
+        off, method = 0, 'no detection (assumed C4=60)'
+        if v:
+            off = v.most_common(1)[0][0]
+            agree = v[off] / tot
+            method = 'pitch detector'
+            if agree < 0.6:
+                parent = os.path.dirname(g['dir'])
+                sib = Counter()
+                for k2, g2 in groups.items():
+                    if k2 != gkey and k2 in votes_of and g2['library'] == g['library'] and \
+                            os.path.dirname(g2['dir']) == parent:
+                        v2 = votes_of[k2]
+                        if v2 and v2.most_common(1)[0][1] / sum(v2.values()) >= 0.8:
+                            sib[v2.most_common(1)[0][0]] += 1
+                if sib:
+                    off = sib.most_common(1)[0][0]
+                    method = 'sibling folders (detector unsure)'
+                else:
+                    method = 'pitch detector (low agreement)'
+        if gkey in OCTAVE_OVERRIDES:
+            off = OCTAVE_OVERRIDES[gkey]
+            method = 'manual override (instrument range)'
+        named = [s['midi_named'] for s in g['samples'] if 'midi_named' in s]
+        if named and min(named) + off < 21 and 'Organ' not in gkey:
+            off += 12
+            method += ' + range sanity'
+        g['octave_offset'] = off
+        g['octave_method'] = method
+        g['octave_check'] = f"{v.get(off, 0)}/{tot} detected samples agree"
+        g['octave_agreement'] = round(v.get(off, 0) / tot, 2) if tot else None
+        devs = []
+        for s in g['samples']:
+            if 'midi_named' in s:
+                s['midi'] = s['midi_named'] + off
+                s['note'] = midi_name(s['midi'])
+                if 'f0_midi' in s and abs(s['f0_midi'] - s['midi']) < 0.6:
+                    devs.append(s['f0_midi'] - s['midi'])
+        g['tuning_cents_median'] = round(100 * float(np.median(devs)), 1) if devs else None
+        mids = [s['midi'] for s in g['samples'] if s.get('midi') is not None]
+        if mids:
+            g['range'] = [midi_name(min(mids)), midi_name(max(mids))]
+            g['range_midi'] = [int(min(mids)), int(max(mids))]
+            g['n_notes'] = len(set(mids))
+    return groups
+
+
+
+# ----------------------------------------------------------------------------- summary
+PICKS = [
+    # (role, sampler id(s), catalog group, why)
+    ('Big drums (trailer low end)', 'perc.bass_drum  (+ perc.bass_drum.vcsl, .b, .legacy)',
+     'VSCO-2-CE/Percussion::BDrumNewhit',
+     'concert bass drum, 7 velocity layers x 2 RR, long natural room tail; pitch it down 3-7 st '
+     '(pitch=53..57) for the "huge" trailer boom'),
+    ('Giant drum / taiko substitute', 'perc.giant_drum (mallet), .hand, .sticks, .rim',
+     'VSCO-2-CE/VSCO 1 Percussion/drums/other/ethnic/giant/*',
+     'large ethnic drum: deep, wide body, 4-7 dynamics; the closest thing to a taiko in both libraries'),
+    ('Toms (ensemble patterns)', 'perc.toms.low / perc.toms.high (mallet), .stick variants; perc.tenor_drum.low/.high',
+     'VCSL Tom 1/Tom 2 Mallet, VCSL Legacy Toms tenor_lower/higher',
+     'mallet toms (3 layers x 2 RR) for the pattern; tenor drums have 7 layers x 4-6 RR -> best for fast 16ths'),
+    ('Timpani', 'perc.timpani (34 tunings, D#2-A3), perc.timpani.vsco, perc.timpani.roll',
+     'VCSL/.../Timpani 2/Hit::Timpani_Hit',
+     'pitch detected per tuning (principal mode); nearly chromatic D#2..A3, so shifts stay < 1 st; '
+     '3 layers x 2 RR'),
+    ('Low brass', 'brass.trombones.sus (a3), brass.tuba.sus, brass.trombone_old.sus (5 layers x 3 RR), *.stac',
+     'VSCO-2-CE/Brass/Tenor Trombone/sus, Tuba/sus, OldTrombone/Sustain',
+     'tenor trombone A#1-F4 and tuba F1-D4 sustains, 3 layers; OldTrombone has the most layers/RR '
+     '(F2-G4) for chord pads; trombone stac 4 layers x 2 RR for hits'),
+    ('String ostinato', 'strings.celli.spic, strings.violas.spic, strings.violins.spic, strings.basses.spic',
+     'VSCO-2-CE/Strings/*/spic', 'section spiccato, 2 layers x 2 RR, sampled every 2-3 semitones'),
+    ('Sustained strings', 'strings.{violins,violas,celli,basses}.sus, *.trem',
+     'VSCO-2-CE/Strings/*/susvib, trem', 'section sustains 2 layers (~10 s, loop-extended beyond); '
+     'tremolo for builds'),
+    ('Horns', 'brass.horns.sus (a4), brass.horns.stac', 'VSCO-2-CE/Brass/F Horn/sus',
+     'solo horn doubled into a 4-horn section; dense up to C4 (sounding) - keep heroic lines F2-D4 '
+     'and double higher octaves with trumpets'),
+    ('Cymbal swells', 'perc.cymbal.swell (auto-picks a 1.5-7.5 s crescendo that PEAKS at t+dur), '
+     'fx.reverse_cymbal', 'VCSL Suspended Cymbal 1/2 cresc_*, VSCO susCymb1-cresc-*',
+     'real recorded rolls; reversed clash cymbals for the classic suck-back'),
+    ('Gongs / tam-tam', 'perc.gong (10 dynamics), perc.gong.hard, perc.gong.roll, fx.reverse_gong',
+     'VSCO-2-CE/VSCO 1 Percussion/varMetal/Gong::gong_hit', 'pppp..fff, very long tails'),
+    ('Hits / metals', 'perc.cymbal.crash (4 layers x 2 RR), perc.anvil, perc.brake_drum, perc.snare.rimshot',
+     'VCSL Clash Cymbals 1, VSCO Anvil/BrakeDrum', 'layer under the downbeat hits'),
+]
+
+
+def write_summary(cat, path):
+    G = cat['groups']
+    L = []
+    w = L.append
+    w('# Sample catalog summary (VSCO-2-CE + VCSL)\n')
+    w(f"Built {cat['built']} by `build_catalog.py`: **{cat['n_samples']} wav files** in **{cat['n_groups']} "
+      f"instrument+articulation groups**. Full per-sample data (MIDI note, velocity layer, round robin, path, "
+      f"length, peak, RMS, K-weighted loudness, onset/tail, detected pitch) is in `catalog.json`.\n")
+    w('Conventions: `midi` is scientific (C4 = 60). VSCO-2-CE orchestral folders name middle C "C3", so +12 is '
+      'applied (verified per folder by a harmonic pitch detector; see the octave column). Timpani carry no '
+      'note names: their pitch is detected from the principal mode. Unpitched groups use notional key 60. '
+      'Velocity layer 0 = softest. Most files are 44.1 kHz; the sampler converts to 48 kHz.\n')
+    w('## Picks for an epic trailer score\n')
+    w('| Role | Sampler id(s) | Source group | Why |')
+    w('|---|---|---|---|')
+    for role, ids, grp, why in PICKS:
+        w(f'| {role} | `{ids}` | {grp} | {why} |')
+    w('')
+    try:  # list the sampler's instrument ids (stable API names) if the engine is importable
+        sys.path.insert(0, HERE)
+        import sampler as smp
+        s = smp.Sampler(os.path.join(os.path.dirname(path), 'catalog.json'))
+        w('## Sampler instrument ids (sampler.py)\n')
+        w('Range = sampled range +-3 semitones (notes outside it still play, with a warning). '
+          'Unison = number of doubled players built from a solo recording.\n')
+        w('| Id | Kind | Sampled | Layers | RR | Unison | Default pan | Source group(s) |')
+        w('|---|---|---|---|---|---|---|---|')
+        for iid in smp.INSTRUMENTS:
+            i = s.instrument(iid).info()
+            rng = f"{i['sampled'][0]}-{i['sampled'][1]}" if 'sampled' in i else 'unpitched (key 60)'
+            grp = '<br>'.join(g.split('/', 1)[1] for g in smp.INSTRUMENTS[iid]['groups'][:3])
+            if len(smp.INSTRUMENTS[iid]['groups']) > 3:
+                grp += f"<br>(+{len(smp.INSTRUMENTS[iid]['groups']) - 3} more)"
+            w(f"| `{iid}` | {i['kind']} | {rng} | {i['layers']} | {i['max_rr']} | {i['unison']} | {i['pan']:+.2f} | {grp} |")
+        w('')
+    except Exception as e:  # pragma: no cover
+        w(f'(sampler instrument table unavailable: {e})')
+    w('## Pitched groups\n')
+    w('Columns: range (sounding), distinct sampled notes, velocity layers (labels), max round robins, median '
+      'length, octave offset applied to the file names and how it was decided.\n')
+    sections = defaultdict(list)
+    for k, g in G.items():
+        top = g['library'] + ' / ' + g['dir'].split('/')[0]
+        sections[top].append((k, g))
+    for sec in sorted(sections):
+        rows = [(k, g) for k, g in sections[sec] if g.get('pitched')]
+        if not rows:
+            continue
+        w(f'### {sec}\n')
+        w('| Group | Range | Notes | Layers | RR | Len (s) | Octave |')
+        w('|---|---|---|---|---|---|---|')
+        for k, g in sorted(rows):
+            name = k.split('/', 1)[1]
+            oc = (f"{g.get('octave_offset', 0):+d} ({g.get('octave_method', g.get('pitch_source'))}, "
+                  f"{g.get('octave_check', '')})") if 'octave_offset' in g else g.get('pitch_source', '')
+            rng = '-'.join(g.get('range', ['?', '?']))
+            w(f"| {name} | {rng} | {g.get('n_notes', '')} | {g['n_vel_layers']} ({','.join(map(str, g['vel_labels']))}) "
+              f"| {g['max_rr']} | {g['len_s_median']} | {oc} |")
+        w('')
+    w('## Unpitched groups (percussion, effects)\n')
+    for sec in sorted(sections):
+        rows = [(k, g) for k, g in sections[sec] if not g.get('pitched')]
+        if not rows:
+            continue
+        w(f'### {sec}\n')
+        w('| Group (stroke) | Samples | Layers | RR | Len (s) |')
+        w('|---|---|---|---|---|')
+        for k, g in sorted(rows):
+            name = k.split('/', 1)[1]
+            w(f"| {name} | {g['n_samples']} | {g['n_vel_layers']} ({','.join(map(str, g['vel_labels']))[:60]}) | "
+              f"{g['max_rr']} | {g['len_s_median']} |")
+        w('')
+    with open(path, 'w') as f:
+        f.write('\n'.join(L) + '\n')
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--jobs', type=int, default=2)
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--filter', default='')
     ap.add_argument('--out', default=HERE)
+    ap.add_argument('--post-only', action='store_true', help='re-run the octave decision on an existing catalog')
     a = ap.parse_args()
+    if a.post_only:
+        p = os.path.join(a.out, 'catalog.json')
+        cat = json.load(open(p))
+        decide_octaves(cat['groups'])
+        with open(p, 'w') as f:
+            json.dump(cat, f, indent=1)
+        write_summary(cat, os.path.join(a.out, 'catalog_summary.md'))
+        print('octaves re-decided, summary written')
+        return
     t = time.time()
     files = walk()
     jobs = build_jobs(files)
@@ -485,7 +689,7 @@ def main():
             results.append(r)
             if i % 500 == 0:
                 print(f"  {i}/{len(jobs)}  {time.time() - t:.0f}s", flush=True)
-    groups = finalize(results)
+    groups = decide_octaves(finalize(results))
     cat = dict(version=1, built=time.strftime('%Y-%m-%d %H:%M:%S'), libraries=LIBS,
                notes=('midi = scientific MIDI (C4=60) after the per-folder octave check; note_named/midi_named are '
                       'the raw filename values. Unpitched groups use notional key 60. vel_layer 0 = softest. '
@@ -494,6 +698,7 @@ def main():
     os.makedirs(a.out, exist_ok=True)
     with open(os.path.join(a.out, 'catalog.json'), 'w') as f:
         json.dump(cat, f, indent=1)
+    write_summary(cat, os.path.join(a.out, 'catalog_summary.md'))
     print(f"wrote {len(groups)} groups / {len(results)} samples in {time.time() - t:.0f}s")
 
 
