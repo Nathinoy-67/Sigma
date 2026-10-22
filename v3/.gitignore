@@ -1,0 +1,5 @@
+frames/
+__pycache__/
+*.pyc
+*.log
+/audio/score/*.wav
