@@ -7,3 +7,5 @@ __pycache__/
 /audio/vo/raw/
 /audio/vo/takes/
 /lookdev/s[0-9]*
+/audio/mix/
+/audio/vo/takes.json

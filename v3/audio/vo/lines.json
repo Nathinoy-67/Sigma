@@ -1,0 +1,126 @@
+{
+ "voice": "supertonic3-sid9",
+ "lines": [
+  {
+   "key": "01",
+   "start": 2.6,
+   "dur": 3.226,
+   "text": "1934. Curt Mast perfects a recipe.",
+   "take": "01_s9_v98_2.wav",
+   "score": 7.12,
+   "asr": "1934.Kurt Mast Perfects a recipe.",
+   "fits": true,
+   "lufs": -17.46
+  },
+  {
+   "key": "02",
+   "start": 6.3,
+   "dur": 3.202,
+   "text": "Fifty-six herbs, blossoms, roots and fruits.",
+   "take": "02_s9_v94_2.wav",
+   "score": 7.15,
+   "asr": "56 Herbs. Blossoms, roots and fruits.",
+   "fits": true,
+   "lufs": -18.39
+  },
+  {
+   "key": "03",
+   "start": 9.75,
+   "dur": 1.664,
+   "text": "Which ones? Still a secret.",
+   "take": "03_s9_v88_1.wav",
+   "score": 6.81,
+   "asr": "Which one's still a secret?",
+   "fits": true,
+   "lufs": -17.21
+  },
+  {
+   "key": "04",
+   "start": 13.25,
+   "dur": 2.447,
+   "text": "Then it waits. A full year, in oak.",
+   "take": "04_s9_v86_0.wav",
+   "score": 7.14,
+   "asr": "Then it waits a full year in Oak.",
+   "fits": true,
+   "lufs": -18.2
+  },
+  {
+   "key": "05",
+   "start": 20.65,
+   "dur": 2.476,
+   "text": "In the seventies, it crosses an ocean.",
+   "take": "05_s9_v90_4.wav",
+   "score": 7.11,
+   "asr": "In the 70s, it crosses an ocean.",
+   "fits": true,
+   "lufs": -16.63
+  },
+  {
+   "key": "06",
+   "start": 24.6,
+   "dur": 2.135,
+   "text": "And America serves it ice cold.",
+   "take": "06_s9_v82_1.wav",
+   "score": 6.74,
+   "asr": "and America serves it ice cold.",
+   "fits": true,
+   "lufs": -17.34
+  },
+  {
+   "key": "07",
+   "start": 30.9,
+   "dur": 3.702,
+   "text": "Around 1997\u2026 somebody has an idea.",
+   "take": "07_s9_v100_4.wav",
+   "score": 6.96,
+   "asr": "Around 1997, somebody has an idea.",
+   "fits": true,
+   "lufs": -17.4
+  },
+  {
+   "key": "08a",
+   "start": 34.75,
+   "dur": 1.46,
+   "text": "Nobody knows exactly who.",
+   "take": "08a_s9_v104_1.wav",
+   "score": 6.76,
+   "asr": "Nobody knows exactly who.",
+   "fits": true,
+   "lufs": -16.6
+  },
+  {
+   "key": "08b",
+   "start": 36.3,
+   "dur": 1.505,
+   "text": "Everybody knows the name.",
+   "take": "08b_s9_v90_2.wav",
+   "score": 6.3,
+   "asr": "Everybody knows the name.",
+   "fits": true,
+   "lufs": -16.73
+  },
+  {
+   "key": "09",
+   "start": 50.6,
+   "dur": 2.528,
+   "text": "A year in oak. A second in glass.",
+   "take": "09_s9_v80_1.wav",
+   "score": 6.99,
+   "asr": "A year in oak, a second in glass.",
+   "fits": true,
+   "lufs": -15.72
+  },
+  {
+   "key": "10",
+   "start": 57.55,
+   "dur": 1.083,
+   "text": "J\u00e4germeister.",
+   "take": "10_s9_v90_4.wav",
+   "score": 6.729,
+   "asr": "Yeagermeister",
+   "fits": true,
+   "lufs": -13.55
+  }
+ ]
+}
