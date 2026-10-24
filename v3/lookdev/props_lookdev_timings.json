@@ -1,0 +1,26 @@
+{
+  "props_01_frosted_shot.jpg": {
+    "render_s": 24.5,
+    "build_s": 1.9,
+    "res": "640x268",
+    "samples": 16
+  },
+  "props_02_highball.jpg": {
+    "render_s": 24.6,
+    "build_s": 1.9,
+    "res": "640x268",
+    "samples": 16
+  },
+  "props_03_bottle.jpg": {
+    "render_s": 14.2,
+    "build_s": 2.0,
+    "res": "640x268",
+    "samples": 16
+  },
+  "props_04_botanicals.jpg": {
+    "render_s": 18.8,
+    "build_s": 11.3,
+    "res": "640x268",
+    "samples": 16
+  }
+}

@@ -5891,7 +5891,7 @@
    "family": "aerophones",
    "pitched": true,
    "pitch_source": "filename",
-   "octave_offset": 12,
+   "octave_offset": 0,
    "octave_check": "0/11 detected samples agree",
    "tuning_cents_median": null,
    "octave_agreement": 0.0,
@@ -5901,12 +5901,12 @@
    ],
    "max_rr": 1,
    "range": [
-    "C2",
-    "F#4"
+    "C1",
+    "F#3"
    ],
    "range_midi": [
-    36,
-    66
+    24,
+    54
    ],
    "n_notes": 11,
    "n_samples": 11,
@@ -5914,8 +5914,8 @@
    "loud_db_median": -17.3,
    "samples": [
     {
-     "note": "A2",
-     "midi": 45,
+     "note": "A1",
+     "midi": 33,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_A1.wav",
@@ -5934,11 +5934,12 @@
      "note_named": "A1",
      "midi_named": 33,
      "f0_midi": 32.98,
-     "mic": null
+     "mic": null,
+     "midi_orig": 45
     },
     {
-     "note": "A3",
-     "midi": 57,
+     "note": "A2",
+     "midi": 45,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_A2.wav",
@@ -5957,11 +5958,12 @@
      "note_named": "A2",
      "midi_named": 45,
      "f0_midi": 32.98,
-     "mic": null
+     "mic": null,
+     "midi_orig": 57
     },
     {
-     "note": "C2",
-     "midi": 36,
+     "note": "C1",
+     "midi": 24,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_C1.wav",
@@ -5980,11 +5982,12 @@
      "note_named": "C1",
      "midi_named": 24,
      "f0_midi": 23.9,
-     "mic": null
+     "mic": null,
+     "midi_orig": 36
     },
     {
-     "note": "C3",
-     "midi": 48,
+     "note": "C2",
+     "midi": 36,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_C2.wav",
@@ -6003,11 +6006,12 @@
      "note_named": "C2",
      "midi_named": 36,
      "f0_midi": 23.98,
-     "mic": null
+     "mic": null,
+     "midi_orig": 48
     },
     {
-     "note": "C4",
-     "midi": 60,
+     "note": "C3",
+     "midi": 48,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_C3.wav",
@@ -6026,11 +6030,12 @@
      "note_named": "C3",
      "midi_named": 48,
      "f0_midi": 47.94,
-     "mic": null
+     "mic": null,
+     "midi_orig": 60
     },
     {
-     "note": "D#2",
-     "midi": 39,
+     "note": "D#1",
+     "midi": 27,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_D#1.wav",
@@ -6049,11 +6054,12 @@
      "note_named": "D#1",
      "midi_named": 27,
      "f0_midi": 26.9,
-     "mic": null
+     "mic": null,
+     "midi_orig": 39
     },
     {
-     "note": "D#3",
-     "midi": 51,
+     "note": "D#2",
+     "midi": 39,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_D#2.wav",
@@ -6072,11 +6078,12 @@
      "note_named": "D#2",
      "midi_named": 39,
      "f0_midi": 39.06,
-     "mic": null
+     "mic": null,
+     "midi_orig": 51
     },
     {
-     "note": "D#4",
-     "midi": 63,
+     "note": "D#3",
+     "midi": 51,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_D#3.wav",
@@ -6095,11 +6102,12 @@
      "note_named": "D#3",
      "midi_named": 51,
      "f0_midi": 39.04,
-     "mic": null
+     "mic": null,
+     "midi_orig": 63
     },
     {
-     "note": "F#2",
-     "midi": 42,
+     "note": "F#1",
+     "midi": 30,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_F#1.wav",
@@ -6118,11 +6126,12 @@
      "note_named": "F#1",
      "midi_named": 30,
      "f0_midi": 17.92,
-     "mic": null
+     "mic": null,
+     "midi_orig": 42
     },
     {
-     "note": "F#3",
-     "midi": 54,
+     "note": "F#2",
+     "midi": 42,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_F#2.wav",
@@ -6141,11 +6150,12 @@
      "note_named": "F#2",
      "midi_named": 42,
      "f0_midi": 30.0,
-     "mic": null
+     "mic": null,
+     "midi_orig": 54
     },
     {
-     "note": "F#4",
-     "midi": 66,
+     "note": "F#3",
+     "midi": 54,
      "vel_layer": 0,
      "vel_label": null,
      "file": "Rode_Pedal_F#3.wav",
@@ -6164,10 +6174,11 @@
      "note_named": "F#3",
      "midi_named": 54,
      "f0_midi": 41.94,
-     "mic": null
+     "mic": null,
+     "midi_orig": 66
     }
    ],
-   "octave_method": "sibling folders (detector unsure)"
+   "octave_method": "QA fix: sounding pitch (16' fundamental measured), detector votes"
   },
   "VCSL/Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet": {
    "library": "VCSL",
@@ -19456,7 +19467,8 @@
      "note_named": "A4",
      "midi_named": 69,
      "f0_midi": 68.9,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 10.2
     },
     {
      "note": "A6",
@@ -19479,7 +19491,8 @@
      "note_named": "A6",
      "midi_named": 93,
      "f0_midi": 92.84,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 17.2
     },
     {
      "note": "A6",
@@ -19502,7 +19515,8 @@
      "note_named": "A6",
      "midi_named": 93,
      "f0_midi": 92.82,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 17.2
     },
     {
      "note": "B1",
@@ -19594,7 +19608,8 @@
      "note_named": "B3",
      "midi_named": 59,
      "f0_midi": 58.92,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 9.5
     },
     {
      "note": "B5",
@@ -19617,7 +19632,8 @@
      "note_named": "B5",
      "midi_named": 83,
      "f0_midi": 58.8,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 9.6
     },
     {
      "note": "B5",
@@ -19663,7 +19679,8 @@
      "note_named": "B6",
      "midi_named": 95,
      "f0_midi": 94.9,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 13.4
     },
     {
      "note": "B6",
@@ -19870,7 +19887,8 @@
      "note_named": "D4",
      "midi_named": 62,
      "f0_midi": 61.88,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 11.0
     },
     {
      "note": "D6",
@@ -19893,7 +19911,8 @@
      "note_named": "D6",
      "midi_named": 86,
      "f0_midi": 85.88,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 11.5
     },
     {
      "note": "D6",
@@ -19939,7 +19958,8 @@
      "note_named": "D7",
      "midi_named": 98,
      "f0_midi": 97.9,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 9.6
     },
     {
      "note": "D7",
@@ -20054,7 +20074,8 @@
      "note_named": "E5",
      "midi_named": 76,
      "f0_midi": 75.88,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 11.5
     },
     {
      "note": "E5",
@@ -20077,7 +20098,8 @@
      "note_named": "E5",
      "midi_named": 76,
      "f0_midi": 75.9,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 11.1
     },
     {
      "note": "F2",
@@ -20192,7 +20214,8 @@
      "note_named": "F6",
      "midi_named": 89,
      "f0_midi": 88.88,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 10.7
     },
     {
      "note": "F6",
@@ -20238,7 +20261,8 @@
      "note_named": "F7",
      "midi_named": 101,
      "f0_midi": 100.66,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 28.9
     },
     {
      "note": "F7",
@@ -20284,7 +20308,8 @@
      "note_named": "G1",
      "midi_named": 31,
      "f0_midi": 18.72,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 23.3
     },
     {
      "note": "G1",
@@ -97810,7 +97835,7 @@
    "samples": [
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 0,
      "vel_label": "v2",
      "file": "Timpani1_Hit_v2_rr1_Sum.wav",
@@ -97827,14 +97852,17 @@
      "end_s": 4.9556,
      "rr": 1,
      "f0_midi": 41.65,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.453,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.453
     },
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 0,
      "vel_label": "v2",
      "file": "Timpani1_Hit_v2_rr2_Sum.wav",
@@ -97851,14 +97879,17 @@
      "end_s": 5.3085,
      "rr": 2,
      "f0_midi": 41.65,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.45,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.45
     },
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani1_Hit_v3_rr3_Sum.wav",
@@ -97875,14 +97906,17 @@
      "end_s": 5.4265,
      "rr": 1,
      "f0_midi": 41.7,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.464,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.464
     },
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani1_Hit_v3_rr4_Sum.wav",
@@ -97899,14 +97933,17 @@
      "end_s": 6.6783,
      "rr": 2,
      "f0_midi": 41.7,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.468,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.468
     },
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 2,
      "vel_label": "v4",
      "file": "Timpani1_Hit_v4_rr1_Sum.wav",
@@ -97923,14 +97960,18 @@
      "end_s": 5.2395,
      "rr": 1,
      "f0_midi": 41.7,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.496,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.496,
+     "tune_fix_cents": -3.7
     },
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 2,
      "vel_label": "v4",
      "file": "Timpani1_Hit_v4_rr2_Sum.wav",
@@ -97947,14 +97988,18 @@
      "end_s": 5.4595,
      "rr": 2,
      "f0_midi": 41.7,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.499,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.499,
+     "tune_fix_cents": -4.1
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 0,
      "vel_label": "v2",
      "file": "Timpani2_Hit_v2_rr1_Sum.wav",
@@ -97971,14 +98016,17 @@
      "end_s": 5.4111,
      "rr": 1,
      "f0_midi": 46.45,
-     "midi_float": 46.48,
+     "midi_float": 46.8,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.784,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.784
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 0,
      "vel_label": "v2",
      "file": "Timpani2_Hit_v2_rr2_Sum.wav",
@@ -97995,14 +98043,17 @@
      "end_s": 5.1208,
      "rr": 2,
      "f0_midi": 46.45,
-     "midi_float": 46.48,
+     "midi_float": 46.8,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.779,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.779
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani2_Hit_v3_rr1_Sum.wav",
@@ -98019,14 +98070,17 @@
      "end_s": 5.4817,
      "rr": 1,
      "f0_midi": 46.5,
-     "midi_float": 46.48,
+     "midi_float": 46.8,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.807,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.807
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani2_Hit_v3_rr2_Sum.wav",
@@ -98043,14 +98097,17 @@
      "end_s": 5.4444,
      "rr": 2,
      "f0_midi": 46.5,
-     "midi_float": 46.48,
+     "midi_float": 46.8,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.811,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.811
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 2,
      "vel_label": "v4",
      "file": "Timpani2_Hit_v4_rr1_Sum.wav",
@@ -98067,14 +98124,18 @@
      "end_s": 3.225,
      "rr": 1,
      "f0_midi": 46.5,
-     "midi_float": 46.48,
+     "midi_float": 46.8,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.832,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.832,
+     "tune_fix_cents": -3.6
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 2,
      "vel_label": "v4",
      "file": "Timpani2_Hit_v4_rr2_Sum.wav",
@@ -98091,10 +98152,13 @@
      "end_s": 4.6862,
      "rr": 2,
      "f0_midi": 46.55,
-     "midi_float": 46.48,
+     "midi_float": 46.8,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.814,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.814
     },
     {
      "note": "C#3",
@@ -98115,10 +98179,13 @@
      "end_s": 2.1363,
      "rr": 1,
      "f0_midi": 49.2,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.479,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.479
     },
     {
      "note": "C#3",
@@ -98139,10 +98206,13 @@
      "end_s": 5.1476,
      "rr": 2,
      "f0_midi": 49.2,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.482,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.482
     },
     {
      "note": "C#3",
@@ -98163,10 +98233,13 @@
      "end_s": 4.9239,
      "rr": 1,
      "f0_midi": 49.2,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.486,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.486
     },
     {
      "note": "C#3",
@@ -98187,10 +98260,13 @@
      "end_s": 4.7773,
      "rr": 2,
      "f0_midi": 49.2,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.483,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.483
     },
     {
      "note": "C#3",
@@ -98211,10 +98287,14 @@
      "end_s": 4.8113,
      "rr": 1,
      "f0_midi": 49.25,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.523,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.523,
+     "tune_fix_cents": -4.0
     },
     {
      "note": "C#3",
@@ -98235,10 +98315,14 @@
      "end_s": 4.4492,
      "rr": 2,
      "f0_midi": 49.25,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.523,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.523,
+     "tune_fix_cents": -4.0
     },
     {
      "note": "E3",
@@ -98259,10 +98343,14 @@
      "end_s": 1.9761,
      "rr": 1,
      "f0_midi": 52.2,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.48,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.48,
+     "tune_fix_cents": -7.1
     },
     {
      "note": "E3",
@@ -98283,10 +98371,13 @@
      "end_s": 3.3799,
      "rr": 2,
      "f0_midi": 52.05,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.409,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.409
     },
     {
      "note": "E3",
@@ -98307,10 +98398,13 @@
      "end_s": 3.3161,
      "rr": 1,
      "f0_midi": 52.05,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.409,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.409
     },
     {
      "note": "E3",
@@ -98331,10 +98425,13 @@
      "end_s": 3.7653,
      "rr": 2,
      "f0_midi": 52.05,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.41,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.41
     },
     {
      "note": "E3",
@@ -98355,10 +98452,14 @@
      "end_s": 3.0571,
      "rr": 1,
      "f0_midi": 51.8,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.033,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.462,
+     "tune_fix_cents": -5.3
     },
     {
      "note": "E3",
@@ -98379,14 +98480,18 @@
      "end_s": 3.5866,
      "rr": 2,
      "f0_midi": 51.8,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.044,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.47,
+     "tune_fix_cents": -6.1
     },
     {
      "note": "F#3",
-     "midi": 54,
+     "midi": 55,
      "vel_layer": 0,
      "vel_label": "v2",
      "file": "Timpani5_Hit_v2_rr1_Sum.wav",
@@ -98403,14 +98508,17 @@
      "end_s": 2.2178,
      "rr": 1,
      "f0_midi": 54.05,
-     "midi_float": 54.12,
+     "midi_float": 54.51,
      "pitch_confidence": 1.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.543,
+     "midi_float_orig": 54.12,
+     "f0_midi_stroke": 54.538
     },
     {
      "note": "F#3",
-     "midi": 54,
+     "midi": 55,
      "vel_layer": 0,
      "vel_label": "v2",
      "file": "Timpani5_Hit_v2_rr2_Sum.wav",
@@ -98427,14 +98535,18 @@
      "end_s": 2.6618,
      "rr": 2,
      "f0_midi": 54.15,
-     "midi_float": 54.12,
+     "midi_float": 54.51,
      "pitch_confidence": 1.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.484,
+     "midi_float_orig": 54.12,
+     "f0_midi_stroke": 54.642,
+     "tune_fix_cents": -12.9
     },
     {
      "note": "F#3",
-     "midi": 54,
+     "midi": 55,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani5_Hit_v3_rr1_Sum.wav",
@@ -98451,14 +98563,18 @@
      "end_s": 3.471,
      "rr": 1,
      "f0_midi": 54.1,
-     "midi_float": 54.12,
+     "midi_float": 54.51,
      "pitch_confidence": 1.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.256,
+     "midi_float_orig": 54.12,
+     "f0_midi_stroke": 54.599,
+     "tune_fix_cents": -8.6
     },
     {
      "note": "F#3",
-     "midi": 54,
+     "midi": 55,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani5_Hit_v3_rr2_Sum.wav",
@@ -98475,14 +98591,18 @@
      "end_s": 3.2559,
      "rr": 2,
      "f0_midi": 54.15,
-     "midi_float": 54.12,
+     "midi_float": 54.51,
      "pitch_confidence": 1.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.624,
+     "midi_float_orig": 54.12,
+     "f0_midi_stroke": 54.643,
+     "tune_fix_cents": -12.9
     },
     {
      "note": "F#3",
-     "midi": 54,
+     "midi": 55,
      "vel_layer": 2,
      "vel_label": "v4",
      "file": "Timpani5_Hit_v4_rr1_Sum.wav",
@@ -98499,14 +98619,18 @@
      "end_s": 3.0438,
      "rr": 1,
      "f0_midi": 54.1,
-     "midi_float": 54.12,
+     "midi_float": 54.51,
      "pitch_confidence": 1.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.604,
+     "midi_float_orig": 54.12,
+     "f0_midi_stroke": 54.611,
+     "tune_fix_cents": -9.8
     },
     {
      "note": "F#3",
-     "midi": 54,
+     "midi": 55,
      "vel_layer": 2,
      "vel_label": "v4",
      "file": "Timpani5_Hit_v4_rr2_Sum.wav",
@@ -98523,10 +98647,14 @@
      "end_s": 3.316,
      "rr": 2,
      "f0_midi": 54.1,
-     "midi_float": 54.12,
+     "midi_float": 54.51,
      "pitch_confidence": 1.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 53.948,
+     "midi_float_orig": 54.12,
+     "f0_midi_stroke": 54.595,
+     "tune_fix_cents": -8.1
     }
    ]
   },
@@ -98577,10 +98705,13 @@
      "end_s": 24.0725,
      "rr": 1,
      "f0_midi": 41.9,
-     "midi_float": 42.0,
+     "midi_float": 41.72,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.722,
+     "midi_float_orig": 42.0,
+     "f0_midi_stroke": 41.722
     },
     {
      "note": "F#2",
@@ -98601,14 +98732,18 @@
      "end_s": 18.2145,
      "rr": 1,
      "f0_midi": 42.1,
-     "midi_float": 42.0,
+     "midi_float": 41.72,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.885,
+     "midi_float_orig": 42.0,
+     "f0_midi_stroke": 41.885,
+     "tune_fix_cents": -16.3
     },
     {
      "note": "B2",
-     "midi": 47,
+     "midi": 48,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani2_Roll_v3_rr1_Sum.wav",
@@ -98625,14 +98760,17 @@
      "end_s": 20.4965,
      "rr": 1,
      "f0_midi": 47.4,
-     "midi_float": 47.35,
+     "midi_float": 47.68,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 47.681,
+     "midi_float_orig": 47.35,
+     "f0_midi_stroke": 47.681
     },
     {
      "note": "B2",
-     "midi": 47,
+     "midi": 48,
      "vel_layer": 3,
      "vel_label": "v5",
      "file": "Timpani2_Roll_v5_rr1_Sum.wav",
@@ -98649,10 +98787,14 @@
      "end_s": 21.2715,
      "rr": 1,
      "f0_midi": 47.3,
-     "midi_float": 47.35,
+     "midi_float": 47.68,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 47.597,
+     "midi_float_orig": 47.35,
+     "f0_midi_stroke": 47.597,
+     "tune_fix_cents": 8.4
     },
     {
      "note": "C#3",
@@ -98673,10 +98815,14 @@
      "end_s": 20.2937,
      "rr": 1,
      "f0_midi": 49.05,
-     "midi_float": 49.42,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.6,
+     "pitch_confidence": 0.5,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 48.603,
+     "midi_float_orig": 49.42,
+     "f0_midi_stroke": 48.422,
+     "tune_fix_cents": 18.1
     },
     {
      "note": "C#3",
@@ -98697,14 +98843,18 @@
      "end_s": 15.1014,
      "rr": 1,
      "f0_midi": 49.8,
-     "midi_float": 49.42,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.6,
+     "pitch_confidence": 0.5,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 50.076,
+     "midi_float_orig": 49.42,
+     "f0_midi_stroke": 48.435,
+     "tune_fix_cents": 16.8
     },
     {
      "note": "E3",
-     "midi": 52,
+     "midi": 51,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani4_Roll_v3_rr1_Sum.wav",
@@ -98721,14 +98871,17 @@
      "end_s": 13.2754,
      "rr": 1,
      "f0_midi": 51.25,
-     "midi_float": 51.8,
-     "pitch_confidence": 1.0,
+     "midi_float": 51.41,
+     "pitch_confidence": 0.5,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 51.408,
+     "midi_float_orig": 51.8,
+     "f0_midi_stroke": 51.408
     },
     {
      "note": "E3",
-     "midi": 52,
+     "midi": 51,
      "vel_layer": 3,
      "vel_label": "v5",
      "file": "Timpani4_Roll_v5_rr1_Sum.wav",
@@ -98745,10 +98898,14 @@
      "end_s": 14.9197,
      "rr": 1,
      "f0_midi": 52.35,
-     "midi_float": 51.8,
-     "pitch_confidence": 1.0,
+     "midi_float": 51.41,
+     "pitch_confidence": 0.5,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.555,
+     "midi_float_orig": 51.8,
+     "f0_midi_stroke": 51.781,
+     "tune_fix_cents": -37.3
     },
     {
      "note": "G3",
@@ -98769,10 +98926,14 @@
      "end_s": 13.583,
      "rr": 1,
      "f0_midi": 55.0,
-     "midi_float": 54.8,
-     "pitch_confidence": 1.0,
+     "midi_float": 55.41,
+     "pitch_confidence": 0.5,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 55.412,
+     "midi_float_orig": 54.8,
+     "f0_midi_stroke": 55.581,
+     "tune_fix_cents": -16.9
     },
     {
      "note": "G3",
@@ -98793,10 +98954,14 @@
      "end_s": 13.0268,
      "rr": 1,
      "f0_midi": 54.6,
-     "midi_float": 54.8,
-     "pitch_confidence": 1.0,
+     "midi_float": 55.41,
+     "pitch_confidence": 0.5,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.745,
+     "midi_float_orig": 54.8,
+     "f0_midi_stroke": 55.581,
+     "tune_fix_cents": -16.9
     }
    ]
   },
@@ -98846,10 +99011,13 @@
      "end_s": 9.5367,
      "rr": 1,
      "f0_midi": 46.1,
-     "midi_float": 45.72,
+     "midi_float": 45.87,
      "pitch_confidence": 0.83,
      "drum": "1A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.846,
+     "midi_float_orig": 45.72,
+     "f0_midi_stroke": 45.846
     },
     {
      "note": "A#2",
@@ -98870,10 +99038,13 @@
      "end_s": 8.9262,
      "rr": 2,
      "f0_midi": 45.6,
-     "midi_float": 45.72,
+     "midi_float": 45.87,
      "pitch_confidence": 0.83,
      "drum": "1A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.859,
+     "midi_float_orig": 45.72,
+     "f0_midi_stroke": 45.859
     },
     {
      "note": "A#2",
@@ -98894,10 +99065,13 @@
      "end_s": 11.8005,
      "rr": 1,
      "f0_midi": 45.8,
-     "midi_float": 45.72,
+     "midi_float": 45.87,
      "pitch_confidence": 0.83,
      "drum": "1A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.889,
+     "midi_float_orig": 45.72,
+     "f0_midi_stroke": 45.889
     },
     {
      "note": "A#2",
@@ -98918,10 +99092,14 @@
      "end_s": 4.9581,
      "rr": 2,
      "f0_midi": 45.65,
-     "midi_float": 45.72,
+     "midi_float": 45.87,
      "pitch_confidence": 0.83,
      "drum": "1A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.906,
+     "midi_float_orig": 45.72,
+     "f0_midi_stroke": 45.906,
+     "tune_fix_cents": -3.2
     },
     {
      "note": "A#2",
@@ -98942,10 +99120,14 @@
      "end_s": 6.1814,
      "rr": 1,
      "f0_midi": 49.75,
-     "midi_float": 45.72,
+     "midi_float": 45.87,
      "pitch_confidence": 0.83,
      "drum": "1A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.0,
+     "midi_float_orig": 45.72,
+     "f0_midi_stroke": 45.791,
+     "tune_fix_cents": 8.3
     },
     {
      "note": "A#2",
@@ -98966,14 +99148,18 @@
      "end_s": 6.4745,
      "rr": 2,
      "f0_midi": 46.3,
-     "midi_float": 45.72,
+     "midi_float": 45.87,
      "pitch_confidence": 0.83,
      "drum": "1A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.181,
+     "midi_float_orig": 45.72,
+     "f0_midi_stroke": 46.181,
+     "tune_fix_cents": -30.7
     },
     {
      "note": "D#2",
-     "midi": 39,
+     "midi": 38,
      "vel_layer": 0,
      "vel_label": "v2",
      "file": "Timpani1B_hit_v2_rr1_main.wav",
@@ -98990,14 +99176,18 @@
      "end_s": 7.8696,
      "rr": 1,
      "f0_midi": 38.85,
-     "midi_float": 38.6,
+     "midi_float": 38.28,
      "pitch_confidence": 0.83,
      "drum": "1B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 38.51,
+     "midi_float_orig": 38.6,
+     "f0_midi_stroke": 38.51,
+     "tune_fix_cents": -22.6
     },
     {
      "note": "D#2",
-     "midi": 39,
+     "midi": 38,
      "vel_layer": 0,
      "vel_label": "v2",
      "file": "Timpani1B_hit_v2_rr2_main.wav",
@@ -99014,14 +99204,18 @@
      "end_s": 8.4421,
      "rr": 2,
      "f0_midi": 38.85,
-     "midi_float": 38.6,
+     "midi_float": 38.28,
      "pitch_confidence": 0.83,
      "drum": "1B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 38.52,
+     "midi_float_orig": 38.6,
+     "f0_midi_stroke": 38.52,
+     "tune_fix_cents": -23.6
     },
     {
      "note": "D#2",
-     "midi": 39,
+     "midi": 38,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani1B_hit_v3_rr1_main.wav",
@@ -99038,14 +99232,18 @@
      "end_s": 8.6097,
      "rr": 1,
      "f0_midi": 38.35,
-     "midi_float": 38.6,
+     "midi_float": 38.28,
      "pitch_confidence": 0.83,
      "drum": "1B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 38.058,
+     "midi_float_orig": 38.6,
+     "f0_midi_stroke": 38.058,
+     "tune_fix_cents": 22.6
     },
     {
      "note": "D#2",
-     "midi": 39,
+     "midi": 38,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani1B_hit_v3_rr2_main.wav",
@@ -99062,14 +99260,18 @@
      "end_s": 9.7768,
      "rr": 2,
      "f0_midi": 38.35,
-     "midi_float": 38.6,
+     "midi_float": 38.28,
      "pitch_confidence": 0.83,
      "drum": "1B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 38.053,
+     "midi_float_orig": 38.6,
+     "f0_midi_stroke": 38.053,
+     "tune_fix_cents": 23.1
     },
     {
      "note": "D#2",
-     "midi": 39,
+     "midi": 38,
      "vel_layer": 2,
      "vel_label": "v5",
      "file": "Timpani1B_hit_v5_rr1_main.wav",
@@ -99086,14 +99288,18 @@
      "end_s": 9.2195,
      "rr": 1,
      "f0_midi": 56.85,
-     "midi_float": 38.6,
+     "midi_float": 38.28,
      "pitch_confidence": 0.83,
      "drum": "1B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 57.085,
+     "midi_float_orig": 38.6,
+     "f0_midi_stroke": 37.992,
+     "tune_fix_cents": 29.2
     },
     {
      "note": "D#2",
-     "midi": 39,
+     "midi": 38,
      "vel_layer": 2,
      "vel_label": "v5",
      "file": "Timpani1B_hit_v5_rr2_main.wav",
@@ -99110,10 +99316,14 @@
      "end_s": 5.8688,
      "rr": 2,
      "f0_midi": 38.25,
-     "midi_float": 38.6,
+     "midi_float": 38.28,
      "pitch_confidence": 0.83,
      "drum": "1B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 37.917,
+     "midi_float_orig": 38.6,
+     "f0_midi_stroke": 37.917,
+     "tune_fix_cents": 36.7
     },
     {
      "note": "E2",
@@ -99134,10 +99344,13 @@
      "end_s": 9.267,
      "rr": 1,
      "f0_midi": 40.2,
-     "midi_float": 40.23,
+     "midi_float": 39.95,
      "pitch_confidence": 0.83,
      "drum": "1C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 39.947,
+     "midi_float_orig": 40.23,
+     "f0_midi_stroke": 39.947
     },
     {
      "note": "E2",
@@ -99158,10 +99371,13 @@
      "end_s": 8.0368,
      "rr": 2,
      "f0_midi": 40.25,
-     "midi_float": 40.23,
+     "midi_float": 39.95,
      "pitch_confidence": 0.83,
      "drum": "1C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 39.948,
+     "midi_float_orig": 40.23,
+     "f0_midi_stroke": 39.948
     },
     {
      "note": "E2",
@@ -99182,10 +99398,13 @@
      "end_s": 8.661,
      "rr": 1,
      "f0_midi": 40.25,
-     "midi_float": 40.23,
+     "midi_float": 39.95,
      "pitch_confidence": 0.83,
      "drum": "1C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 39.95,
+     "midi_float_orig": 40.23,
+     "f0_midi_stroke": 39.95
     },
     {
      "note": "E2",
@@ -99206,10 +99425,14 @@
      "end_s": 10.2999,
      "rr": 2,
      "f0_midi": 40.2,
-     "midi_float": 40.23,
+     "midi_float": 39.95,
      "pitch_confidence": 0.83,
      "drum": "1C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 39.889,
+     "midi_float_orig": 40.23,
+     "f0_midi_stroke": 39.889,
+     "tune_fix_cents": 5.9
     },
     {
      "note": "E2",
@@ -99230,10 +99453,14 @@
      "end_s": 7.7779,
      "rr": 1,
      "f0_midi": 51.75,
-     "midi_float": 40.23,
+     "midi_float": 39.95,
      "pitch_confidence": 0.83,
      "drum": "1C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 52.035,
+     "midi_float_orig": 40.23,
+     "f0_midi_stroke": 39.619,
+     "tune_fix_cents": 32.8
     },
     {
      "note": "E2",
@@ -99254,10 +99481,14 @@
      "end_s": 6.2079,
      "rr": 2,
      "f0_midi": 39.95,
-     "midi_float": 40.23,
+     "midi_float": 39.95,
      "pitch_confidence": 0.83,
      "drum": "1C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 39.656,
+     "midi_float_orig": 40.23,
+     "f0_midi_stroke": 39.656,
+     "tune_fix_cents": 29.2
     },
     {
      "note": "F#2",
@@ -99278,10 +99509,14 @@
      "end_s": 5.2554,
      "rr": 1,
      "f0_midi": 42.0,
-     "midi_float": 42.02,
+     "midi_float": 41.77,
      "pitch_confidence": 1.0,
      "drum": "1D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.729,
+     "midi_float_orig": 42.02,
+     "f0_midi_stroke": 41.729,
+     "tune_fix_cents": 3.6
     },
     {
      "note": "F#2",
@@ -99302,10 +99537,14 @@
      "end_s": 5.1959,
      "rr": 2,
      "f0_midi": 42.0,
-     "midi_float": 42.02,
+     "midi_float": 41.77,
      "pitch_confidence": 1.0,
      "drum": "1D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.726,
+     "midi_float_orig": 42.02,
+     "f0_midi_stroke": 41.726,
+     "tune_fix_cents": 4.0
     },
     {
      "note": "F#2",
@@ -99326,10 +99565,14 @@
      "end_s": 7.55,
      "rr": 1,
      "f0_midi": 42.05,
-     "midi_float": 42.02,
+     "midi_float": 41.77,
      "pitch_confidence": 1.0,
      "drum": "1D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.802,
+     "midi_float_orig": 42.02,
+     "f0_midi_stroke": 41.802,
+     "tune_fix_cents": -3.7
     },
     {
      "note": "F#2",
@@ -99350,10 +99593,14 @@
      "end_s": 8.2151,
      "rr": 2,
      "f0_midi": 42.05,
-     "midi_float": 42.02,
+     "midi_float": 41.77,
      "pitch_confidence": 1.0,
      "drum": "1D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.806,
+     "midi_float_orig": 42.02,
+     "f0_midi_stroke": 41.806,
+     "tune_fix_cents": -4.1
     },
     {
      "note": "F#2",
@@ -99374,10 +99621,14 @@
      "end_s": 6.8127,
      "rr": 1,
      "f0_midi": 42.05,
-     "midi_float": 42.02,
+     "midi_float": 41.77,
      "pitch_confidence": 1.0,
      "drum": "1D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.837,
+     "midi_float_orig": 42.02,
+     "f0_midi_stroke": 41.837,
+     "tune_fix_cents": -7.2
     },
     {
      "note": "F#2",
@@ -99398,10 +99649,14 @@
      "end_s": 6.7437,
      "rr": 2,
      "f0_midi": 42.05,
-     "midi_float": 42.02,
+     "midi_float": 41.77,
      "pitch_confidence": 1.0,
      "drum": "1D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.84,
+     "midi_float_orig": 42.02,
+     "f0_midi_stroke": 41.84,
+     "tune_fix_cents": -7.4
     },
     {
      "note": "G2",
@@ -99422,10 +99677,14 @@
      "end_s": 3.6689,
      "rr": 1,
      "f0_midi": 42.6,
-     "midi_float": 42.78,
+     "midi_float": 43.03,
      "pitch_confidence": 1.0,
      "drum": "2A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.802,
+     "midi_float_orig": 42.78,
+     "f0_midi_stroke": 43.255,
+     "tune_fix_cents": -22.8
     },
     {
      "note": "G2",
@@ -99446,10 +99705,14 @@
      "end_s": 4.1322,
      "rr": 2,
      "f0_midi": 42.95,
-     "midi_float": 42.78,
+     "midi_float": 43.03,
      "pitch_confidence": 1.0,
      "drum": "2A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.252,
+     "midi_float_orig": 42.78,
+     "f0_midi_stroke": 43.252,
+     "tune_fix_cents": -22.5
     },
     {
      "note": "G2",
@@ -99470,10 +99733,14 @@
      "end_s": 5.5227,
      "rr": 1,
      "f0_midi": 43.0,
-     "midi_float": 42.78,
+     "midi_float": 43.03,
      "pitch_confidence": 1.0,
      "drum": "2A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.258,
+     "midi_float_orig": 42.78,
+     "f0_midi_stroke": 43.258,
+     "tune_fix_cents": -23.1
     },
     {
      "note": "G2",
@@ -99494,10 +99761,14 @@
      "end_s": 5.8114,
      "rr": 2,
      "f0_midi": 42.55,
-     "midi_float": 42.78,
+     "midi_float": 43.03,
      "pitch_confidence": 1.0,
      "drum": "2A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.782,
+     "midi_float_orig": 42.78,
+     "f0_midi_stroke": 43.203,
+     "tune_fix_cents": -17.6
     },
     {
      "note": "G2",
@@ -99518,10 +99789,14 @@
      "end_s": 5.2276,
      "rr": 1,
      "f0_midi": 42.5,
-     "midi_float": 42.78,
+     "midi_float": 43.03,
      "pitch_confidence": 1.0,
      "drum": "2A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.731,
+     "midi_float_orig": 42.78,
+     "f0_midi_stroke": 43.154,
+     "tune_fix_cents": -12.7
     },
     {
      "note": "G2",
@@ -99542,10 +99817,14 @@
      "end_s": 5.1662,
      "rr": 2,
      "f0_midi": 42.55,
-     "midi_float": 42.78,
+     "midi_float": 43.03,
      "pitch_confidence": 1.0,
      "drum": "2A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.764,
+     "midi_float_orig": 42.78,
+     "f0_midi_stroke": 43.194,
+     "tune_fix_cents": -16.7
     },
     {
      "note": "A2",
@@ -99566,10 +99845,13 @@
      "end_s": 5.2307,
      "rr": 1,
      "f0_midi": 45.0,
-     "midi_float": 45.0,
+     "midi_float": 45.33,
      "pitch_confidence": 1.0,
      "drum": "2B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.324,
+     "midi_float_orig": 45.0,
+     "f0_midi_stroke": 45.324
     },
     {
      "note": "A2",
@@ -99590,10 +99872,13 @@
      "end_s": 6.2462,
      "rr": 2,
      "f0_midi": 44.8,
-     "midi_float": 45.0,
+     "midi_float": 45.33,
      "pitch_confidence": 1.0,
      "drum": "2B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.271,
+     "midi_float_orig": 45.0,
+     "f0_midi_stroke": 45.324
     },
     {
      "note": "A2",
@@ -99614,10 +99899,13 @@
      "end_s": 6.671,
      "rr": 1,
      "f0_midi": 45.0,
-     "midi_float": 45.0,
+     "midi_float": 45.33,
      "pitch_confidence": 1.0,
      "drum": "2B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.333,
+     "midi_float_orig": 45.0,
+     "f0_midi_stroke": 45.333
     },
     {
      "note": "A2",
@@ -99638,10 +99926,13 @@
      "end_s": 7.124,
      "rr": 2,
      "f0_midi": 45.0,
-     "midi_float": 45.0,
+     "midi_float": 45.33,
      "pitch_confidence": 1.0,
      "drum": "2B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.341,
+     "midi_float_orig": 45.0,
+     "f0_midi_stroke": 45.341
     },
     {
      "note": "A2",
@@ -99662,10 +99953,13 @@
      "end_s": 5.3698,
      "rr": 1,
      "f0_midi": 45.0,
-     "midi_float": 45.0,
+     "midi_float": 45.33,
      "pitch_confidence": 1.0,
      "drum": "2B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.342,
+     "midi_float_orig": 45.0,
+     "f0_midi_stroke": 45.342
     },
     {
      "note": "A2",
@@ -99686,10 +99980,13 @@
      "end_s": 6.4566,
      "rr": 2,
      "f0_midi": 45.0,
-     "midi_float": 45.0,
+     "midi_float": 45.33,
      "pitch_confidence": 1.0,
      "drum": "2B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.328,
+     "midi_float_orig": 45.0,
+     "f0_midi_stroke": 45.328
     },
     {
      "note": "A#2",
@@ -99710,10 +100007,13 @@
      "end_s": 6.3775,
      "rr": 1,
      "f0_midi": 45.9,
-     "midi_float": 45.9,
+     "midi_float": 46.13,
      "pitch_confidence": 1.0,
      "drum": "3A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.13,
+     "midi_float_orig": 45.9,
+     "f0_midi_stroke": 46.13
     },
     {
      "note": "A#2",
@@ -99734,10 +100034,13 @@
      "end_s": 4.9034,
      "rr": 2,
      "f0_midi": 45.9,
-     "midi_float": 45.9,
+     "midi_float": 46.13,
      "pitch_confidence": 1.0,
      "drum": "3A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.133,
+     "midi_float_orig": 45.9,
+     "f0_midi_stroke": 46.133
     },
     {
      "note": "A#2",
@@ -99758,10 +100061,13 @@
      "end_s": 5.7596,
      "rr": 1,
      "f0_midi": 45.9,
-     "midi_float": 45.9,
+     "midi_float": 46.13,
      "pitch_confidence": 1.0,
      "drum": "3A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.14,
+     "midi_float_orig": 45.9,
+     "f0_midi_stroke": 46.14
     },
     {
      "note": "A#2",
@@ -99782,10 +100088,13 @@
      "end_s": 7.0333,
      "rr": 2,
      "f0_midi": 45.85,
-     "midi_float": 45.9,
+     "midi_float": 46.13,
      "pitch_confidence": 1.0,
      "drum": "3A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.115,
+     "midi_float_orig": 45.9,
+     "f0_midi_stroke": 46.115
     },
     {
      "note": "A#2",
@@ -99806,10 +100115,14 @@
      "end_s": 5.389,
      "rr": 1,
      "f0_midi": 45.7,
-     "midi_float": 45.9,
+     "midi_float": 46.13,
      "pitch_confidence": 1.0,
      "drum": "3A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.932,
+     "midi_float_orig": 45.9,
+     "f0_midi_stroke": 45.932,
+     "tune_fix_cents": 20.0
     },
     {
      "note": "A#2",
@@ -99830,10 +100143,14 @@
      "end_s": 5.2554,
      "rr": 2,
      "f0_midi": 45.7,
-     "midi_float": 45.9,
+     "midi_float": 46.13,
      "pitch_confidence": 1.0,
      "drum": "3A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.964,
+     "midi_float_orig": 45.9,
+     "f0_midi_stroke": 45.964,
+     "tune_fix_cents": 16.7
     },
     {
      "note": "C3",
@@ -99854,10 +100171,13 @@
      "end_s": 3.284,
      "rr": 1,
      "f0_midi": 47.75,
-     "midi_float": 47.75,
+     "midi_float": 48.06,
      "pitch_confidence": 1.0,
      "drum": "3B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.057,
+     "midi_float_orig": 47.75,
+     "f0_midi_stroke": 48.057
     },
     {
      "note": "C3",
@@ -99878,10 +100198,13 @@
      "end_s": 3.7061,
      "rr": 2,
      "f0_midi": 47.75,
-     "midi_float": 47.75,
+     "midi_float": 48.06,
      "pitch_confidence": 1.0,
      "drum": "3B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.061,
+     "midi_float_orig": 47.75,
+     "f0_midi_stroke": 48.061
     },
     {
      "note": "C3",
@@ -99902,10 +100225,13 @@
      "end_s": 5.048,
      "rr": 1,
      "f0_midi": 47.75,
-     "midi_float": 47.75,
+     "midi_float": 48.06,
      "pitch_confidence": 1.0,
      "drum": "3B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.056,
+     "midi_float_orig": 47.75,
+     "f0_midi_stroke": 48.056
     },
     {
      "note": "C3",
@@ -99926,10 +100252,13 @@
      "end_s": 3.4146,
      "rr": 2,
      "f0_midi": 47.75,
-     "midi_float": 47.75,
+     "midi_float": 48.06,
      "pitch_confidence": 1.0,
      "drum": "3B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.06,
+     "midi_float_orig": 47.75,
+     "f0_midi_stroke": 48.06
     },
     {
      "note": "C3",
@@ -99950,10 +100279,14 @@
      "end_s": 4.5056,
      "rr": 1,
      "f0_midi": 47.6,
-     "midi_float": 47.75,
+     "midi_float": 48.06,
      "pitch_confidence": 1.0,
      "drum": "3B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 47.924,
+     "midi_float_orig": 47.75,
+     "f0_midi_stroke": 47.924,
+     "tune_fix_cents": 13.4
     },
     {
      "note": "C3",
@@ -99974,10 +100307,14 @@
      "end_s": 3.8076,
      "rr": 2,
      "f0_midi": 47.65,
-     "midi_float": 47.75,
+     "midi_float": 48.06,
      "pitch_confidence": 1.0,
      "drum": "3B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 47.943,
+     "midi_float_orig": 47.75,
+     "f0_midi_stroke": 47.943,
+     "tune_fix_cents": 11.6
     },
     {
      "note": "D3",
@@ -99998,10 +100335,13 @@
      "end_s": 3.6351,
      "rr": 1,
      "f0_midi": 49.75,
-     "midi_float": 49.75,
+     "midi_float": 50.02,
      "pitch_confidence": 1.0,
      "drum": "3C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.015,
+     "midi_float_orig": 49.75,
+     "f0_midi_stroke": 50.015
     },
     {
      "note": "D3",
@@ -100022,10 +100362,13 @@
      "end_s": 3.7355,
      "rr": 2,
      "f0_midi": 49.75,
-     "midi_float": 49.75,
+     "midi_float": 50.02,
      "pitch_confidence": 1.0,
      "drum": "3C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.033,
+     "midi_float_orig": 49.75,
+     "f0_midi_stroke": 50.033
     },
     {
      "note": "D3",
@@ -100046,10 +100389,13 @@
      "end_s": 4.2487,
      "rr": 1,
      "f0_midi": 49.75,
-     "midi_float": 49.75,
+     "midi_float": 50.02,
      "pitch_confidence": 1.0,
      "drum": "3C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.032,
+     "midi_float_orig": 49.75,
+     "f0_midi_stroke": 50.032
     },
     {
      "note": "D3",
@@ -100070,10 +100416,13 @@
      "end_s": 4.6536,
      "rr": 2,
      "f0_midi": 49.75,
-     "midi_float": 49.75,
+     "midi_float": 50.02,
      "pitch_confidence": 1.0,
      "drum": "3C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 49.994,
+     "midi_float_orig": 49.75,
+     "f0_midi_stroke": 49.994
     },
     {
      "note": "D3",
@@ -100094,10 +100443,14 @@
      "end_s": 4.2982,
      "rr": 1,
      "f0_midi": 49.65,
-     "midi_float": 49.75,
+     "midi_float": 50.02,
      "pitch_confidence": 1.0,
      "drum": "3C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 49.928,
+     "midi_float_orig": 49.75,
+     "f0_midi_stroke": 49.928,
+     "tune_fix_cents": 9.5
     },
     {
      "note": "D3",
@@ -100118,10 +100471,14 @@
      "end_s": 4.1536,
      "rr": 2,
      "f0_midi": 49.7,
-     "midi_float": 49.75,
+     "midi_float": 50.02,
      "pitch_confidence": 1.0,
      "drum": "3C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 49.966,
+     "midi_float_orig": 49.75,
+     "f0_midi_stroke": 49.966,
+     "tune_fix_cents": 5.8
     },
     {
      "note": "F3",
@@ -100142,10 +100499,13 @@
      "end_s": 3.0456,
      "rr": 1,
      "f0_midi": 53.0,
-     "midi_float": 53.0,
+     "midi_float": 53.31,
      "pitch_confidence": 1.0,
      "drum": "4A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.308,
+     "midi_float_orig": 53.0,
+     "f0_midi_stroke": 53.308
     },
     {
      "note": "F3",
@@ -100166,10 +100526,13 @@
      "end_s": 2.7886,
      "rr": 2,
      "f0_midi": 52.7,
-     "midi_float": 53.0,
+     "midi_float": 53.31,
      "pitch_confidence": 1.0,
      "drum": "4A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 52.928,
+     "midi_float_orig": 53.0,
+     "f0_midi_stroke": 53.306
     },
     {
      "note": "F3",
@@ -100190,10 +100553,13 @@
      "end_s": 2.9821,
      "rr": 1,
      "f0_midi": 53.0,
-     "midi_float": 53.0,
+     "midi_float": 53.31,
      "pitch_confidence": 1.0,
      "drum": "4A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.309,
+     "midi_float_orig": 53.0,
+     "f0_midi_stroke": 53.309
     },
     {
      "note": "F3",
@@ -100214,10 +100580,13 @@
      "end_s": 2.9221,
      "rr": 2,
      "f0_midi": 53.0,
-     "midi_float": 53.0,
+     "midi_float": 53.31,
      "pitch_confidence": 1.0,
      "drum": "4A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.308,
+     "midi_float_orig": 53.0,
+     "f0_midi_stroke": 53.308
     },
     {
      "note": "F3",
@@ -100238,10 +100607,14 @@
      "end_s": 2.8115,
      "rr": 1,
      "f0_midi": 52.6,
-     "midi_float": 53.0,
+     "midi_float": 53.31,
      "pitch_confidence": 1.0,
      "drum": "4A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 52.839,
+     "midi_float_orig": 53.0,
+     "f0_midi_stroke": 53.255,
+     "tune_fix_cents": 5.3
     },
     {
      "note": "F3",
@@ -100262,10 +100635,14 @@
      "end_s": 2.8038,
      "rr": 2,
      "f0_midi": 52.9,
-     "midi_float": 53.0,
+     "midi_float": 53.31,
      "pitch_confidence": 1.0,
      "drum": "4A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.201,
+     "midi_float_orig": 53.0,
+     "f0_midi_stroke": 53.201,
+     "tune_fix_cents": 10.7
     },
     {
      "note": "G3",
@@ -100286,10 +100663,13 @@
      "end_s": 2.6267,
      "rr": 1,
      "f0_midi": 54.85,
-     "midi_float": 54.83,
+     "midi_float": 55.17,
      "pitch_confidence": 1.0,
      "drum": "5A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 55.173,
+     "midi_float_orig": 54.83,
+     "f0_midi_stroke": 55.173
     },
     {
      "note": "G3",
@@ -100310,10 +100690,13 @@
      "end_s": 2.1865,
      "rr": 2,
      "f0_midi": 54.8,
-     "midi_float": 54.83,
+     "midi_float": 55.17,
      "pitch_confidence": 1.0,
      "drum": "5A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 55.173,
+     "midi_float_orig": 54.83,
+     "f0_midi_stroke": 55.173
     },
     {
      "note": "G3",
@@ -100334,10 +100717,13 @@
      "end_s": 2.8994,
      "rr": 1,
      "f0_midi": 54.85,
-     "midi_float": 54.83,
+     "midi_float": 55.17,
      "pitch_confidence": 1.0,
      "drum": "5A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 55.166,
+     "midi_float_orig": 54.83,
+     "f0_midi_stroke": 55.166
     },
     {
      "note": "G3",
@@ -100358,10 +100744,13 @@
      "end_s": 3.0912,
      "rr": 2,
      "f0_midi": 54.8,
-     "midi_float": 54.83,
+     "midi_float": 55.17,
      "pitch_confidence": 1.0,
      "drum": "5A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 55.169,
+     "midi_float_orig": 54.83,
+     "f0_midi_stroke": 55.169
     },
     {
      "note": "G3",
@@ -100382,10 +100771,14 @@
      "end_s": 2.7781,
      "rr": 1,
      "f0_midi": 54.35,
-     "midi_float": 54.83,
+     "midi_float": 55.17,
      "pitch_confidence": 1.0,
      "drum": "5A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.726,
+     "midi_float_orig": 54.83,
+     "f0_midi_stroke": 54.726,
+     "tune_fix_cents": 44.5
     },
     {
      "note": "G3",
@@ -100406,10 +100799,14 @@
      "end_s": 2.1185,
      "rr": 2,
      "f0_midi": 54.3,
-     "midi_float": 54.83,
+     "midi_float": 55.17,
      "pitch_confidence": 1.0,
      "drum": "5A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.674,
+     "midi_float_orig": 54.83,
+     "f0_midi_stroke": 54.674,
+     "tune_fix_cents": 49.7
     },
     {
      "note": "A3",
@@ -100430,10 +100827,13 @@
      "end_s": 1.6397,
      "rr": 1,
      "f0_midi": 56.7,
-     "midi_float": 56.7,
+     "midi_float": 57.0,
      "pitch_confidence": 1.0,
      "drum": "5B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.99,
+     "midi_float_orig": 56.7,
+     "f0_midi_stroke": 56.99
     },
     {
      "note": "A3",
@@ -100454,10 +100854,13 @@
      "end_s": 1.7178,
      "rr": 2,
      "f0_midi": 56.7,
-     "midi_float": 56.7,
+     "midi_float": 57.0,
      "pitch_confidence": 1.0,
      "drum": "5B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 57.016,
+     "midi_float_orig": 56.7,
+     "f0_midi_stroke": 57.016
     },
     {
      "note": "A3",
@@ -100478,10 +100881,14 @@
      "end_s": 1.9554,
      "rr": 1,
      "f0_midi": 56.7,
-     "midi_float": 56.7,
+     "midi_float": 57.0,
      "pitch_confidence": 1.0,
      "drum": "5B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 57.067,
+     "midi_float_orig": 56.7,
+     "f0_midi_stroke": 57.2,
+     "tune_fix_cents": -19.7
     },
     {
      "note": "A3",
@@ -100502,10 +100909,14 @@
      "end_s": 2.2883,
      "rr": 2,
      "f0_midi": 56.9,
-     "midi_float": 56.7,
+     "midi_float": 57.0,
      "pitch_confidence": 1.0,
      "drum": "5B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.587,
+     "midi_float_orig": 56.7,
+     "f0_midi_stroke": 57.344,
+     "tune_fix_cents": -34.1
     },
     {
      "note": "A3",
@@ -100526,10 +100937,14 @@
      "end_s": 1.8396,
      "rr": 1,
      "f0_midi": 56.7,
-     "midi_float": 56.7,
+     "midi_float": 57.0,
      "pitch_confidence": 1.0,
      "drum": "5B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.957,
+     "midi_float_orig": 56.7,
+     "f0_midi_stroke": 56.957,
+     "tune_fix_cents": 4.6
     },
     {
      "note": "A3",
@@ -100550,10 +100965,14 @@
      "end_s": 2.5128,
      "rr": 2,
      "f0_midi": 56.7,
-     "midi_float": 56.7,
+     "midi_float": 57.0,
      "pitch_confidence": 1.0,
      "drum": "5B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.551,
+     "midi_float_orig": 56.7,
+     "f0_midi_stroke": 57.336,
+     "tune_fix_cents": -33.3
     },
     {
      "note": "F3",
@@ -100574,10 +100993,13 @@
      "end_s": 1.9127,
      "rr": 1,
      "f0_midi": 52.8,
-     "midi_float": 52.83,
+     "midi_float": 53.06,
      "pitch_confidence": 1.0,
      "drum": "6A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.059,
+     "midi_float_orig": 52.83,
+     "f0_midi_stroke": 53.059
     },
     {
      "note": "F3",
@@ -100598,10 +101020,14 @@
      "end_s": 1.6619,
      "rr": 2,
      "f0_midi": 53.15,
-     "midi_float": 52.83,
+     "midi_float": 53.06,
      "pitch_confidence": 1.0,
      "drum": "6A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.439,
+     "midi_float_orig": 52.83,
+     "f0_midi_stroke": 53.439,
+     "tune_fix_cents": -37.6
     },
     {
      "note": "F3",
@@ -100622,10 +101048,13 @@
      "end_s": 1.8384,
      "rr": 1,
      "f0_midi": 52.8,
-     "midi_float": 52.83,
+     "midi_float": 53.06,
      "pitch_confidence": 1.0,
      "drum": "6A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.059,
+     "midi_float_orig": 52.83,
+     "f0_midi_stroke": 53.059
     },
     {
      "note": "F3",
@@ -100646,10 +101075,13 @@
      "end_s": 1.7762,
      "rr": 2,
      "f0_midi": 52.85,
-     "midi_float": 52.83,
+     "midi_float": 53.06,
      "pitch_confidence": 1.0,
      "drum": "6A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.067,
+     "midi_float_orig": 52.83,
+     "f0_midi_stroke": 53.067
     },
     {
      "note": "F3",
@@ -100670,10 +101102,13 @@
      "end_s": 1.6171,
      "rr": 1,
      "f0_midi": 52.85,
-     "midi_float": 52.83,
+     "midi_float": 53.06,
      "pitch_confidence": 1.0,
      "drum": "6A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.062,
+     "midi_float_orig": 52.83,
+     "f0_midi_stroke": 53.062
     },
     {
      "note": "F3",
@@ -100694,10 +101129,14 @@
      "end_s": 1.6394,
      "rr": 2,
      "f0_midi": 52.8,
-     "midi_float": 52.83,
+     "midi_float": 53.06,
      "pitch_confidence": 1.0,
      "drum": "6A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 53.062,
+     "midi_float_orig": 52.83,
+     "f0_midi_stroke": 53.455,
+     "tune_fix_cents": -39.2
     },
     {
      "note": "E3",
@@ -100718,10 +101157,14 @@
      "end_s": 3.0216,
      "rr": 1,
      "f0_midi": 51.65,
-     "midi_float": 51.73,
+     "midi_float": 51.96,
      "pitch_confidence": 1.0,
      "drum": "6B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.924,
+     "midi_float_orig": 51.73,
+     "f0_midi_stroke": 51.924,
+     "tune_fix_cents": 3.5
     },
     {
      "note": "E3",
@@ -100742,10 +101185,13 @@
      "end_s": 2.568,
      "rr": 2,
      "f0_midi": 51.7,
-     "midi_float": 51.73,
+     "midi_float": 51.96,
      "pitch_confidence": 1.0,
      "drum": "6B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.944,
+     "midi_float_orig": 51.73,
+     "f0_midi_stroke": 51.944
     },
     {
      "note": "E3",
@@ -100766,10 +101212,14 @@
      "end_s": 3.0021,
      "rr": 1,
      "f0_midi": 51.75,
-     "midi_float": 51.73,
+     "midi_float": 51.96,
      "pitch_confidence": 1.0,
      "drum": "6B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.974,
+     "midi_float_orig": 51.73,
+     "f0_midi_stroke": 52.414,
+     "tune_fix_cents": -45.5
     },
     {
      "note": "E3",
@@ -100790,10 +101240,14 @@
      "end_s": 2.8366,
      "rr": 2,
      "f0_midi": 51.75,
-     "midi_float": 51.73,
+     "midi_float": 51.96,
      "pitch_confidence": 1.0,
      "drum": "6B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 52.0,
+     "midi_float_orig": 51.73,
+     "f0_midi_stroke": 52.0,
+     "tune_fix_cents": -4.1
     },
     {
      "note": "E3",
@@ -100814,10 +101268,14 @@
      "end_s": 2.443,
      "rr": 1,
      "f0_midi": 52.0,
-     "midi_float": 51.73,
+     "midi_float": 51.96,
      "pitch_confidence": 1.0,
      "drum": "6B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 52.26,
+     "midi_float_orig": 51.73,
+     "f0_midi_stroke": 52.26,
+     "tune_fix_cents": -30.1
     },
     {
      "note": "E3",
@@ -100838,10 +101296,14 @@
      "end_s": 2.5174,
      "rr": 2,
      "f0_midi": 51.95,
-     "midi_float": 51.73,
+     "midi_float": 51.96,
      "pitch_confidence": 1.0,
      "drum": "6B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.657,
+     "midi_float_orig": 51.73,
+     "f0_midi_stroke": 51.657,
+     "tune_fix_cents": 30.2
     },
     {
      "note": "D#3",
@@ -100862,10 +101324,13 @@
      "end_s": 2.8993,
      "rr": 1,
      "f0_midi": 51.1,
-     "midi_float": 51.0,
+     "midi_float": 51.27,
      "pitch_confidence": 1.0,
      "drum": "6C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.351,
+     "midi_float_orig": 51.0,
+     "f0_midi_stroke": 51.82
     },
     {
      "note": "D#3",
@@ -100886,10 +101351,14 @@
      "end_s": 2.7402,
      "rr": 2,
      "f0_midi": 50.9,
-     "midi_float": 51.0,
+     "midi_float": 51.27,
      "pitch_confidence": 1.0,
      "drum": "6C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.205,
+     "midi_float_orig": 51.0,
+     "f0_midi_stroke": 51.205,
+     "tune_fix_cents": 6.1
     },
     {
      "note": "D#3",
@@ -100910,10 +101379,14 @@
      "end_s": 2.9457,
      "rr": 1,
      "f0_midi": 51.15,
-     "midi_float": 51.0,
+     "midi_float": 51.27,
      "pitch_confidence": 1.0,
      "drum": "6C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.326,
+     "midi_float_orig": 51.0,
+     "f0_midi_stroke": 51.326,
+     "tune_fix_cents": -6.0
     },
     {
      "note": "D#3",
@@ -100934,10 +101407,14 @@
      "end_s": 3.2763,
      "rr": 2,
      "f0_midi": 50.7,
-     "midi_float": 51.0,
+     "midi_float": 51.27,
      "pitch_confidence": 1.0,
      "drum": "6C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.972,
+     "midi_float_orig": 51.0,
+     "f0_midi_stroke": 50.972,
+     "tune_fix_cents": 29.3
     },
     {
      "note": "D#3",
@@ -100958,10 +101435,14 @@
      "end_s": 2.3573,
      "rr": 1,
      "f0_midi": 51.0,
-     "midi_float": 51.0,
+     "midi_float": 51.27,
      "pitch_confidence": 1.0,
      "drum": "6C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.228,
+     "midi_float_orig": 51.0,
+     "f0_midi_stroke": 51.716,
+     "tune_fix_cents": -45.0
     },
     {
      "note": "D#3",
@@ -100982,10 +101463,14 @@
      "end_s": 2.0988,
      "rr": 2,
      "f0_midi": 51.15,
-     "midi_float": 51.0,
+     "midi_float": 51.27,
      "pitch_confidence": 1.0,
      "drum": "6C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.307,
+     "midi_float_orig": 51.0,
+     "f0_midi_stroke": 51.307,
+     "tune_fix_cents": -4.1
     },
     {
      "note": "D3",
@@ -101006,10 +101491,14 @@
      "end_s": 2.7129,
      "rr": 1,
      "f0_midi": 49.95,
-     "midi_float": 49.92,
+     "midi_float": 50.1,
      "pitch_confidence": 1.0,
      "drum": "6D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.038,
+     "midi_float_orig": 49.92,
+     "f0_midi_stroke": 50.57,
+     "tune_fix_cents": -47.2
     },
     {
      "note": "D3",
@@ -101030,10 +101519,14 @@
      "end_s": 3.4798,
      "rr": 2,
      "f0_midi": 50.15,
-     "midi_float": 49.92,
+     "midi_float": 50.1,
      "pitch_confidence": 1.0,
      "drum": "6D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.589,
+     "midi_float_orig": 49.92,
+     "f0_midi_stroke": 50.588,
+     "tune_fix_cents": -49.0
     },
     {
      "note": "D3",
@@ -101054,10 +101547,13 @@
      "end_s": 2.7546,
      "rr": 1,
      "f0_midi": 49.9,
-     "midi_float": 49.92,
+     "midi_float": 50.1,
      "pitch_confidence": 1.0,
      "drum": "6D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.095,
+     "midi_float_orig": 49.92,
+     "f0_midi_stroke": 50.095
     },
     {
      "note": "D3",
@@ -101078,10 +101574,13 @@
      "end_s": 2.4596,
      "rr": 2,
      "f0_midi": 49.8,
-     "midi_float": 49.92,
+     "midi_float": 50.1,
      "pitch_confidence": 1.0,
      "drum": "6D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.102,
+     "midi_float_orig": 49.92,
+     "f0_midi_stroke": 50.102
     },
     {
      "note": "D3",
@@ -101102,10 +101601,14 @@
      "end_s": 2.5329,
      "rr": 1,
      "f0_midi": 49.95,
-     "midi_float": 49.92,
+     "midi_float": 50.1,
      "pitch_confidence": 1.0,
      "drum": "6D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.194,
+     "midi_float_orig": 49.92,
+     "f0_midi_stroke": 50.194,
+     "tune_fix_cents": -9.5
     },
     {
      "note": "D3",
@@ -101126,10 +101629,14 @@
      "end_s": 3.5145,
      "rr": 2,
      "f0_midi": 50.0,
-     "midi_float": 49.92,
+     "midi_float": 50.1,
      "pitch_confidence": 1.0,
      "drum": "6D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.265,
+     "midi_float_orig": 49.92,
+     "f0_midi_stroke": 50.265,
+     "tune_fix_cents": -16.6
     },
     {
      "note": "C#3",
@@ -101150,10 +101657,14 @@
      "end_s": 2.9532,
      "rr": 1,
      "f0_midi": 48.85,
-     "midi_float": 48.78,
+     "midi_float": 49.03,
      "pitch_confidence": 1.0,
      "drum": "6E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 49.079,
+     "midi_float_orig": 48.78,
+     "f0_midi_stroke": 49.079,
+     "tune_fix_cents": -4.9
     },
     {
      "note": "C#3",
@@ -101174,10 +101685,14 @@
      "end_s": 2.4678,
      "rr": 2,
      "f0_midi": 48.7,
-     "midi_float": 48.78,
+     "midi_float": 49.03,
      "pitch_confidence": 1.0,
      "drum": "6E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.966,
+     "midi_float_orig": 48.78,
+     "f0_midi_stroke": 48.966,
+     "tune_fix_cents": 6.4
     },
     {
      "note": "C#3",
@@ -101198,10 +101713,14 @@
      "end_s": 2.0452,
      "rr": 1,
      "f0_midi": 48.7,
-     "midi_float": 48.78,
+     "midi_float": 49.03,
      "pitch_confidence": 1.0,
      "drum": "6E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.98,
+     "midi_float_orig": 48.78,
+     "f0_midi_stroke": 48.98,
+     "tune_fix_cents": 4.9
     },
     {
      "note": "C#3",
@@ -101222,10 +101741,14 @@
      "end_s": 1.981,
      "rr": 2,
      "f0_midi": 49.05,
-     "midi_float": 48.78,
+     "midi_float": 49.03,
      "pitch_confidence": 1.0,
      "drum": "6E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 49.513,
+     "midi_float_orig": 48.78,
+     "f0_midi_stroke": 49.506,
+     "tune_fix_cents": -47.6
     },
     {
      "note": "C#3",
@@ -101246,10 +101769,14 @@
      "end_s": 3.0146,
      "rr": 1,
      "f0_midi": 48.7,
-     "midi_float": 48.78,
+     "midi_float": 49.03,
      "pitch_confidence": 1.0,
      "drum": "6E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.981,
+     "midi_float_orig": 48.78,
+     "f0_midi_stroke": 48.981,
+     "tune_fix_cents": 4.9
     },
     {
      "note": "C#3",
@@ -101270,10 +101797,14 @@
      "end_s": 3.589,
      "rr": 2,
      "f0_midi": 48.85,
-     "midi_float": 48.78,
+     "midi_float": 49.03,
      "pitch_confidence": 1.0,
      "drum": "6E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 49.094,
+     "midi_float_orig": 48.78,
+     "f0_midi_stroke": 49.094,
+     "tune_fix_cents": -6.5
     },
     {
      "note": "C3",
@@ -101294,10 +101825,13 @@
      "end_s": 3.5334,
      "rr": 1,
      "f0_midi": 48.0,
-     "midi_float": 48.02,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.23,
+     "pitch_confidence": 0.83,
      "drum": "6F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.237,
+     "midi_float_orig": 48.02,
+     "f0_midi_stroke": 48.237
     },
     {
      "note": "C3",
@@ -101318,10 +101852,14 @@
      "end_s": 3.5779,
      "rr": 2,
      "f0_midi": 47.85,
-     "midi_float": 48.02,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.23,
+     "pitch_confidence": 0.83,
      "drum": "6F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.108,
+     "midi_float_orig": 48.02,
+     "f0_midi_stroke": 48.682,
+     "tune_fix_cents": -44.9
     },
     {
      "note": "C3",
@@ -101342,10 +101880,13 @@
      "end_s": 4.1138,
      "rr": 1,
      "f0_midi": 48.15,
-     "midi_float": 48.02,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.23,
+     "pitch_confidence": 0.83,
      "drum": "6F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.229,
+     "midi_float_orig": 48.02,
+     "f0_midi_stroke": 48.229
     },
     {
      "note": "C3",
@@ -101366,10 +101907,14 @@
      "end_s": 3.7368,
      "rr": 2,
      "f0_midi": 48.05,
-     "midi_float": 48.02,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.23,
+     "pitch_confidence": 0.83,
      "drum": "6F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.344,
+     "midi_float_orig": 48.02,
+     "f0_midi_stroke": 48.344,
+     "tune_fix_cents": -11.1
     },
     {
      "note": "C3",
@@ -101390,10 +101935,13 @@
      "end_s": 3.1772,
      "rr": 1,
      "f0_midi": 48.6,
-     "midi_float": 48.02,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.23,
+     "pitch_confidence": 0.83,
      "drum": "6F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.852,
+     "midi_float_orig": 48.02,
+     "f0_midi_stroke": 48.808
     },
     {
      "note": "C3",
@@ -101414,10 +101962,14 @@
      "end_s": 2.4775,
      "rr": 2,
      "f0_midi": 48.15,
-     "midi_float": 48.02,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.23,
+     "pitch_confidence": 0.83,
      "drum": "6F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 48.422,
+     "midi_float_orig": 48.02,
+     "f0_midi_stroke": 48.422,
+     "tune_fix_cents": -18.9
     },
     {
      "note": "B2",
@@ -101438,10 +101990,14 @@
      "end_s": 3.9461,
      "rr": 1,
      "f0_midi": 46.8,
-     "midi_float": 46.75,
+     "midi_float": 46.99,
      "pitch_confidence": 1.0,
      "drum": "6G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 47.054,
+     "midi_float_orig": 46.75,
+     "f0_midi_stroke": 47.054,
+     "tune_fix_cents": -6.8
     },
     {
      "note": "B2",
@@ -101462,10 +102018,13 @@
      "end_s": 3.8575,
      "rr": 2,
      "f0_midi": 46.75,
-     "midi_float": 46.75,
+     "midi_float": 46.99,
      "pitch_confidence": 1.0,
      "drum": "6G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.98,
+     "midi_float_orig": 46.75,
+     "f0_midi_stroke": 46.98
     },
     {
      "note": "B2",
@@ -101486,10 +102045,14 @@
      "end_s": 3.8607,
      "rr": 1,
      "f0_midi": 46.7,
-     "midi_float": 46.75,
+     "midi_float": 46.99,
      "pitch_confidence": 1.0,
      "drum": "6G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.95,
+     "midi_float_orig": 46.75,
+     "f0_midi_stroke": 46.95,
+     "tune_fix_cents": 3.6
     },
     {
      "note": "B2",
@@ -101510,10 +102073,13 @@
      "end_s": 3.5591,
      "rr": 2,
      "f0_midi": 46.75,
-     "midi_float": 46.75,
+     "midi_float": 46.99,
      "pitch_confidence": 1.0,
      "drum": "6G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.993,
+     "midi_float_orig": 46.75,
+     "f0_midi_stroke": 47.588
     },
     {
      "note": "B2",
@@ -101534,10 +102100,14 @@
      "end_s": 2.7087,
      "rr": 1,
      "f0_midi": 47.05,
-     "midi_float": 46.75,
+     "midi_float": 46.99,
      "pitch_confidence": 1.0,
      "drum": "6G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 47.316,
+     "midi_float_orig": 46.75,
+     "f0_midi_stroke": 47.316,
+     "tune_fix_cents": -33.0
     },
     {
      "note": "B2",
@@ -101558,10 +102128,14 @@
      "end_s": 2.553,
      "rr": 2,
      "f0_midi": 46.8,
-     "midi_float": 46.75,
+     "midi_float": 46.99,
      "pitch_confidence": 1.0,
      "drum": "6G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 47.065,
+     "midi_float_orig": 46.75,
+     "f0_midi_stroke": 47.065,
+     "tune_fix_cents": -7.9
     },
     {
      "note": "A#2",
@@ -101582,10 +102156,14 @@
      "end_s": 3.1839,
      "rr": 1,
      "f0_midi": 45.75,
-     "midi_float": 45.7,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.96,
+     "pitch_confidence": 1.0,
      "drum": "6H",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.007,
+     "midi_float_orig": 45.7,
+     "f0_midi_stroke": 46.007,
+     "tune_fix_cents": -4.3
     },
     {
      "note": "A#2",
@@ -101606,10 +102184,13 @@
      "end_s": 2.8697,
      "rr": 2,
      "f0_midi": 45.75,
-     "midi_float": 45.7,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.96,
+     "pitch_confidence": 1.0,
      "drum": "6H",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.999,
+     "midi_float_orig": 45.7,
+     "f0_midi_stroke": 46.563
     },
     {
      "note": "A#2",
@@ -101630,10 +102211,13 @@
      "end_s": 3.0905,
      "rr": 1,
      "f0_midi": 45.65,
-     "midi_float": 45.7,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.96,
+     "pitch_confidence": 1.0,
      "drum": "6H",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.929,
+     "midi_float_orig": 45.7,
+     "f0_midi_stroke": 46.503
     },
     {
      "note": "A#2",
@@ -101654,10 +102238,14 @@
      "end_s": 2.8483,
      "rr": 2,
      "f0_midi": 45.55,
-     "midi_float": 45.7,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.96,
+     "pitch_confidence": 1.0,
      "drum": "6H",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.82,
+     "midi_float_orig": 45.7,
+     "f0_midi_stroke": 45.82,
+     "tune_fix_cents": 14.4
     },
     {
      "note": "A#2",
@@ -101678,10 +102266,14 @@
      "end_s": 2.9431,
      "rr": 1,
      "f0_midi": 46.5,
-     "midi_float": 45.7,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.96,
+     "pitch_confidence": 1.0,
      "drum": "6H",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 46.362,
+     "midi_float_orig": 45.7,
+     "f0_midi_stroke": 46.362,
+     "tune_fix_cents": -39.8
     },
     {
      "note": "A#2",
@@ -101702,10 +102294,14 @@
      "end_s": 2.6864,
      "rr": 2,
      "f0_midi": 45.5,
-     "midi_float": 45.7,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.96,
+     "pitch_confidence": 1.0,
      "drum": "6H",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.737,
+     "midi_float_orig": 45.7,
+     "f0_midi_stroke": 45.737,
+     "tune_fix_cents": 22.7
     },
     {
      "note": "A2",
@@ -101726,10 +102322,13 @@
      "end_s": 4.3129,
      "rr": 1,
      "f0_midi": 44.8,
-     "midi_float": 44.95,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.07,
+     "pitch_confidence": 1.0,
      "drum": "6I",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.041,
+     "midi_float_orig": 44.95,
+     "f0_midi_stroke": 45.041
     },
     {
      "note": "A2",
@@ -101750,10 +102349,13 @@
      "end_s": 4.3113,
      "rr": 2,
      "f0_midi": 44.95,
-     "midi_float": 44.95,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.07,
+     "pitch_confidence": 1.0,
      "drum": "6I",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.002,
+     "midi_float_orig": 44.95,
+     "f0_midi_stroke": 45.646
     },
     {
      "note": "A2",
@@ -101774,10 +102376,13 @@
      "end_s": 3.5536,
      "rr": 1,
      "f0_midi": 45.0,
-     "midi_float": 44.95,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.07,
+     "pitch_confidence": 1.0,
      "drum": "6I",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.095,
+     "midi_float_orig": 44.95,
+     "f0_midi_stroke": 45.095
     },
     {
      "note": "A2",
@@ -101798,10 +102403,14 @@
      "end_s": 4.0666,
      "rr": 2,
      "f0_midi": 44.95,
-     "midi_float": 44.95,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.07,
+     "pitch_confidence": 1.0,
      "drum": "6I",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.203,
+     "midi_float_orig": 44.95,
+     "f0_midi_stroke": 45.203,
+     "tune_fix_cents": -13.5
     },
     {
      "note": "A2",
@@ -101822,10 +102431,14 @@
      "end_s": 3.0217,
      "rr": 1,
      "f0_midi": 45.2,
-     "midi_float": 44.95,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.07,
+     "pitch_confidence": 1.0,
      "drum": "6I",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 45.48,
+     "midi_float_orig": 44.95,
+     "f0_midi_stroke": 45.48,
+     "tune_fix_cents": -41.2
     },
     {
      "note": "A2",
@@ -101846,10 +102459,14 @@
      "end_s": 2.7741,
      "rr": 2,
      "f0_midi": 44.3,
-     "midi_float": 44.95,
-     "pitch_confidence": 0.83,
+     "midi_float": 45.07,
+     "pitch_confidence": 1.0,
      "drum": "6I",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 44.568,
+     "midi_float_orig": 44.95,
+     "f0_midi_stroke": 44.568,
+     "tune_fix_cents": 50.0
     },
     {
      "note": "G#2",
@@ -101870,10 +102487,14 @@
      "end_s": 3.7107,
      "rr": 1,
      "f0_midi": 43.55,
-     "midi_float": 43.7,
+     "midi_float": 43.98,
      "pitch_confidence": 0.83,
      "drum": "6J",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.833,
+     "midi_float_orig": 43.7,
+     "f0_midi_stroke": 43.833,
+     "tune_fix_cents": 14.7
     },
     {
      "note": "G#2",
@@ -101894,10 +102515,13 @@
      "end_s": 3.6293,
      "rr": 2,
      "f0_midi": 43.55,
-     "midi_float": 43.7,
+     "midi_float": 43.98,
      "pitch_confidence": 0.83,
      "drum": "6J",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.838,
+     "midi_float_orig": 43.7,
+     "f0_midi_stroke": 44.584
     },
     {
      "note": "G#2",
@@ -101918,10 +102542,14 @@
      "end_s": 2.908,
      "rr": 1,
      "f0_midi": 43.85,
-     "midi_float": 43.7,
+     "midi_float": 43.98,
      "pitch_confidence": 0.83,
      "drum": "6J",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 44.123,
+     "midi_float_orig": 43.7,
+     "f0_midi_stroke": 44.123,
+     "tune_fix_cents": -14.2
     },
     {
      "note": "G#2",
@@ -101942,10 +102570,14 @@
      "end_s": 2.6379,
      "rr": 2,
      "f0_midi": 43.9,
-     "midi_float": 43.7,
+     "midi_float": 43.98,
      "pitch_confidence": 0.83,
      "drum": "6J",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 44.163,
+     "midi_float_orig": 43.7,
+     "f0_midi_stroke": 44.163,
+     "tune_fix_cents": -18.3
     },
     {
      "note": "G#2",
@@ -101966,10 +102598,14 @@
      "end_s": 2.8863,
      "rr": 1,
      "f0_midi": 43.95,
-     "midi_float": 43.7,
+     "midi_float": 43.98,
      "pitch_confidence": 0.83,
      "drum": "6J",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 44.226,
+     "midi_float_orig": 43.7,
+     "f0_midi_stroke": 44.226,
+     "tune_fix_cents": -24.5
     },
     {
      "note": "G#2",
@@ -101990,10 +102626,14 @@
      "end_s": 2.4544,
      "rr": 2,
      "f0_midi": 50.95,
-     "midi_float": 43.7,
+     "midi_float": 43.98,
      "pitch_confidence": 0.83,
      "drum": "6J",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.206,
+     "midi_float_orig": 43.7,
+     "f0_midi_stroke": 44.262,
+     "tune_fix_cents": -28.2
     },
     {
      "note": "G#2",
@@ -102014,10 +102654,13 @@
      "end_s": 2.9511,
      "rr": 1,
      "f0_midi": 44.0,
-     "midi_float": 43.95,
+     "midi_float": 43.75,
      "pitch_confidence": 1.0,
      "drum": "7A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.766,
+     "midi_float_orig": 43.95,
+     "f0_midi_stroke": 43.766
     },
     {
      "note": "G#2",
@@ -102038,10 +102681,13 @@
      "end_s": 2.6791,
      "rr": 2,
      "f0_midi": 43.95,
-     "midi_float": 43.95,
+     "midi_float": 43.75,
      "pitch_confidence": 1.0,
      "drum": "7A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.746,
+     "midi_float_orig": 43.95,
+     "f0_midi_stroke": 43.746
     },
     {
      "note": "G#2",
@@ -102062,10 +102708,13 @@
      "end_s": 3.4381,
      "rr": 1,
      "f0_midi": 43.95,
-     "midi_float": 43.95,
+     "midi_float": 43.75,
      "pitch_confidence": 1.0,
      "drum": "7A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.748,
+     "midi_float_orig": 43.95,
+     "f0_midi_stroke": 43.748
     },
     {
      "note": "G#2",
@@ -102086,10 +102735,13 @@
      "end_s": 4.2903,
      "rr": 2,
      "f0_midi": 43.9,
-     "midi_float": 43.95,
+     "midi_float": 43.75,
      "pitch_confidence": 1.0,
      "drum": "7A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.746,
+     "midi_float_orig": 43.95,
+     "f0_midi_stroke": 43.746
     },
     {
      "note": "G#2",
@@ -102110,10 +102762,14 @@
      "end_s": 5.3877,
      "rr": 1,
      "f0_midi": 43.85,
-     "midi_float": 43.95,
+     "midi_float": 43.75,
      "pitch_confidence": 1.0,
      "drum": "7A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.693,
+     "midi_float_orig": 43.95,
+     "f0_midi_stroke": 43.693,
+     "tune_fix_cents": 5.4
     },
     {
      "note": "G#2",
@@ -102134,10 +102790,14 @@
      "end_s": 3.8286,
      "rr": 2,
      "f0_midi": 43.85,
-     "midi_float": 43.95,
+     "midi_float": 43.75,
      "pitch_confidence": 1.0,
      "drum": "7A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.704,
+     "midi_float_orig": 43.95,
+     "f0_midi_stroke": 43.704,
+     "tune_fix_cents": 4.3
     },
     {
      "note": "G2",
@@ -102158,10 +102818,13 @@
      "end_s": 4.335,
      "rr": 1,
      "f0_midi": 42.95,
-     "midi_float": 43.0,
+     "midi_float": 42.77,
      "pitch_confidence": 0.83,
      "drum": "7B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.768,
+     "midi_float_orig": 43.0,
+     "f0_midi_stroke": 42.768
     },
     {
      "note": "G2",
@@ -102182,10 +102845,13 @@
      "end_s": 4.108,
      "rr": 2,
      "f0_midi": 43.0,
-     "midi_float": 43.0,
+     "midi_float": 42.77,
      "pitch_confidence": 0.83,
      "drum": "7B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.767,
+     "midi_float_orig": 43.0,
+     "f0_midi_stroke": 42.767
     },
     {
      "note": "G2",
@@ -102206,10 +102872,13 @@
      "end_s": 5.1818,
      "rr": 1,
      "f0_midi": 43.0,
-     "midi_float": 43.0,
+     "midi_float": 42.77,
      "pitch_confidence": 0.83,
      "drum": "7B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.772,
+     "midi_float_orig": 43.0,
+     "f0_midi_stroke": 42.772
     },
     {
      "note": "G2",
@@ -102230,10 +102899,13 @@
      "end_s": 4.5385,
      "rr": 2,
      "f0_midi": 43.0,
-     "midi_float": 43.0,
+     "midi_float": 42.77,
      "pitch_confidence": 0.83,
      "drum": "7B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.772,
+     "midi_float_orig": 43.0,
+     "f0_midi_stroke": 42.772
     },
     {
      "note": "G2",
@@ -102254,10 +102926,14 @@
      "end_s": 5.0756,
      "rr": 1,
      "f0_midi": 42.8,
-     "midi_float": 43.0,
+     "midi_float": 42.77,
      "pitch_confidence": 0.83,
      "drum": "7B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.611,
+     "midi_float_orig": 43.0,
+     "f0_midi_stroke": 42.611,
+     "tune_fix_cents": 15.9
     },
     {
      "note": "G2",
@@ -102278,10 +102954,14 @@
      "end_s": 3.1128,
      "rr": 2,
      "f0_midi": 49.85,
-     "midi_float": 43.0,
+     "midi_float": 42.77,
      "pitch_confidence": 0.83,
      "drum": "7B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.02,
+     "midi_float_orig": 43.0,
+     "f0_midi_stroke": 42.648,
+     "tune_fix_cents": 12.2
     },
     {
      "note": "F#2",
@@ -102302,10 +102982,14 @@
      "end_s": 6.4802,
      "rr": 1,
      "f0_midi": 42.05,
-     "midi_float": 42.1,
-     "pitch_confidence": 0.83,
+     "midi_float": 41.85,
+     "pitch_confidence": 0.67,
      "drum": "7C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.811,
+     "midi_float_orig": 42.1,
+     "f0_midi_stroke": 41.811,
+     "tune_fix_cents": 4.0
     },
     {
      "note": "F#2",
@@ -102326,10 +103010,14 @@
      "end_s": 5.2276,
      "rr": 2,
      "f0_midi": 42.05,
-     "midi_float": 42.1,
-     "pitch_confidence": 0.83,
+     "midi_float": 41.85,
+     "pitch_confidence": 0.67,
      "drum": "7C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.814,
+     "midi_float_orig": 42.1,
+     "f0_midi_stroke": 41.814,
+     "tune_fix_cents": 3.7
     },
     {
      "note": "F#2",
@@ -102350,10 +103038,14 @@
      "end_s": 7.1016,
      "rr": 1,
      "f0_midi": 42.65,
-     "midi_float": 42.1,
-     "pitch_confidence": 0.83,
+     "midi_float": 41.85,
+     "pitch_confidence": 0.67,
      "drum": "7C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 43.022,
+     "midi_float_orig": 42.1,
+     "f0_midi_stroke": 41.918,
+     "tune_fix_cents": -6.7
     },
     {
      "note": "F#2",
@@ -102374,10 +103066,14 @@
      "end_s": 4.958,
      "rr": 2,
      "f0_midi": 42.15,
-     "midi_float": 42.1,
-     "pitch_confidence": 0.83,
+     "midi_float": 41.85,
+     "pitch_confidence": 0.67,
      "drum": "7C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.887,
+     "midi_float_orig": 42.1,
+     "f0_midi_stroke": 41.887,
+     "tune_fix_cents": -3.6
     },
     {
      "note": "F#2",
@@ -102398,10 +103094,13 @@
      "end_s": 3.8541,
      "rr": 1,
      "f0_midi": 53.95,
-     "midi_float": 42.1,
-     "pitch_confidence": 0.83,
+     "midi_float": 41.85,
+     "pitch_confidence": 0.67,
      "drum": "7C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.855,
+     "midi_float_orig": 42.1,
+     "f0_midi_stroke": 41.855
     },
     {
      "note": "F#2",
@@ -102422,10 +103121,14 @@
      "end_s": 5.4556,
      "rr": 2,
      "f0_midi": 42.6,
-     "midi_float": 42.1,
-     "pitch_confidence": 0.83,
+     "midi_float": 41.85,
+     "pitch_confidence": 0.67,
      "drum": "7C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.994,
+     "midi_float_orig": 42.1,
+     "f0_midi_stroke": 41.891,
+     "tune_fix_cents": -4.1
     },
     {
      "note": "F2",
@@ -102446,10 +103149,13 @@
      "end_s": 3.8812,
      "rr": 1,
      "f0_midi": 40.9,
-     "midi_float": 40.88,
+     "midi_float": 40.65,
      "pitch_confidence": 0.67,
      "drum": "7D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 40.657,
+     "midi_float_orig": 40.88,
+     "f0_midi_stroke": 40.657
     },
     {
      "note": "F2",
@@ -102470,10 +103176,13 @@
      "end_s": 5.7114,
      "rr": 2,
      "f0_midi": 40.85,
-     "midi_float": 40.88,
+     "midi_float": 40.65,
      "pitch_confidence": 0.67,
      "drum": "7D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 40.645,
+     "midi_float_orig": 40.88,
+     "f0_midi_stroke": 40.645
     },
     {
      "note": "F2",
@@ -102494,10 +103203,14 @@
      "end_s": 4.1263,
      "rr": 1,
      "f0_midi": 40.8,
-     "midi_float": 40.88,
+     "midi_float": 40.65,
      "pitch_confidence": 0.67,
      "drum": "7D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 40.554,
+     "midi_float_orig": 40.88,
+     "f0_midi_stroke": 40.554,
+     "tune_fix_cents": 9.7
     },
     {
      "note": "F2",
@@ -102518,10 +103231,14 @@
      "end_s": 4.2654,
      "rr": 2,
      "f0_midi": 53.85,
-     "midi_float": 40.88,
+     "midi_float": 40.65,
      "pitch_confidence": 0.67,
      "drum": "7D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.094,
+     "midi_float_orig": 40.88,
+     "f0_midi_stroke": 40.524,
+     "tune_fix_cents": 12.7
     },
     {
      "note": "F2",
@@ -102542,10 +103259,14 @@
      "end_s": 5.5291,
      "rr": 1,
      "f0_midi": 40.6,
-     "midi_float": 40.88,
+     "midi_float": 40.65,
      "pitch_confidence": 0.67,
      "drum": "7D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 40.327,
+     "midi_float_orig": 40.88,
+     "f0_midi_stroke": 40.327,
+     "tune_fix_cents": 32.4
     },
     {
      "note": "F2",
@@ -102566,10 +103287,14 @@
      "end_s": 5.4026,
      "rr": 2,
      "f0_midi": 41.8,
-     "midi_float": 40.88,
+     "midi_float": 40.65,
      "pitch_confidence": 0.67,
      "drum": "7D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 41.659,
+     "midi_float_orig": 40.88,
+     "f0_midi_stroke": 40.327,
+     "tune_fix_cents": 32.4
     },
     {
      "note": "E2",
@@ -102590,10 +103315,13 @@
      "end_s": 7.6243,
      "rr": 1,
      "f0_midi": 40.25,
-     "midi_float": 40.2,
+     "midi_float": 39.93,
      "pitch_confidence": 0.67,
      "drum": "7E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 39.949,
+     "midi_float_orig": 40.2,
+     "f0_midi_stroke": 39.949
     },
     {
      "note": "E2",
@@ -102614,10 +103342,13 @@
      "end_s": 7.5836,
      "rr": 2,
      "f0_midi": 40.2,
-     "midi_float": 40.2,
+     "midi_float": 39.93,
      "pitch_confidence": 0.67,
      "drum": "7E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 39.936,
+     "midi_float_orig": 40.2,
+     "f0_midi_stroke": 39.936
     },
     {
      "note": "E2",
@@ -102638,10 +103369,13 @@
      "end_s": 6.4837,
      "rr": 1,
      "f0_midi": 40.2,
-     "midi_float": 40.2,
+     "midi_float": 39.93,
      "pitch_confidence": 0.67,
      "drum": "7E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 39.922,
+     "midi_float_orig": 40.2,
+     "f0_midi_stroke": 39.922
     },
     {
      "note": "E2",
@@ -102662,10 +103396,14 @@
      "end_s": 5.7466,
      "rr": 2,
      "f0_midi": 40.1,
-     "midi_float": 40.2,
+     "midi_float": 39.93,
      "pitch_confidence": 0.67,
      "drum": "7E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 39.799,
+     "midi_float_orig": 40.2,
+     "f0_midi_stroke": 39.799,
+     "tune_fix_cents": 13.0
     },
     {
      "note": "E2",
@@ -102686,10 +103424,14 @@
      "end_s": 4.1214,
      "rr": 1,
      "f0_midi": 51.65,
-     "midi_float": 40.2,
+     "midi_float": 39.93,
      "pitch_confidence": 0.67,
      "drum": "7E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.906,
+     "midi_float_orig": 40.2,
+     "f0_midi_stroke": 39.783,
+     "tune_fix_cents": 14.6
     },
     {
      "note": "E2",
@@ -102710,10 +103452,14 @@
      "end_s": 4.931,
      "rr": 2,
      "f0_midi": 54.8,
-     "midi_float": 40.2,
+     "midi_float": 39.93,
      "pitch_confidence": 0.67,
      "drum": "7E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.735,
+     "midi_float_orig": 40.2,
+     "f0_midi_stroke": 39.808,
+     "tune_fix_cents": 12.1
     },
     {
      "note": "B2",
@@ -102734,10 +103480,14 @@
      "end_s": 4.5144,
      "rr": 1,
      "f0_midi": 42.85,
-     "midi_float": 46.92,
+     "midi_float": 47.18,
      "pitch_confidence": 0.33,
      "drum": "7F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 42.825,
+     "midi_float_orig": 46.92,
+     "f0_midi_stroke": 47.342,
+     "tune_fix_cents": -16.5
     },
     {
      "note": "B2",
@@ -102758,10 +103508,14 @@
      "end_s": 4.8342,
      "rr": 2,
      "f0_midi": 50.9,
-     "midi_float": 46.92,
+     "midi_float": 47.18,
      "pitch_confidence": 0.33,
      "drum": "7F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.062,
+     "midi_float_orig": 46.92,
+     "f0_midi_stroke": 47.342,
+     "tune_fix_cents": -16.5
     },
     {
      "note": "B2",
@@ -102782,10 +103536,14 @@
      "end_s": 6.0375,
      "rr": 1,
      "f0_midi": 46.95,
-     "midi_float": 46.92,
+     "midi_float": 47.18,
      "pitch_confidence": 0.33,
      "drum": "7F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 47.182,
+     "midi_float_orig": 46.92,
+     "f0_midi_stroke": 47.636,
+     "tune_fix_cents": -45.8
     },
     {
      "note": "B2",
@@ -102806,10 +103564,13 @@
      "end_s": 5.0225,
      "rr": 2,
      "f0_midi": 46.9,
-     "midi_float": 46.92,
+     "midi_float": 47.18,
      "pitch_confidence": 0.33,
      "drum": "7F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 47.173,
+     "midi_float_orig": 46.92,
+     "f0_midi_stroke": 47.173
     },
     {
      "note": "B2",
@@ -102830,10 +103591,14 @@
      "end_s": 5.4137,
      "rr": 1,
      "f0_midi": 50.7,
-     "midi_float": 46.92,
+     "midi_float": 47.18,
      "pitch_confidence": 0.33,
      "drum": "7F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.961,
+     "midi_float_orig": 46.92,
+     "f0_midi_stroke": 47.458,
+     "tune_fix_cents": -28.1
     },
     {
      "note": "B2",
@@ -102854,10 +103619,14 @@
      "end_s": 4.0278,
      "rr": 2,
      "f0_midi": 50.95,
-     "midi_float": 46.92,
+     "midi_float": 47.18,
      "pitch_confidence": 0.33,
      "drum": "7F",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 50.932,
+     "midi_float_orig": 46.92,
+     "f0_midi_stroke": 47.457,
+     "tune_fix_cents": -28.0
     },
     {
      "note": "D#2",
@@ -102878,10 +103647,14 @@
      "end_s": 7.5994,
      "rr": 1,
      "f0_midi": 38.5,
-     "midi_float": 38.92,
+     "midi_float": 38.63,
      "pitch_confidence": 0.67,
      "drum": "7G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 38.269,
+     "midi_float_orig": 38.92,
+     "f0_midi_stroke": 38.269,
+     "tune_fix_cents": 36.1
     },
     {
      "note": "D#2",
@@ -102902,10 +103675,13 @@
      "end_s": 5.1514,
      "rr": 2,
      "f0_midi": 38.9,
-     "midi_float": 38.92,
+     "midi_float": 38.63,
      "pitch_confidence": 0.67,
      "drum": "7G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 38.628,
+     "midi_float_orig": 38.92,
+     "f0_midi_stroke": 38.628
     },
     {
      "note": "D#2",
@@ -102926,10 +103702,13 @@
      "end_s": 6.4126,
      "rr": 1,
      "f0_midi": 38.95,
-     "midi_float": 38.92,
+     "midi_float": 38.63,
      "pitch_confidence": 0.67,
      "drum": "7G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 38.631,
+     "midi_float_orig": 38.92,
+     "f0_midi_stroke": 38.631
     },
     {
      "note": "D#2",
@@ -102950,10 +103729,13 @@
      "end_s": 6.6967,
      "rr": 2,
      "f0_midi": 38.95,
-     "midi_float": 38.92,
+     "midi_float": 38.63,
      "pitch_confidence": 0.67,
      "drum": "7G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 38.635,
+     "midi_float_orig": 38.92,
+     "f0_midi_stroke": 38.635
     },
     {
      "note": "D#2",
@@ -102974,10 +103756,14 @@
      "end_s": 4.5431,
      "rr": 1,
      "f0_midi": 51.6,
-     "midi_float": 38.92,
+     "midi_float": 38.63,
      "pitch_confidence": 0.67,
      "drum": "7G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.872,
+     "midi_float_orig": 38.92,
+     "f0_midi_stroke": 38.296,
+     "tune_fix_cents": 33.4
     },
     {
      "note": "D#2",
@@ -102998,10 +103784,14 @@
      "end_s": 5.6768,
      "rr": 2,
      "f0_midi": 51.75,
-     "midi_float": 38.92,
+     "midi_float": 38.63,
      "pitch_confidence": 0.67,
      "drum": "7G",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 52.018,
+     "midi_float_orig": 38.92,
+     "f0_midi_stroke": 38.428,
+     "tune_fix_cents": 20.1
     },
     {
      "note": "E3",
@@ -103022,10 +103812,13 @@
      "end_s": 3.0612,
      "rr": 1,
      "f0_midi": 52.25,
-     "midi_float": 51.92,
-     "pitch_confidence": 0.83,
+     "midi_float": 51.65,
+     "pitch_confidence": 0.67,
      "drum": "8A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 52.61,
+     "midi_float_orig": 51.92,
+     "f0_midi_stroke": 51.658
     },
     {
      "note": "E3",
@@ -103046,10 +103839,13 @@
      "end_s": 1.6789,
      "rr": 2,
      "f0_midi": 51.85,
-     "midi_float": 51.92,
-     "pitch_confidence": 0.83,
+     "midi_float": 51.65,
+     "pitch_confidence": 0.67,
      "drum": "8A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.65,
+     "midi_float_orig": 51.92,
+     "f0_midi_stroke": 51.65
     },
     {
      "note": "E3",
@@ -103070,10 +103866,13 @@
      "end_s": 1.5107,
      "rr": 3,
      "f0_midi": 51.9,
-     "midi_float": 51.92,
-     "pitch_confidence": 0.83,
+     "midi_float": 51.65,
+     "pitch_confidence": 0.67,
      "drum": "8A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.647,
+     "midi_float_orig": 51.92,
+     "f0_midi_stroke": 51.647
     },
     {
      "note": "E3",
@@ -103094,10 +103893,13 @@
      "end_s": 3.1118,
      "rr": 1,
      "f0_midi": 51.95,
-     "midi_float": 51.92,
-     "pitch_confidence": 0.83,
+     "midi_float": 51.65,
+     "pitch_confidence": 0.67,
      "drum": "8A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.653,
+     "midi_float_orig": 51.92,
+     "f0_midi_stroke": 51.653
     },
     {
      "note": "E3",
@@ -103118,10 +103920,13 @@
      "end_s": 2.7074,
      "rr": 1,
      "f0_midi": 52.55,
-     "midi_float": 51.92,
-     "pitch_confidence": 0.83,
+     "midi_float": 51.65,
+     "pitch_confidence": 0.67,
      "drum": "8A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 52.802,
+     "midi_float_orig": 51.92,
+     "f0_midi_stroke": 51.658
     },
     {
      "note": "E3",
@@ -103142,10 +103947,13 @@
      "end_s": 2.1577,
      "rr": 2,
      "f0_midi": 51.9,
-     "midi_float": 51.92,
-     "pitch_confidence": 0.83,
+     "midi_float": 51.65,
+     "pitch_confidence": 0.67,
      "drum": "8A",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.656,
+     "midi_float_orig": 51.92,
+     "f0_midi_stroke": 51.656
     },
     {
      "note": "G3",
@@ -103166,10 +103974,13 @@
      "end_s": 2.7828,
      "rr": 1,
      "f0_midi": 55.0,
-     "midi_float": 55.0,
+     "midi_float": 55.33,
      "pitch_confidence": 0.67,
      "drum": "8B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 55.327,
+     "midi_float_orig": 55.0,
+     "f0_midi_stroke": 55.327
     },
     {
      "note": "G3",
@@ -103190,10 +104001,13 @@
      "end_s": 2.1008,
      "rr": 2,
      "f0_midi": 55.0,
-     "midi_float": 55.0,
+     "midi_float": 55.33,
      "pitch_confidence": 0.67,
      "drum": "8B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 55.337,
+     "midi_float_orig": 55.0,
+     "f0_midi_stroke": 55.337
     },
     {
      "note": "G3",
@@ -103214,10 +104028,13 @@
      "end_s": 2.669,
      "rr": 1,
      "f0_midi": 55.0,
-     "midi_float": 55.0,
+     "midi_float": 55.33,
      "pitch_confidence": 0.67,
      "drum": "8B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 55.328,
+     "midi_float_orig": 55.0,
+     "f0_midi_stroke": 55.328
     },
     {
      "note": "G3",
@@ -103238,10 +104055,14 @@
      "end_s": 3.4577,
      "rr": 2,
      "f0_midi": 55.0,
-     "midi_float": 55.0,
+     "midi_float": 55.33,
      "pitch_confidence": 0.67,
      "drum": "8B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 55.414,
+     "midi_float_orig": 55.0,
+     "f0_midi_stroke": 55.415,
+     "tune_fix_cents": -8.2
     },
     {
      "note": "G3",
@@ -103262,10 +104083,14 @@
      "end_s": 2.0423,
      "rr": 1,
      "f0_midi": 49.85,
-     "midi_float": 55.0,
+     "midi_float": 55.33,
      "pitch_confidence": 0.67,
      "drum": "8B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 49.6,
+     "midi_float_orig": 55.0,
+     "f0_midi_stroke": 55.656,
+     "tune_fix_cents": -32.4
     },
     {
      "note": "G3",
@@ -103286,10 +104111,14 @@
      "end_s": 1.7798,
      "rr": 2,
      "f0_midi": 49.85,
-     "midi_float": 55.0,
+     "midi_float": 55.33,
      "pitch_confidence": 0.67,
      "drum": "8B",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 49.604,
+     "midi_float_orig": 55.0,
+     "f0_midi_stroke": 55.66,
+     "tune_fix_cents": -32.8
     },
     {
      "note": "G#3",
@@ -103310,10 +104139,13 @@
      "end_s": 2.235,
      "rr": 1,
      "f0_midi": 55.75,
-     "midi_float": 55.85,
+     "midi_float": 56.11,
      "pitch_confidence": 1.0,
      "drum": "8C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.116,
+     "midi_float_orig": 55.85,
+     "f0_midi_stroke": 56.116
     },
     {
      "note": "G#3",
@@ -103334,10 +104166,14 @@
      "end_s": 2.1854,
      "rr": 2,
      "f0_midi": 55.9,
-     "midi_float": 55.85,
+     "midi_float": 56.11,
      "pitch_confidence": 1.0,
      "drum": "8C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.284,
+     "midi_float_orig": 55.85,
+     "f0_midi_stroke": 56.284,
+     "tune_fix_cents": -17.4
     },
     {
      "note": "G#3",
@@ -103358,10 +104194,14 @@
      "end_s": 2.2769,
      "rr": 1,
      "f0_midi": 55.95,
-     "midi_float": 55.85,
+     "midi_float": 56.11,
      "pitch_confidence": 1.0,
      "drum": "8C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.034,
+     "midi_float_orig": 55.85,
+     "f0_midi_stroke": 56.388,
+     "tune_fix_cents": -27.8
     },
     {
      "note": "G#3",
@@ -103382,10 +104222,13 @@
      "end_s": 2.3047,
      "rr": 2,
      "f0_midi": 55.8,
-     "midi_float": 55.85,
+     "midi_float": 56.11,
      "pitch_confidence": 1.0,
      "drum": "8C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.104,
+     "midi_float_orig": 55.85,
+     "f0_midi_stroke": 56.104
     },
     {
      "note": "G#3",
@@ -103406,10 +104249,14 @@
      "end_s": 2.7181,
      "rr": 1,
      "f0_midi": 55.9,
-     "midi_float": 55.85,
+     "midi_float": 56.11,
      "pitch_confidence": 1.0,
      "drum": "8C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.259,
+     "midi_float_orig": 55.85,
+     "f0_midi_stroke": 56.259,
+     "tune_fix_cents": -14.9
     },
     {
      "note": "G#3",
@@ -103430,10 +104277,14 @@
      "end_s": 2.0536,
      "rr": 2,
      "f0_midi": 55.9,
-     "midi_float": 55.85,
+     "midi_float": 56.11,
      "pitch_confidence": 1.0,
      "drum": "8C",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.256,
+     "midi_float_orig": 55.85,
+     "f0_midi_stroke": 56.256,
+     "tune_fix_cents": -14.6
     },
     {
      "note": "A3",
@@ -103454,10 +104305,14 @@
      "end_s": 2.5647,
      "rr": 1,
      "f0_midi": 56.8,
-     "midi_float": 56.77,
+     "midi_float": 57.14,
      "pitch_confidence": 0.83,
      "drum": "8D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 57.145,
+     "midi_float_orig": 56.77,
+     "f0_midi_stroke": 57.287,
+     "tune_fix_cents": -14.4
     },
     {
      "note": "A3",
@@ -103478,10 +104333,14 @@
      "end_s": 1.6996,
      "rr": 2,
      "f0_midi": 56.85,
-     "midi_float": 56.77,
+     "midi_float": 57.14,
      "pitch_confidence": 0.83,
      "drum": "8D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 57.28,
+     "midi_float_orig": 56.77,
+     "f0_midi_stroke": 57.284,
+     "tune_fix_cents": -14.2
     },
     {
      "note": "A3",
@@ -103502,10 +104361,14 @@
      "end_s": 1.5707,
      "rr": 1,
      "f0_midi": 51.85,
-     "midi_float": 56.77,
+     "midi_float": 57.14,
      "pitch_confidence": 0.83,
      "drum": "8D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 51.65,
+     "midi_float_orig": 56.77,
+     "f0_midi_stroke": 57.274,
+     "tune_fix_cents": -13.2
     },
     {
      "note": "A3",
@@ -103526,10 +104389,14 @@
      "end_s": 1.9901,
      "rr": 2,
      "f0_midi": 56.75,
-     "midi_float": 56.77,
+     "midi_float": 57.14,
      "pitch_confidence": 0.83,
      "drum": "8D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 57.14,
+     "midi_float_orig": 56.77,
+     "f0_midi_stroke": 57.284,
+     "tune_fix_cents": -14.2
     },
     {
      "note": "A3",
@@ -103550,10 +104417,14 @@
      "end_s": 1.8418,
      "rr": 1,
      "f0_midi": 56.85,
-     "midi_float": 56.77,
+     "midi_float": 57.14,
      "pitch_confidence": 0.83,
      "drum": "8D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 57.283,
+     "midi_float_orig": 56.77,
+     "f0_midi_stroke": 57.295,
+     "tune_fix_cents": -15.2
     },
     {
      "note": "A3",
@@ -103574,10 +104445,14 @@
      "end_s": 1.6815,
      "rr": 2,
      "f0_midi": 56.7,
-     "midi_float": 56.77,
+     "midi_float": 57.14,
      "pitch_confidence": 0.83,
      "drum": "8D",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 56.998,
+     "midi_float_orig": 56.77,
+     "f0_midi_stroke": 56.998,
+     "tune_fix_cents": 14.5
     },
     {
      "note": "F#3",
@@ -103598,10 +104473,13 @@
      "end_s": 2.4955,
      "rr": 1,
      "f0_midi": 53.9,
-     "midi_float": 53.88,
+     "midi_float": 54.29,
      "pitch_confidence": 1.0,
      "drum": "8E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.285,
+     "midi_float_orig": 53.88,
+     "f0_midi_stroke": 54.285
     },
     {
      "note": "F#3",
@@ -103622,10 +104500,13 @@
      "end_s": 2.4835,
      "rr": 2,
      "f0_midi": 53.9,
-     "midi_float": 53.88,
+     "midi_float": 54.29,
      "pitch_confidence": 1.0,
      "drum": "8E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.291,
+     "midi_float_orig": 53.88,
+     "f0_midi_stroke": 54.291
     },
     {
      "note": "F#3",
@@ -103646,10 +104527,13 @@
      "end_s": 2.508,
      "rr": 1,
      "f0_midi": 53.85,
-     "midi_float": 53.88,
+     "midi_float": 54.29,
      "pitch_confidence": 1.0,
      "drum": "8E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.297,
+     "midi_float_orig": 53.88,
+     "f0_midi_stroke": 54.3
     },
     {
      "note": "F#3",
@@ -103670,10 +104554,13 @@
      "end_s": 2.3668,
      "rr": 2,
      "f0_midi": 53.8,
-     "midi_float": 53.88,
+     "midi_float": 54.29,
      "pitch_confidence": 1.0,
      "drum": "8E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.284,
+     "midi_float_orig": 53.88,
+     "f0_midi_stroke": 54.287
     },
     {
      "note": "F#3",
@@ -103694,10 +104581,14 @@
      "end_s": 2.0574,
      "rr": 1,
      "f0_midi": 53.65,
-     "midi_float": 53.88,
+     "midi_float": 54.29,
      "pitch_confidence": 1.0,
      "drum": "8E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.146,
+     "midi_float_orig": 53.88,
+     "f0_midi_stroke": 54.126,
+     "tune_fix_cents": 16.2
     },
     {
      "note": "F#3",
@@ -103718,10 +104609,13 @@
      "end_s": 2.2684,
      "rr": 2,
      "f0_midi": 53.8,
-     "midi_float": 53.88,
+     "midi_float": 54.29,
      "pitch_confidence": 1.0,
      "drum": "8E",
-     "mic": "main"
+     "mic": "main",
+     "f0_midi_refined": 54.279,
+     "midi_float_orig": 53.88,
+     "f0_midi_stroke": 54.284
     }
    ]
   },
@@ -107222,7 +108116,8 @@
      "note_named": "G1",
      "midi_named": 31,
      "f0_midi": 43.06,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -6.2
     },
     {
      "note": "G2",
@@ -116394,7 +117289,8 @@
      "note_named": "A#0",
      "midi_named": 22,
      "f0_midi": 34.02,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 5.0
     },
     {
      "note": "A#1",
@@ -116463,7 +117359,8 @@
      "note_named": "A#0",
      "midi_named": 22,
      "f0_midi": 33.96,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 8.5
     },
     {
      "note": "A#1",
@@ -119540,7 +120437,8 @@
      "note_named": "A4",
      "midi_named": 69,
      "f0_midi": 81.14,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -11.0
     },
     {
      "note": "A5",
@@ -119609,7 +120507,8 @@
      "note_named": "C3",
      "midi_named": 48,
      "f0_midi": 23.4,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -9.5
     },
     {
      "note": "C4",
@@ -120092,7 +120991,8 @@
      "note_named": "D4",
      "midi_named": 62,
      "f0_midi": 74.08,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -7.1
     },
     {
      "note": "D5",
@@ -120138,7 +121038,8 @@
      "note_named": "F2",
      "midi_named": 41,
      "f0_midi": 17.0,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -13.9
     },
     {
      "note": "F3",
@@ -120161,7 +121062,8 @@
      "note_named": "F2",
      "midi_named": 41,
      "f0_midi": 17.52,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -15.1
     },
     {
      "note": "F3",
@@ -120299,7 +121201,8 @@
      "note_named": "F3",
      "midi_named": 53,
      "f0_midi": 64.94,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 8.5
     },
     {
      "note": "F4",
@@ -120460,7 +121363,8 @@
      "note_named": "F4",
      "midi_named": 65,
      "f0_midi": 77.06,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -6.8
     },
     {
      "note": "F5",
@@ -120667,7 +121571,8 @@
      "note_named": "G3",
      "midi_named": 55,
      "f0_midi": 67.06,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -6.0
     }
    ],
    "octave_method": "pitch detector"
@@ -122156,7 +123061,8 @@
      "note_named": "A#0",
      "midi_named": 22,
      "f0_midi": 21.86,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -4.0
     },
     {
      "note": "A#1",
@@ -122340,7 +123246,8 @@
      "note_named": "A#1",
      "midi_named": 34,
      "f0_midi": 21.44,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 50.9
     },
     {
      "note": "A#2",
@@ -122363,7 +123270,8 @@
      "note_named": "A#1",
      "midi_named": 34,
      "f0_midi": 21.44,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 34.0
     },
     {
      "note": "A#2",
@@ -122386,7 +123294,8 @@
      "note_named": "A#1",
      "midi_named": 34,
      "f0_midi": 21.64,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 24.5
     },
     {
      "note": "A#2",
@@ -122409,7 +123318,8 @@
      "note_named": "A#1",
      "midi_named": 34,
      "f0_midi": 21.5,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 7.4
     },
     {
      "note": "A#2",
@@ -122478,7 +123388,8 @@
      "note_named": "A#1",
      "midi_named": 34,
      "f0_midi": 46.02,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 5.8
     },
     {
      "note": "A#2",
@@ -122524,7 +123435,8 @@
      "note_named": "A#2",
      "midi_named": 46,
      "f0_midi": 21.64,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 19.9
     },
     {
      "note": "A#3",
@@ -122547,7 +123459,8 @@
      "note_named": "A#2",
      "midi_named": 46,
      "f0_midi": 21.96,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 11.5
     },
     {
      "note": "A#3",
@@ -122570,7 +123483,8 @@
      "note_named": "A#2",
      "midi_named": 46,
      "f0_midi": 21.5,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 9.4
     },
     {
      "note": "A#3",
@@ -122593,7 +123507,8 @@
      "note_named": "A#2",
      "midi_named": 46,
      "f0_midi": 21.68,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 19.3
     },
     {
      "note": "A#3",
@@ -122616,7 +123531,8 @@
      "note_named": "A#2",
      "midi_named": 46,
      "f0_midi": 21.86,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 13.8
     },
     {
      "note": "A#3",
@@ -122685,7 +123601,8 @@
      "note_named": "A#2",
      "midi_named": 46,
      "f0_midi": 22.24,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 9.1
     },
     {
      "note": "D#2",
@@ -122731,7 +123648,8 @@
      "note_named": "D#1",
      "midi_named": 27,
      "f0_midi": 27.1,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -13.1
     },
     {
      "note": "D#2",
@@ -122892,7 +123810,8 @@
      "note_named": "D2",
      "midi_named": 38,
      "f0_midi": 25.96,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 19.9
     },
     {
      "note": "D3",
@@ -122938,7 +123857,8 @@
      "note_named": "D2",
      "midi_named": 38,
      "f0_midi": 25.96,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 12.1
     },
     {
      "note": "D3",
@@ -122961,7 +123881,8 @@
      "note_named": "D2",
      "midi_named": 38,
      "f0_midi": 25.42,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 11.1
     },
     {
      "note": "D3",
@@ -122984,7 +123905,8 @@
      "note_named": "D2",
      "midi_named": 38,
      "f0_midi": 25.66,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 6.9
     },
     {
      "note": "D3",
@@ -123030,7 +123952,8 @@
      "note_named": "D2",
      "midi_named": 38,
      "f0_midi": 49.86,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 10.5
     },
     {
      "note": "D3",
@@ -123260,7 +124183,8 @@
      "note_named": "F1",
      "midi_named": 29,
      "f0_midi": 16.46,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 54.5
     },
     {
      "note": "F2",
@@ -123283,7 +124207,8 @@
      "note_named": "F1",
      "midi_named": 29,
      "f0_midi": 16.88,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 11.4
     },
     {
      "note": "F2",
@@ -123306,7 +124231,8 @@
      "note_named": "F1",
      "midi_named": 29,
      "f0_midi": 17.06,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 15.0
     },
     {
      "note": "F2",
@@ -123329,7 +124255,8 @@
      "note_named": "F1",
      "midi_named": 29,
      "f0_midi": 17.0,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 6.2
     },
     {
      "note": "F2",
@@ -123421,7 +124348,8 @@
      "note_named": "F1",
      "midi_named": 29,
      "f0_midi": 17.52,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": -9.6
     },
     {
      "note": "F3",
@@ -123467,7 +124395,8 @@
      "note_named": "F2",
      "midi_named": 41,
      "f0_midi": 16.74,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 15.0
     },
     {
      "note": "F3",
@@ -123490,7 +124419,8 @@
      "note_named": "F2",
      "midi_named": 41,
      "f0_midi": 17.0,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 15.8
     },
     {
      "note": "F3",
@@ -123513,7 +124443,8 @@
      "note_named": "F2",
      "midi_named": 41,
      "f0_midi": 16.74,
-     "mic": "Sum"
+     "mic": "Sum",
+     "tune_fix_cents": 12.9
     },
     {
      "note": "F3",
@@ -124030,7 +124961,8 @@
      "note_named": "F0",
      "midi_named": 17,
      "f0_midi": 28.72,
-     "mic": "Mid"
+     "mic": "Mid",
+     "tune_fix_cents": 20.7
     },
     {
      "note": "F2",
@@ -135136,10 +136068,13 @@
      "end_s": 24.0725,
      "rr": 1,
      "f0_midi": 41.9,
-     "midi_float": 42.0,
+     "midi_float": 41.72,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.722,
+     "midi_float_orig": 42.0,
+     "f0_midi_stroke": 41.722
     },
     {
      "note": "F#2",
@@ -135160,14 +136095,18 @@
      "end_s": 18.2145,
      "rr": 1,
      "f0_midi": 42.1,
-     "midi_float": 42.0,
+     "midi_float": 41.72,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.885,
+     "midi_float_orig": 42.0,
+     "f0_midi_stroke": 41.885,
+     "tune_fix_cents": -16.3
     },
     {
      "note": "B2",
-     "midi": 47,
+     "midi": 48,
      "vel_layer": 0,
      "vel_label": "v3",
      "file": "Timpani2_Roll_v3_rr1_Sum.wav",
@@ -135184,14 +136123,17 @@
      "end_s": 20.4965,
      "rr": 1,
      "f0_midi": 47.4,
-     "midi_float": 47.35,
+     "midi_float": 47.68,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 47.681,
+     "midi_float_orig": 47.35,
+     "f0_midi_stroke": 47.681
     },
     {
      "note": "B2",
-     "midi": 47,
+     "midi": 48,
      "vel_layer": 2,
      "vel_label": "v5",
      "file": "Timpani2_Roll_v5_rr1_Sum.wav",
@@ -135208,10 +136150,14 @@
      "end_s": 21.2715,
      "rr": 1,
      "f0_midi": 47.3,
-     "midi_float": 47.35,
+     "midi_float": 47.68,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 47.597,
+     "midi_float_orig": 47.35,
+     "f0_midi_stroke": 47.597,
+     "tune_fix_cents": 8.4
     },
     {
      "note": "C#3",
@@ -135232,10 +136178,14 @@
      "end_s": 20.2937,
      "rr": 1,
      "f0_midi": 49.05,
-     "midi_float": 49.42,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.6,
+     "pitch_confidence": 0.5,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 48.603,
+     "midi_float_orig": 49.42,
+     "f0_midi_stroke": 48.422,
+     "tune_fix_cents": 18.1
     },
     {
      "note": "C#3",
@@ -135256,14 +136206,18 @@
      "end_s": 15.1014,
      "rr": 1,
      "f0_midi": 49.8,
-     "midi_float": 49.42,
-     "pitch_confidence": 1.0,
+     "midi_float": 48.6,
+     "pitch_confidence": 0.5,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 50.076,
+     "midi_float_orig": 49.42,
+     "f0_midi_stroke": 48.435,
+     "tune_fix_cents": 16.8
     },
     {
      "note": "E3",
-     "midi": 52,
+     "midi": 51,
      "vel_layer": 0,
      "vel_label": "v3",
      "file": "Timpani4_Roll_v3_rr1_Sum.wav",
@@ -135280,14 +136234,17 @@
      "end_s": 13.2754,
      "rr": 1,
      "f0_midi": 51.25,
-     "midi_float": 51.8,
-     "pitch_confidence": 1.0,
+     "midi_float": 51.41,
+     "pitch_confidence": 0.5,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 51.408,
+     "midi_float_orig": 51.8,
+     "f0_midi_stroke": 51.408
     },
     {
      "note": "E3",
-     "midi": 52,
+     "midi": 51,
      "vel_layer": 2,
      "vel_label": "v5",
      "file": "Timpani4_Roll_v5_rr1_Sum.wav",
@@ -135304,10 +136261,14 @@
      "end_s": 14.9197,
      "rr": 1,
      "f0_midi": 52.35,
-     "midi_float": 51.8,
-     "pitch_confidence": 1.0,
+     "midi_float": 51.41,
+     "pitch_confidence": 0.5,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.555,
+     "midi_float_orig": 51.8,
+     "f0_midi_stroke": 51.781,
+     "tune_fix_cents": -37.3
     },
     {
      "note": "G3",
@@ -135328,10 +136289,13 @@
      "end_s": 14.3231,
      "rr": 1,
      "f0_midi": 54.85,
-     "midi_float": 54.73,
+     "midi_float": 54.76,
      "pitch_confidence": 1.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.775,
+     "midi_float_orig": 54.73,
+     "f0_midi_stroke": 54.775
     },
     {
      "note": "G3",
@@ -135352,10 +136316,13 @@
      "end_s": 13.0268,
      "rr": 1,
      "f0_midi": 54.6,
-     "midi_float": 54.73,
+     "midi_float": 54.76,
      "pitch_confidence": 1.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.745,
+     "midi_float_orig": 54.73,
+     "f0_midi_stroke": 54.745
     }
    ]
   },
@@ -135388,7 +136355,7 @@
    "samples": [
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 0,
      "vel_label": "v1",
      "file": "Timpani1_Hit_v1_rr1_Sum.wav",
@@ -135405,14 +136372,17 @@
      "end_s": 1.9349,
      "rr": 1,
      "f0_midi": 41.7,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.464,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.464
     },
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 0,
      "vel_label": "v1",
      "file": "Timpani1_Hit_v1_rr2_Sum.wav",
@@ -135429,14 +136399,17 @@
      "end_s": 2.1973,
      "rr": 2,
      "f0_midi": 41.65,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.464,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.464
     },
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani1_Hit_v3_rr1_Sum.wav",
@@ -135453,14 +136426,17 @@
      "end_s": 6.294,
      "rr": 1,
      "f0_midi": 41.65,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.451,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.451
     },
     {
      "note": "F#2",
-     "midi": 42,
+     "midi": 41,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani1_Hit_v3_rr2_Sum.wav",
@@ -135477,14 +136453,17 @@
      "end_s": 6.8799,
      "rr": 2,
      "f0_midi": 41.7,
-     "midi_float": 41.67,
+     "midi_float": 41.46,
      "pitch_confidence": 1.0,
      "drum": "1",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 41.46,
+     "midi_float_orig": 41.67,
+     "f0_midi_stroke": 41.46
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 0,
      "vel_label": "v1",
      "file": "Timpani2_Hit_v1_rr1_Sum.wav",
@@ -135501,14 +136480,17 @@
      "end_s": 4.4802,
      "rr": 1,
      "f0_midi": 46.4,
-     "midi_float": 46.48,
+     "midi_float": 46.79,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.77,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.77
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 0,
      "vel_label": "v1",
      "file": "Timpani2_Hit_v1_rr2_Sum.wav",
@@ -135525,14 +136507,17 @@
      "end_s": 4.9234,
      "rr": 2,
      "f0_midi": 46.45,
-     "midi_float": 46.48,
+     "midi_float": 46.79,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.773,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.773
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani2_Hit_v3_rr1_Sum.wav",
@@ -135549,14 +136534,17 @@
      "end_s": 5.4817,
      "rr": 1,
      "f0_midi": 46.5,
-     "midi_float": 46.48,
+     "midi_float": 46.79,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.807,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.807
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 1,
      "vel_label": "v3",
      "file": "Timpani2_Hit_v3_rr2_Sum.wav",
@@ -135573,14 +136561,17 @@
      "end_s": 5.4444,
      "rr": 2,
      "f0_midi": 46.5,
-     "midi_float": 46.48,
+     "midi_float": 46.79,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.811,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.811
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 2,
      "vel_label": "v4",
      "file": "Timpani2_Hit_v4_rr1_Sum.wav",
@@ -135597,14 +136588,18 @@
      "end_s": 3.225,
      "rr": 1,
      "f0_midi": 46.5,
-     "midi_float": 46.48,
+     "midi_float": 46.79,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.832,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.832,
+     "tune_fix_cents": -4.2
     },
     {
      "note": "A#2",
-     "midi": 46,
+     "midi": 47,
      "vel_layer": 2,
      "vel_label": "v4",
      "file": "Timpani2_Hit_v4_rr2_Sum.wav",
@@ -135621,10 +136616,13 @@
      "end_s": 4.6862,
      "rr": 2,
      "f0_midi": 46.55,
-     "midi_float": 46.48,
+     "midi_float": 46.79,
      "pitch_confidence": 1.0,
      "drum": "2",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 46.814,
+     "midi_float_orig": 46.48,
+     "f0_midi_stroke": 46.814
     },
     {
      "note": "C#3",
@@ -135645,10 +136643,13 @@
      "end_s": 3.8352,
      "rr": 1,
      "f0_midi": 49.2,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.48,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.48
     },
     {
      "note": "C#3",
@@ -135669,10 +136670,13 @@
      "end_s": 4.6368,
      "rr": 2,
      "f0_midi": 49.2,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.481,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.481
     },
     {
      "note": "C#3",
@@ -135693,10 +136697,13 @@
      "end_s": 4.9239,
      "rr": 1,
      "f0_midi": 49.2,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.486,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.486
     },
     {
      "note": "C#3",
@@ -135717,10 +136724,13 @@
      "end_s": 4.7773,
      "rr": 2,
      "f0_midi": 49.2,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.483,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.483
     },
     {
      "note": "C#3",
@@ -135741,10 +136751,14 @@
      "end_s": 4.8113,
      "rr": 1,
      "f0_midi": 49.25,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.523,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.523,
+     "tune_fix_cents": -4.1
     },
     {
      "note": "C#3",
@@ -135765,10 +136779,14 @@
      "end_s": 4.4492,
      "rr": 2,
      "f0_midi": 49.25,
-     "midi_float": 49.2,
+     "midi_float": 49.48,
      "pitch_confidence": 1.0,
      "drum": "3",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 49.523,
+     "midi_float_orig": 49.2,
+     "f0_midi_stroke": 49.523,
+     "tune_fix_cents": -4.1
     },
     {
      "note": "E3",
@@ -135789,10 +136807,13 @@
      "end_s": 3.734,
      "rr": 1,
      "f0_midi": 52.05,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.415,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.415
     },
     {
      "note": "E3",
@@ -135813,10 +136834,13 @@
      "end_s": 2.8426,
      "rr": 2,
      "f0_midi": 51.75,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.025,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.426
     },
     {
      "note": "E3",
@@ -135837,10 +136861,13 @@
      "end_s": 3.3161,
      "rr": 1,
      "f0_midi": 52.05,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.409,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.409
     },
     {
      "note": "E3",
@@ -135861,10 +136888,13 @@
      "end_s": 3.7653,
      "rr": 2,
      "f0_midi": 52.05,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.41,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.41
     },
     {
      "note": "E3",
@@ -135885,10 +136915,14 @@
      "end_s": 3.0571,
      "rr": 1,
      "f0_midi": 51.8,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.033,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.462,
+     "tune_fix_cents": -5.3
     },
     {
      "note": "E3",
@@ -135909,10 +136943,14 @@
      "end_s": 3.5866,
      "rr": 2,
      "f0_midi": 51.8,
-     "midi_float": 52.05,
+     "midi_float": 52.41,
      "pitch_confidence": 1.0,
      "drum": "4",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 52.044,
+     "midi_float_orig": 52.05,
+     "f0_midi_stroke": 52.47,
+     "tune_fix_cents": -6.1
     },
     {
      "note": "D3",
@@ -135933,10 +136971,14 @@
      "end_s": 1.007,
      "rr": 1,
      "f0_midi": 45.3,
-     "midi_float": 49.7,
+     "midi_float": 49.91,
      "pitch_confidence": 0.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 45.565,
+     "midi_float_orig": 49.7,
+     "f0_midi_stroke": 49.486,
+     "tune_fix_cents": 42.5
     },
     {
      "note": "D3",
@@ -135957,10 +136999,14 @@
      "end_s": 1.151,
      "rr": 2,
      "f0_midi": 44.95,
-     "midi_float": 49.7,
+     "midi_float": 49.91,
      "pitch_confidence": 0.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 44.789,
+     "midi_float_orig": 49.7,
+     "f0_midi_stroke": 49.471,
+     "tune_fix_cents": 44.0
     },
     {
      "note": "D3",
@@ -135981,10 +137027,14 @@
      "end_s": 3.471,
      "rr": 1,
      "f0_midi": 54.1,
-     "midi_float": 49.7,
+     "midi_float": 49.91,
      "pitch_confidence": 0.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.256,
+     "midi_float_orig": 49.7,
+     "f0_midi_stroke": 49.487,
+     "tune_fix_cents": 42.4
     },
     {
      "note": "D3",
@@ -136005,10 +137055,14 @@
      "end_s": 3.2559,
      "rr": 2,
      "f0_midi": 54.15,
-     "midi_float": 49.7,
+     "midi_float": 49.91,
      "pitch_confidence": 0.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.624,
+     "midi_float_orig": 49.7,
+     "f0_midi_stroke": 49.485,
+     "tune_fix_cents": 42.6
     },
     {
      "note": "D3",
@@ -136029,10 +137083,14 @@
      "end_s": 3.0438,
      "rr": 1,
      "f0_midi": 54.1,
-     "midi_float": 49.7,
+     "midi_float": 49.91,
      "pitch_confidence": 0.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 54.604,
+     "midi_float_orig": 49.7,
+     "f0_midi_stroke": 49.486,
+     "tune_fix_cents": 42.5
     },
     {
      "note": "D3",
@@ -136053,10 +137111,14 @@
      "end_s": 3.316,
      "rr": 2,
      "f0_midi": 54.1,
-     "midi_float": 49.7,
+     "midi_float": 49.91,
      "pitch_confidence": 0.0,
      "drum": "5",
-     "mic": "Sum"
+     "mic": "Sum",
+     "f0_midi_refined": 53.948,
+     "midi_float_orig": 49.7,
+     "f0_midi_stroke": 49.485,
+     "tune_fix_cents": 42.5
     }
    ]
   },
@@ -144445,7 +145507,8 @@
      "note_named": "F4",
      "midi_named": 65,
      "f0_midi": 41.2,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -11.4
     },
     {
      "note": "F5",
@@ -144606,7 +145669,8 @@
      "note_named": "G3",
      "midi_named": 55,
      "f0_midi": 30.48,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 7.2
     },
     {
      "note": "G4",
@@ -144892,7 +145956,8 @@
      "note_named": "B1",
      "midi_named": 35,
      "f0_midi": 47.04,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -9.0
     },
     {
      "note": "B4",
@@ -145076,7 +146141,8 @@
      "note_named": "C1",
      "midi_named": 24,
      "f0_midi": 35.94,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -11.5
     },
     {
      "note": "C4",
@@ -145099,7 +146165,8 @@
      "note_named": "C3",
      "midi_named": 48,
      "f0_midi": 60.08,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -7.0
     },
     {
      "note": "C4",
@@ -145283,7 +146350,8 @@
      "note_named": "D4",
      "midi_named": 62,
      "f0_midi": 74.14,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -10.1
     },
     {
      "note": "D5",
@@ -145306,7 +146374,8 @@
      "note_named": "D4",
      "midi_named": 62,
      "f0_midi": 74.06,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -12.5
     },
     {
      "note": "D5",
@@ -145444,7 +146513,8 @@
      "note_named": "E1",
      "midi_named": 28,
      "f0_midi": 40.08,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -13.2
     },
     {
      "note": "E4",
@@ -145651,7 +146721,8 @@
      "note_named": "F4",
      "midi_named": 65,
      "f0_midi": 77.08,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -6.9
     },
     {
      "note": "F5",
@@ -145720,7 +146791,8 @@
      "note_named": "F4",
      "midi_named": 65,
      "f0_midi": 77.04,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -8.3
     },
     {
      "note": "G2",
@@ -145904,7 +146976,8 @@
      "note_named": "G3",
      "midi_named": 55,
      "f0_midi": 66.88,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 7.1
     }
    ],
    "octave_method": "pitch detector"
@@ -146190,7 +147263,8 @@
      "note_named": "D2",
      "midi_named": 38,
      "f0_midi": 50.02,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -8.2
     },
     {
      "note": "D3",
@@ -146660,7 +147734,8 @@
      "note_named": "B1",
      "midi_named": 35,
      "f0_midi": 47.06,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -9.2
     },
     {
      "note": "B3",
@@ -146683,7 +147758,8 @@
      "note_named": "B2",
      "midi_named": 47,
      "f0_midi": 47.18,
-     "mic": null
+     "mic": null,
+     "exclude": true
     },
     {
      "note": "B4",
@@ -146752,7 +147828,8 @@
      "note_named": "C1",
      "midi_named": 24,
      "f0_midi": 35.88,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 7.6
     },
     {
      "note": "C4",
@@ -148429,7 +149506,8 @@
      "note_named": "F#0",
      "midi_named": 18,
      "f0_midi": 17.98,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -3.0
     },
     {
      "note": "F#1",
@@ -148853,7 +149931,8 @@
      "note_named": "A1",
      "midi_named": 33,
      "f0_midi": 45.0,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 6.8
     },
     {
      "note": "B3",
@@ -148899,7 +149978,8 @@
      "note_named": "B2",
      "midi_named": 47,
      "f0_midi": 22.4,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 7.0
     },
     {
      "note": "C#3",
@@ -149198,7 +150278,8 @@
      "note_named": "E0",
      "midi_named": 16,
      "f0_midi": 15.96,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -8.9
     },
     {
      "note": "E1",
@@ -149336,7 +150417,8 @@
      "note_named": "E2",
      "midi_named": 40,
      "f0_midi": 52.16,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 12.8
     },
     {
      "note": "E3",
@@ -149520,7 +150602,8 @@
      "note_named": "G#1",
      "midi_named": 32,
      "f0_midi": 44.16,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -5.9
     },
     {
      "note": "G#2",
@@ -151275,7 +152358,8 @@
      "note_named": "G#1",
      "midi_named": 32,
      "f0_midi": 31.4,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 13.5
     },
     {
      "note": "G#2",
@@ -151492,7 +152576,8 @@
      "note_named": "A4",
      "midi_named": 69,
      "f0_midi": 69.12,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -14.1
     },
     {
      "note": "A4",
@@ -151607,7 +152692,8 @@
      "note_named": "A6",
      "midi_named": 93,
      "f0_midi": 92.94,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 5.7
     },
     {
      "note": "C4",
@@ -151630,7 +152716,8 @@
      "note_named": "C4",
      "midi_named": 60,
      "f0_midi": 59.8,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 14.3
     },
     {
      "note": "C4",
@@ -151653,7 +152740,8 @@
      "note_named": "C4",
      "midi_named": 60,
      "f0_midi": 60.18,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -22.1
     },
     {
      "note": "C5",
@@ -151929,7 +153017,8 @@
      "note_named": "E6",
      "midi_named": 88,
      "f0_midi": 88.12,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -11.5
     },
     {
      "note": "G3",
@@ -151998,7 +153087,8 @@
      "note_named": "G4",
      "midi_named": 67,
      "f0_midi": 67.1,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -5.7
     },
     {
      "note": "G4",
@@ -155281,7 +156371,8 @@
      "note_named": "A3",
      "midi_named": 57,
      "f0_midi": 32.82,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -7.4
     },
     {
      "note": "A4",
@@ -155419,7 +156510,8 @@
      "note_named": "B2",
      "midi_named": 47,
      "f0_midi": 23.54,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 15.8
     },
     {
      "note": "B3",
@@ -155695,7 +156787,8 @@
      "note_named": "C4",
      "midi_named": 60,
      "f0_midi": 71.94,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 8.2
     },
     {
      "note": "C5",
@@ -155948,7 +157041,8 @@
      "note_named": "E2",
      "midi_named": 40,
      "f0_midi": 15.5,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -13.5
     },
     {
      "note": "E5",
@@ -156063,7 +157157,8 @@
      "note_named": "F3",
      "midi_named": 53,
      "f0_midi": 65.06,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -6.4
     },
     {
      "note": "F4",
@@ -156671,7 +157766,8 @@
      "note_named": "C2",
      "midi_named": 36,
      "f0_midi": 48.08,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -6.9
     },
     {
      "note": "C3",
@@ -156993,7 +158089,8 @@
      "note_named": "D5",
      "midi_named": 74,
      "f0_midi": 85.92,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -8.2
     },
     {
      "note": "E3",
@@ -157154,7 +158251,8 @@
      "note_named": "E4",
      "midi_named": 64,
      "f0_midi": 76.06,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -7.1
     },
     {
      "note": "E5",
@@ -157384,7 +158482,8 @@
      "note_named": "G4",
      "midi_named": 67,
      "f0_midi": 79.02,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -7.8
     },
     {
      "note": "G5",
@@ -157624,7 +158723,8 @@
      "note_named": "B4",
      "midi_named": 71,
      "f0_midi": 82.9,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 4.2
     },
     {
      "note": "C3",
@@ -158932,7 +160032,8 @@
      "note_named": "B2",
      "midi_named": 47,
      "f0_midi": 35.3,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 12.6
     },
     {
      "note": "B3",
@@ -159208,7 +160309,8 @@
      "note_named": "D3",
      "midi_named": 50,
      "f0_midi": 50.04,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -9.2
     },
     {
      "note": "D4",
@@ -159714,7 +160816,8 @@
      "note_named": "G4",
      "midi_named": 67,
      "f0_midi": 79.0,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": -2.9
     }
    ],
    "octave_method": "pitch detector"
@@ -159839,7 +160942,8 @@
      "note_named": "A2",
      "midi_named": 45,
      "f0_midi": 57.0,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 4.1
     },
     {
      "note": "A4",
@@ -159977,7 +161081,8 @@
      "note_named": "B2",
      "midi_named": 47,
      "f0_midi": 59.04,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 15.6
     },
     {
      "note": "B3",
@@ -160184,7 +161289,8 @@
      "note_named": "C4",
      "midi_named": 60,
      "f0_midi": 71.9,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 6.1
     },
     {
      "note": "C5",
@@ -160460,7 +161566,8 @@
      "note_named": "E4",
      "midi_named": 64,
      "f0_midi": 75.92,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 4.8
     },
     {
      "note": "E5",
@@ -161229,7 +162336,8 @@
      "note_named": "G2",
      "midi_named": 43,
      "f0_midi": 54.9,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 20.1
     },
     {
      "note": "G5",
@@ -161354,7 +162462,8 @@
      "note_named": "A2",
      "midi_named": 45,
      "f0_midi": 56.92,
-     "mic": null
+     "mic": null,
+     "tune_fix_cents": 4.7
     },
     {
      "note": "A4",
@@ -184479,5 +185588,9 @@
    ],
    "octave_method": "pitch detector"
   }
+ },
+ "tuning_fixes": {
+  "script": "fix_tuning.py",
+  "n": 154
  }
 }

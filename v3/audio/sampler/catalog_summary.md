@@ -92,9 +92,10 @@ Range = sampled range +-3 semitones (notes outside it still play, with a warning
 | `keys.piano.kawai` | short | A#0-C8 | 4 | 1 | 1 | +0.00 | Chordophones/Zithers/Grand Piano, Kawai/Sustains |
 | `keys.piano.upright` | short | C1-G7 | 3 | 2 | 1 | +0.00 | Keys/Upright Nr1 |
 | `keys.organ` | sustain | C1-C6 | 1 | 1 | 1 | +0.00 | Aerophones/Edge-blown Aerophones/Pipe Organ/Loud |
-| `keys.organ.pedal` | sustain | C2-F#4 | 1 | 1 | 1 | +0.00 | Aerophones/Edge-blown Aerophones/Pipe Organ/Loud Pedal |
-| `perc.timpani` | perc | D#2-A3 | 3 | 3 | 1 | +0.00 | Membranophones/Struck Membranophones/Timpani 2/Hit::Timpani_Hit |
-| `perc.timpani.vsco` | perc | F#2-F#3 | 3 | 2 | 1 | +0.00 | Membranophones/Struck Membranophones/Timpani 1/Hit::Timpani_Hit |
+| `keys.organ.pedal` | sustain | C1-F#3 | 1 | 1 | 1 | +0.00 | Aerophones/Edge-blown Aerophones/Pipe Organ/Loud Pedal |
+| `perc.timpani` | perc | D2-A3 | 3 | 3 | 1 | +0.00 | Membranophones/Struck Membranophones/Timpani 2/Hit::Timpani_Hit |
+| `perc.timpani.clean` | perc | E2-F3 | 3 | 2 | 1 | +0.00 | Membranophones/Struck Membranophones/Timpani 2/Hit::Timpani_Hit<br>Membranophones/Struck Membranophones/Timpani 1/Hit::Timpani_Hit |
+| `perc.timpani.vsco` | perc | F2-G3 | 3 | 2 | 1 | +0.00 | Membranophones/Struck Membranophones/Timpani 1/Hit::Timpani_Hit |
 | `perc.timpani.roll` | sustain | F#2-G3 | 4 | 1 | 1 | +0.00 | Membranophones/Struck Membranophones/Timpani 1/Roll::Timpani_Roll |
 | `perc.tubular_bells` | perc | C4-F5 | 2 | 1 | 1 | +0.25 | Idiophones/Struck Idiophones/Tubular Bells 2 |
 | `perc.chimes` | perc | C4-E5 | 5 | 1 | 1 | +0.25 | Idiophones/Struck Idiophones/Tubular Bells 1 |
@@ -175,7 +176,7 @@ Columns: range (sounding), distinct sampled notes, velocity layers (labels), max
 | Aerophones/Edge-blown Aerophones/Ocarina, Typical/Sustains/Sus | A3-C#5 | 11 | 1 (single) | 1 | 6.54 | +0 (pitch detector, 8/11 detected samples agree) |
 | Aerophones/Edge-blown Aerophones/Ocarina, Typical/Sustains/SusVib | A3-C5 | 10 | 1 (single) | 1 | 8.1 | +0 (pitch detector, 7/10 detected samples agree) |
 | Aerophones/Edge-blown Aerophones/Pipe Organ/Loud | C1-C6 | 21 | 1 (single) | 1 | 12.29 | +0 (pitch detector, 21/21 detected samples agree) |
-| Aerophones/Edge-blown Aerophones/Pipe Organ/Loud Pedal | C2-F#4 | 11 | 1 (single) | 1 | 12.71 | +12 (sibling folders (detector unsure), 0/11 detected samples agree) |
+| Aerophones/Edge-blown Aerophones/Pipe Organ/Loud Pedal | C1-F#3 | 11 | 1 (single) | 1 | 12.71 | +0 (QA fix: sounding pitch (16' fundamental measured), detector votes, 0/11 detected samples agree) |
 | Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet | C2-C7 | 21 | 1 (single) | 1 | 12.14 | +12 (pitch detector, 21/21 detected samples agree) |
 | Aerophones/Edge-blown Aerophones/Pipe Organ/Quiet Pedal | C2-F#4 | 11 | 1 (single) | 1 | 11.99 | +12 (pitch detector, 11/11 detected samples agree) |
 | Aerophones/Edge-blown Aerophones/Renaissance Organ/4' | C0-E4 | 27 | 1 (single) | 1 | 6.51 | -12 (pitch detector, 3/5 detected samples agree) |

@@ -1,0 +1,373 @@
+{
+ "render": {
+  "A/free": {
+   "notes": 376,
+   "seconds": 4.8
+  },
+  "A/locked": {
+   "notes": 105,
+   "seconds": 2.9
+  },
+  "A/B": {
+   "notes": 257,
+   "seconds": 3.5
+  },
+  "B/free": {
+   "notes": 65,
+   "seconds": 0.9
+  },
+  "B/locked": {
+   "notes": 93,
+   "seconds": 0.3
+  },
+  "B/B": {
+   "notes": 16,
+   "seconds": 0.4
+  },
+  "C/free": {
+   "notes": 191,
+   "seconds": 1.6
+  },
+  "C/locked": {
+   "notes": 82,
+   "seconds": 3.3
+  },
+  "C/B": {
+   "notes": 115,
+   "seconds": 5.4
+  },
+  "perc_glue": {
+   "ceiling_dbfs": 2.52,
+   "gr_max_db": 6.0
+  },
+  "diag_locked_perc_notes": 177
+ },
+ "sampler_warnings": [],
+ "sampler_stats": {
+  "load_s": 23.43,
+  "cache_hits": 2766.0,
+  "notes": 1477.0,
+  "render_s": 23.53,
+  "resamples": 130.0
+ },
+ "limiter_events": [
+  {
+   "t": 0.007,
+   "frame": 0.2,
+   "gr_db": 4.6
+  },
+  {
+   "t": 12.507,
+   "frame": 300.2,
+   "gr_db": 4.3
+  },
+  {
+   "t": 20.006,
+   "frame": 480.1,
+   "gr_db": 4.5
+  },
+  {
+   "t": 42.505,
+   "frame": 1020.1,
+   "gr_db": 6.5
+  },
+  {
+   "t": 45.089,
+   "frame": 1082.1,
+   "gr_db": 3.5
+  },
+  {
+   "t": 46.26,
+   "frame": 1110.2,
+   "gr_db": 2.6
+  },
+  {
+   "t": 47.508,
+   "frame": 1140.2,
+   "gr_db": 5.3
+  },
+  {
+   "t": 50.007,
+   "frame": 1200.2,
+   "gr_db": 5.1
+  },
+  {
+   "t": 57.503,
+   "frame": 1380.1,
+   "gr_db": 5.1
+  }
+ ],
+ "master": {
+  "pre_gain_db": -2.44,
+  "comp_threshold_db": -14.0,
+  "comp_ratio": 2.0,
+  "comp_gr_max_db": 5.28,
+  "limiter_ceiling_dbtp": -1.2,
+  "limiter_gr_max_db": 6.53,
+  "comp_gr_p95_db": 2.42
+ },
+ "notes": 912,
+ "midi_tracks": 49,
+ "synth_cues": [
+  {
+   "name": "sub 41 Hz, 3 s tail (overture hit)",
+   "t": 0.0,
+   "frame": 0.0
+  },
+  {
+   "name": "sub 41 Hz soft (hit 1)",
+   "t": 12.5,
+   "frame": 300.0
+  },
+  {
+   "name": "riser 1 (filtered noise + rising saw) into f480",
+   "t": 17.5,
+   "frame": 420.0
+  },
+  {
+   "name": "reverse-reverb swell into f480",
+   "t": 18.75,
+   "frame": 450.0
+  },
+  {
+   "name": "sub boom 45->30 Hz (hit 2)",
+   "t": 20.0,
+   "frame": 480.0
+  },
+  {
+   "name": "reverse swell rising toward f660 (cut dead)",
+   "t": 25.5,
+   "frame": 612.0
+  },
+  {
+   "name": "heartbeat 40 Hz sine f780",
+   "t": 32.5,
+   "frame": 780.0
+  },
+  {
+   "name": "heartbeat 40 Hz sine f810",
+   "t": 33.75,
+   "frame": 810.0
+  },
+  {
+   "name": "heartbeat 40 Hz sine f840",
+   "t": 35.0,
+   "frame": 840.0
+  },
+  {
+   "name": "heartbeat 40 Hz sine f870",
+   "t": 36.25,
+   "frame": 870.0
+  },
+  {
+   "name": "heartbeat 40 Hz sine f900",
+   "t": 37.5,
+   "frame": 900.0
+  },
+  {
+   "name": "heartbeat 40 Hz sine f930",
+   "t": 38.75,
+   "frame": 930.0
+  },
+  {
+   "name": "heartbeat 40 Hz sine f960",
+   "t": 40.0,
+   "frame": 960.0
+  },
+  {
+   "name": "heartbeat 40 Hz sine f990",
+   "t": 41.25,
+   "frame": 990.0
+  },
+  {
+   "name": "riser 2 (4.4 s) into f1005",
+   "t": 37.475,
+   "frame": 899.4
+  },
+  {
+   "name": "sub impact 45->28 Hz",
+   "t": 42.5,
+   "frame": 1020.0
+  },
+  {
+   "name": "sub D1 bloom",
+   "t": 45.0,
+   "frame": 1080.0
+  },
+  {
+   "name": "sub D1 title hit",
+   "t": 47.5,
+   "frame": 1140.0
+  },
+  {
+   "name": "sub D1 hero hit",
+   "t": 50.0,
+   "frame": 1200.0
+  },
+  {
+   "name": "sub D1 button",
+   "t": 57.5,
+   "frame": 1380.0
+  }
+ ],
+ "foley_cues": [
+  {
+   "name": "wind gust",
+   "t": 5.2,
+   "frame": 124.8
+  },
+  {
+   "name": "typebar strike f15",
+   "t": 0.625,
+   "frame": 15.0
+  },
+  {
+   "name": "typebar strike f30",
+   "t": 1.25,
+   "frame": 30.0
+  },
+  {
+   "name": "typebar strike f45",
+   "t": 1.875,
+   "frame": 45.0
+  },
+  {
+   "name": "typebar strike f60",
+   "t": 2.5,
+   "frame": 60.0
+  },
+  {
+   "name": "super \"WOLFENB\u00dcTTEL \u00b7 GERMANY\" type-on",
+   "t": 3.0,
+   "frame": 72.0
+  },
+  {
+   "name": "super \"OAK CASK\" type-on",
+   "t": 16.4,
+   "frame": 393.6
+  },
+  {
+   "name": "super \"NORTH ATLANTIC\" type-on",
+   "t": 20.4,
+   "frame": 489.6
+  },
+  {
+   "name": "super \"UNITED STATES\" type-on",
+   "t": 24.45,
+   "frame": 586.8
+  },
+  {
+   "name": "super \"LAKE TAHOE (ALLEGEDLY)\" type-on",
+   "t": 28.1,
+   "frame": 674.4
+  },
+  {
+   "name": "botanical rustle",
+   "t": 3.125,
+   "frame": 75.0
+  },
+  {
+   "name": "balance chain tinkle",
+   "t": 5.625,
+   "frame": 135.0
+  },
+  {
+   "name": "pivot tick",
+   "t": 7.5,
+   "frame": 180.0
+  },
+  {
+   "name": "day swells",
+   "t": 8.125,
+   "frame": 195.0
+  },
+  {
+   "name": "card flex",
+   "t": 10.25,
+   "frame": 246.0
+  },
+  {
+   "name": "sun-sweep whoomps x6",
+   "t": 12.5,
+   "frame": 300.0
+  },
+  {
+   "name": "chalk scratch",
+   "t": 17.45,
+   "frame": 418.8
+  },
+  {
+   "name": "hold: hull groan, sea wash, creaks, chain squeaks",
+   "t": 20.0,
+   "frame": 480.0
+  },
+  {
+   "name": "tap machine: compressor hum, liquid stream, fill resonance",
+   "t": 24.375,
+   "frame": 585.0
+  },
+  {
+   "name": "fluorescent hum",
+   "t": 26.25,
+   "frame": 630.0
+  },
+  {
+   "name": "Tahoe: room tone, lake lap, crickets",
+   "t": 27.5,
+   "frame": 660.0
+  },
+  {
+   "name": "neon ignition (tick-tick, stutters, catches)",
+   "t": 28.75,
+   "frame": 690.0
+  },
+  {
+   "name": "refrigerator hum",
+   "t": 30.625,
+   "frame": 735.0
+  },
+  {
+   "name": "close fizz",
+   "t": 30.625,
+   "frame": 735.0
+  },
+  {
+   "name": "stool swivel squeaks (decelerating)",
+   "t": 33.2083,
+   "frame": 797.0
+  },
+  {
+   "name": "glass plunge: boom, slow-motion splash, crown shimmer, reversed bubbles, reverse-gong tail",
+   "t": 42.5,
+   "frame": 1020.0
+  },
+  {
+   "name": "muted glass tonk (shot glass touches bottom)",
+   "t": 44.4,
+   "frame": 1065.6
+  },
+  {
+   "name": "ink tone",
+   "t": 45.0,
+   "frame": 1080.0
+  },
+  {
+   "name": "fizz rush (slowed -> real time)",
+   "t": 46.25,
+   "frame": 1110.0
+  },
+  {
+   "name": "condensation slide on the bottle bead",
+   "t": 50.05,
+   "frame": 1201.2
+  },
+  {
+   "name": "neon stutters 55.2/55.4, death click + transformer ring-down",
+   "t": 55.625,
+   "frame": 1335.0
+  }
+ ],
+ "lufs": -15.95,
+ "true_peak_dbtp": -1.2,
+ "seconds": 131.6
+}

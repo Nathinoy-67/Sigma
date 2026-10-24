@@ -149,6 +149,9 @@ _SUS_BR = dict(kind='sustain', release=0.25, legato=True, legato_xf=0.08, legato
 _SUS_WW = dict(kind='sustain', release=0.2, legato=True, legato_xf=0.07, legato_skip=0.06, xfade=0.6,
                vel_k=30, align_db=-18, align_max=0.05, bus='woods')
 _SHORT = dict(kind='short', vel_k=32, align_db=-12, align_max=0.08)
+# plucked strings: the pluck transient often sits ~-13 dB below a body swell that peaks 50-150 ms later,
+# so align on the pluck (-22 dB) instead (QA: violins pizz A4 sounded 30 ms early with -12 dB);
+# clash cymbals: the first plate contact is ~8 ms before the -10 dB point.
 _PERC = dict(kind='perc', vel_k=36, align_db=-10, align_max=0.03, bus='perc', norm_note=1.0, max_shift=12)
 
 INSTRUMENTS = {
@@ -156,28 +159,28 @@ INSTRUMENTS = {
     'strings.violins.spic': dict(_SHORT, groups=[_STR + 'Violin Section/Spic'], pan=-0.5, width=0.8, bus='strings'),
     'strings.violins.sus': dict(_SUS_STR, groups=[_STR + 'Violin Section/susVib'], pan=-0.5, width=0.9),
     'strings.violins.trem': dict(_SUS_STR, groups=[_STR + 'Violin Section/Trem'], pan=-0.5, legato=False, width=0.9),
-    'strings.violins.pizz': dict(_SHORT, groups=[_STR + 'Violin Section/Pizz'], pan=-0.5, width=0.8, bus='strings'),
+    'strings.violins.pizz': dict(_SHORT, align_db=-22, align_max=0.03, groups=[_STR + 'Violin Section/Pizz'], pan=-0.5, width=0.8, bus='strings'),
     'strings.violas.spic': dict(_SHORT, groups=[_STR + 'Viola Section/spic'], pan=0.12, width=0.7, bus='strings'),
     'strings.violas.sus': dict(_SUS_STR, groups=[_STR + 'Viola Section/susvib'], pan=0.12, width=0.8),
     'strings.violas.trem': dict(_SUS_STR, groups=[_STR + 'Viola Section/trem'], pan=0.12, legato=False, width=0.8),
-    'strings.violas.pizz': dict(_SHORT, groups=[_STR + 'Viola Section/pizz'], pan=0.12, width=0.7, bus='strings'),
+    'strings.violas.pizz': dict(_SHORT, align_db=-22, align_max=0.03, groups=[_STR + 'Viola Section/pizz'], pan=0.12, width=0.7, bus='strings'),
     'strings.celli.spic': dict(_SHORT, groups=[_STR + 'Cello Section/spic'], pan=0.28, width=0.7, bus='strings'),
     'strings.celli.sus': dict(_SUS_STR, groups=[_STR + 'Cello Section/susvib'], pan=0.28, width=0.8),
     'strings.celli.trem': dict(_SUS_STR, groups=[_STR + 'Cello Section/trem'], pan=0.28, legato=False, width=0.8),
-    'strings.celli.pizz': dict(_SHORT, groups=[_STR + 'Cello Section/pizzT'], pan=0.28, width=0.7, bus='strings'),
+    'strings.celli.pizz': dict(_SHORT, align_db=-22, align_max=0.03, groups=[_STR + 'Cello Section/pizzT'], pan=0.28, width=0.7, bus='strings'),
     # basses: solo contrabass doubled x3 into a section
     'strings.basses.spic': dict(_SHORT, groups=[_STR + 'Solo Contrabass/Spic'], pan=0.4, width=0.6, bus='strings', unison=_A3),
     'strings.basses.sus': dict(_SUS_STR, groups=[_STR + 'Solo Contrabass/SusVib'], pan=0.4, width=0.6, unison=_A3),
     'strings.basses.susnv': dict(_SUS_STR, groups=[_STR + 'Solo Contrabass/SusNV'], pan=0.4, width=0.6, unison=_A3),
     'strings.basses.trem': dict(_SUS_STR, groups=[_STR + 'Solo Contrabass/Trem'], pan=0.4, width=0.6, legato=False, unison=_A3),
-    'strings.basses.pizz': dict(_SHORT, groups=[_STR + 'Solo Contrabass/Pizz'], pan=0.4, width=0.6, bus='strings', unison=_A3),
+    'strings.basses.pizz': dict(_SHORT, align_db=-22, align_max=0.03, groups=[_STR + 'Solo Contrabass/Pizz'], pan=0.4, width=0.6, bus='strings', unison=_A3),
     'strings.bass_solo.spic': dict(_SHORT, groups=[_STR + 'Solo Contrabass/Spic'], pan=0.4, width=0.5, bus='strings'),
     'strings.bass_solo.sus': dict(_SUS_STR, groups=[_STR + 'Solo Contrabass/SusVib'], pan=0.4, width=0.5),
-    'strings.bass_solo.pizz': dict(_SHORT, groups=[_STR + 'Solo Contrabass/Pizz'], pan=0.4, width=0.5, bus='strings'),
+    'strings.bass_solo.pizz': dict(_SHORT, align_db=-22, align_max=0.03, groups=[_STR + 'Solo Contrabass/Pizz'], pan=0.4, width=0.5, bus='strings'),
     'strings.violin_solo.sus': dict(_SUS_STR, groups=[_STR + 'Solo Violin/Arco Vib'], pan=-0.2, width=0.5, xfade=0.0),
     'strings.violin_solo.spic': dict(_SHORT, groups=[_STR + 'Solo Violin/spic'], pan=-0.2, width=0.5, bus='strings'),
     'strings.violin_solo.trem': dict(_SUS_STR, groups=[_STR + 'Solo Violin/Trem'], pan=-0.2, width=0.5, legato=False),
-    'strings.violin_solo.pizz': dict(_SHORT, groups=[_STR + 'Solo Violin/Pizz'], pan=-0.2, width=0.5, bus='strings'),
+    'strings.violin_solo.pizz': dict(_SHORT, align_db=-22, align_max=0.03, groups=[_STR + 'Solo Violin/Pizz'], pan=-0.2, width=0.5, bus='strings'),
     'strings.harp': dict(_SHORT, groups=[VC + 'Chordophones/Composite Chordophones/Concert Harp'], pan=-0.3, width=0.6,
                          bus='strings'),
     # ---------------------------------------------------------------- brass
@@ -230,8 +233,15 @@ INSTRUMENTS = {
     'keys.organ.pedal': dict(_SUS_WW, groups=[VC + 'Aerophones/Edge-blown Aerophones/Pipe Organ/Loud Pedal'], pan=0.0,
                              width=1.0, bus='keys', legato=False, release=0.8, xfade=0.0),
     # ---------------------------------------------------------------- pitched percussion
-    'perc.timpani': dict(_PERC, groups=[_MEM + 'Timpani 2/Hit::Timpani_Hit'], pan=0.0, width=0.8, min_conf=0.6,
-                         norm_note=0.5, max_shift=4),
+    # every Timpani 2 drum (several have split heads -> ambiguous / out-of-tune pitch at some layers)
+    'perc.timpani.all': dict(_PERC, groups=[_MEM + 'Timpani 2/Hit::Timpani_Hit'], pan=0.0, width=0.8, min_conf=0.6,
+                             norm_note=0.5, max_shift=4),
+    # QA (fix_tuning.py / score/qa_tuning.py): only the drums whose (1,1) mode is one clean peak (no
+    # split-head doublet within 1.8 st stronger than -11 dB on any layer; 2A, 6A, 8C have equal-level
+    # doublets 40-45 cents apart); D2 comes from drum 1C (E2) shifted -2 st, A2 from 2B, D3 from 3C.
+    'perc.timpani': dict(_PERC, groups=[_MEM + 'Timpani 2/Hit::Timpani_Hit', _MEM + 'Timpani 1/Hit::Timpani_Hit'],
+                               drums=['1C', '2B', '3A', '3B', '3C', '4A', '1', '2', '3'],
+                               pan=0.0, width=0.8, norm_note=0.5, max_shift=4),
     'perc.timpani.vsco': dict(_PERC, groups=[_MEM + 'Timpani 1/Hit::Timpani_Hit'], pan=0.0, width=0.8, norm_note=0.5, max_shift=5),
     'perc.timpani.roll': dict(_SUS_BR, groups=[_MEM + 'Timpani 1/Roll::Timpani_Roll'], pan=0.0, width=0.8, legato=False,
                               release=0.6, bus='perc', xfade=0.0, vel_k=36),
@@ -275,12 +285,18 @@ INSTRUMENTS = {
     'perc.snare.rimshot': dict(_PERC, groups=[_MEM + 'Snare Drum, Modern 3::Snare4_rimshot'], pan=-0.1, width=0.6),
     'perc.snare.roll': dict(_SUS_BR, groups=[_MEM + 'Snare Drum, Modern 1::Snare2_rollSN'], pan=-0.1, width=0.6,
                             legato=False, release=0.3, bus='perc', xfade=0.0, vel_k=36),
+    'perc.snare.rope': dict(_PERC, groups=[_MEM + 'Snare Drum, Rope Tension/Hi::RopeSnare_hi_sn'], pan=-0.15, width=0.6),
+    'perc.snare.rope.low': dict(_PERC, groups=[_MEM + 'Snare Drum, Rope Tension/Low::RopeSnare_low_sn'], pan=-0.15,
+                                width=0.6),
+    'perc.claves': dict(_PERC, groups=[_IDI + 'Claves/Legacy::claves'], pan=0.0, width=0.0, align_db=-6, align_max=0.01),
+    'perc.woodblock': dict(_PERC, groups=[_IDI + 'Woodblock::wood_click'], pan=0.0, width=0.0, align_db=-6,
+                           align_max=0.01),
     'perc.taiko_rim': dict(_PERC, groups=[_V1P + 'drums/other/ethnic/giant::EthnicLargeStick_rimshot'], pan=0.0,
                            width=0.8),
     # ---------------------------------------------------------------- metals
-    'perc.cymbal.crash': dict(_PERC, groups=[_IDI + 'Clash Cymbals 1::cymbal_crash1'], pan=0.2, width=1.0),
-    'perc.cymbal.crash2': dict(_PERC, groups=[_IDI + 'Clash Cymbals 2::cymbal_crash2'], pan=0.2, width=1.0),
-    'perc.cymbal.crash3': dict(_PERC, groups=[V2 + 'Percussion::cymbal-crash1'], pan=0.2, width=1.0),
+    'perc.cymbal.crash': dict(_PERC, align_db=-20, groups=[_IDI + 'Clash Cymbals 1::cymbal_crash1'], pan=0.2, width=1.0),
+    'perc.cymbal.crash2': dict(_PERC, align_db=-20, groups=[_IDI + 'Clash Cymbals 2::cymbal_crash2'], pan=0.2, width=1.0),
+    'perc.cymbal.crash3': dict(_PERC, align_db=-20, groups=[V2 + 'Percussion::cymbal-crash1'], pan=0.2, width=1.0),
     'perc.cymbal.sus': dict(_PERC, groups=[_IDI + 'Suspended Cymbal 1::susCymb1_hit'], pan=0.2, width=1.0),
     'perc.cymbal.sus2': dict(_PERC, groups=[_IDI + 'Suspended Cymbal 2::susCymb2_hit'], pan=0.2, width=1.0),
     'perc.cymbal.roll': dict(_SUS_BR, groups=[_IDI + 'Suspended Cymbal 1::susCymb1_roll_nloop'], pan=0.2, width=1.0,
@@ -315,7 +331,7 @@ INSTRUMENTS = {
 
 _DEFAULTS = dict(kind='short', pan=0.0, width=1.0, release=0.25, legato=False, legato_xf=0.1, legato_skip=0.1,
                  xfade=0.0, vel_k=32, gain_db=0.0, align_db=-12, align_max=0.05, max_shift=7, norm_note=0.5,
-                 unison=None, bus=None, min_conf=0.0, range_ext=3)
+                 unison=None, bus=None, min_conf=0.0, range_ext=3, drums=None)
 
 
 # ============================================================================ data classes
@@ -359,6 +375,7 @@ class _Smp:
     onset: float
     end: float
     sr: int
+    fix: float = 0.0  # per-sample tuning correction in cents (catalog `tune_fix_cents`, see fix_tuning.py)
 
 
 class Instrument:
@@ -382,16 +399,18 @@ class Instrument:
             grp = catalog['groups'][g]
             self.pitched |= bool(grp.get('pitched'))
             for s in grp['samples']:
-                if 'error' in s or s.get('len_s', 0) <= 0.02:
+                if 'error' in s or s.get('len_s', 0) <= 0.02 or s.get('exclude'):
                     continue
                 if p['min_conf'] and s.get('pitch_confidence', 1.0) < p['min_conf']:
+                    continue
+                if p['drums'] and s.get('drum') not in p['drums']:
                     continue
                 pitch = s.get('midi_float', s.get('midi', 60))
                 pitch = 60.0 if pitch is None else float(pitch)
                 key = f"{gi}:{s.get('drum', '')}:{pitch:.2f}"
                 smps.append(_Smp(s['path'], pitch, key, s.get('vel_layer', 0), s.get('rr', 1),
                                  s.get('loud_db', -30.0), s.get('onset_s', 0.0), s.get('end_s', s['len_s']),
-                                 s.get('sr', 44100)))
+                                 s.get('sr', 44100), float(s.get('tune_fix_cents', 0.0))))
         if not smps:
             raise ValueError(f'{iid}: no usable samples')
         if self.kind == 'swell' or (len(self.groups) > 1 and not self.pitched):
@@ -814,6 +833,8 @@ class Sampler:
                 shift = pitch - smp.pitch
             elif not inst.pitched and pitch is not None:
                 shift = pitch - 60.0
+            if inst.pitched and kind != 'swell':
+                shift += smp.fix / 100.0  # measured per-sample detuning (fix_tuning.py)
             shift += (e.tune + detune) / 100.0
             if abs(shift) > P['max_shift'] + 0.01:
                 w = f'{inst.id}: shifting {shift:+.1f} st for {midi_name(pitch) if pitch else "-"}'

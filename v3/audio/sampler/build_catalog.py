@@ -15,6 +15,10 @@ pitch is detected from the spectrum (principal (1,1) mode).
 
 Samples are grouped into "instrument+articulation" groups: one group per folder for
 pitched folders, one group per stroke name ("stem") for flat percussion folders.
+
+After a (re)build, run fix_tuning.py: it applies the tuning QA fixes (timpani principal-mode
+re-detection -- detect_timpani below reads ~15-40 cents off --, the Loud Pedal octave, per-sample
+fine-tuning corrections and excluded samples).
 """
 import argparse
 import json
@@ -475,6 +479,8 @@ OCTAVE_OVERRIDES = {
     'VCSL/Idiophones/Struck Idiophones/Marimba': 12,      # same files as VSCO Percussion/Marimba (+12)
     'VCSL/Idiophones/Struck Idiophones/Tubular Bells 1': 12,
     'VCSL/Idiophones/Struck Idiophones/Vibraphone/Soft Mallets': 12,  # same naming as Hard Mallets
+    # 16' registration: Rode_Pedal_C1 SOUNDS C1 (32.7 Hz); its own detector votes said 0 (QA 2026-10-22)
+    'VCSL/Aerophones/Edge-blown Aerophones/Pipe Organ/Loud Pedal': 0,
 }
 
 
@@ -700,6 +706,7 @@ def main():
         json.dump(cat, f, indent=1)
     write_summary(cat, os.path.join(a.out, 'catalog_summary.md'))
     print(f"wrote {len(groups)} groups / {len(results)} samples in {time.time() - t:.0f}s")
+    print('now run fix_tuning.py (tuning QA fixes)')
 
 
 if __name__ == '__main__':

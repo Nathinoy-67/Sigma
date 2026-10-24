@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 *.log
 /audio/score/*.wav
+/audio/score/qa/
