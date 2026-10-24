@@ -381,7 +381,7 @@ def cinnamon(seed=0, location=(0, 0, 0), rotation=(0, 0, 0), coll=None, name=Non
     L = rng.uniform(0.045, 0.075)
     r0 = rng.uniform(0.0050, 0.0068)
     turns = rng.uniform(1.15, 1.9)
-    th_t = rng.uniform(0.0009, 0.0014)
+    th_t = rng.uniform(0.0006, 0.0010)
     double = rng.random() < 0.35            # scroll rolled from both edges
     nu, nv = 40, 70
     bend = rng.uniform(-0.04, 0.04)
@@ -493,7 +493,7 @@ def orange_peel(seed=0, location=(0, 0, 0), rotation=(0, 0, 0), coll=None, name=
     L = rng.uniform(0.040, 0.068)
     W = rng.uniform(0.014, 0.024)
     thick = rng.uniform(0.002, 0.0035)
-    curl = rng.uniform(0.6, 1.4) / 0.03          # bending around the long axis (1/m)
+    curl = rng.uniform(1.6, 2.8) / 0.03          # bending around the long axis (1/m)
     roll = rng.uniform(-0.6, 0.6) / 0.05         # bending along the length
     twist = rng.uniform(-0.8, 0.8)
     nu, nv = 44, 18
@@ -758,7 +758,7 @@ DEFAULT_COUNTS = {"star_anise": 6, "cinnamon": 3, "cardamom": 14, "juniper": 24,
 
 REST = {   # natural resting orientation per kind: (x-roll choices, y-tilt sigma, upside-down chance)
     "star_anise": ("flat", 0.12, 0.3), "cinnamon": ("roll", 0.05, 0.0), "cardamom": ("roll", 0.1, 0.0),
-    "juniper": ("any", 0.0, 0.0), "orange_peel": ("flat", 0.25, 0.45), "chamomile": ("flat", 0.6, 0.25),
+    "juniper": ("any", 0.0, 0.0), "orange_peel": ("flat", 0.25, 0.12), "chamomile": ("flat", 0.6, 0.25),
     "licorice": ("roll", 0.06, 0.0), "ginger": ("flat", 0.15, 0.5),
 }
 

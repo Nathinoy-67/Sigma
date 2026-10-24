@@ -655,10 +655,12 @@ METALS = {
 }
 
 
-def metal(kind="brass", name=None, seed=0, roughness=None, smudge=0.15, aniso=None, tarnish=0.0, rust=0.0):
+def metal(kind="brass", name=None, seed=0, roughness=None, smudge=0.15, aniso=None, tarnish=0.0, rust=0.0, color=None):
     """Metal with fingerprint/smudge roughness breakup.  aniso: brushed (0..1, tangent around Z).
     tarnish: olive tarnish in cavities (brass).  rust: noise-masked rust layer (iron hoops, hull)."""
     col, r0 = METALS[kind]
+    if color is not None:
+        col = color
     if roughness is not None:
         r0 = roughness
     if aniso is None:

@@ -1,0 +1,24 @@
+{
+ "px_per_mm": 24,
+ "size_mm": [
+  210.0,
+  148.0
+ ],
+ "pitch": 2.54,
+ "line": 4.233,
+ "left": 16.0,
+ "top": 18.0,
+ "header": "KR\u00c4UTERLIK\u00d6R - REZEPTUR - C. MAST - WOLFENB\u00dcTTEL 1934",
+ "prefix_chars": 49,
+ "strike_x_mm": [
+  140.46,
+  143.0,
+  145.54,
+  148.08
+ ],
+ "stamp_center_mm": [
+  152.0,
+  98.0
+ ],
+ "stamp_radius_mm": 21.0
+}
