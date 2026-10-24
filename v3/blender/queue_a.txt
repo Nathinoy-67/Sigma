@@ -1,0 +1,9 @@
+# Set A + B finals (hd 1280x536 unless a still)
+--shot s05 --res 3200x1800 --samples 32 --frames 0 --fmt png --out ../frames/s05
+--shot s08 --res 2560x1072 --samples 32 --frames 0 --fmt png --out ../frames/s08
+--shot s03 --res hd --samples 24 --threshold 0.04 --range 0-44
+--shot s01 --res hd --samples 24 --threshold 0.04 --range 0-74
+--shot s06 --res hd --samples 24 --threshold 0.04 --range 0-89
+--shot s07 --res hd --samples 24 --threshold 0.04 --range 0-59
+--shot s04 --res hd --samples 24 --threshold 0.04 --range 0-44 --step 2
+--shot s02 --res hd --samples 24 --threshold 0.04 --range 0-59

@@ -461,9 +461,9 @@ def render_still(path, frame=None, quiet=True):
     return dt
 
 
-def render_frames(out_dir, start, end, step=1, prefix="", fmt="PNG"):
+def render_frames(out_dir, start, end, step=1, prefix="", fmt="PNG", skip_existing=True):
     """Render frames start..end (inclusive) to <out_dir>/<prefix>####.png (frame numbers as given).
-    Returns {frame: seconds}."""
+    Frames already on disk are skipped (resumable).  Returns {frame: seconds}."""
     sc = bpy.context.scene
     out_dir = os.path.abspath(out_dir)
     os.makedirs(out_dir, exist_ok=True)
@@ -472,8 +472,11 @@ def render_frames(out_dir, start, end, step=1, prefix="", fmt="PNG"):
     times = {}
     ext = {"PNG": ".png", "JPEG": ".jpg", "OPEN_EXR": ".exr"}[fmt]
     for f in range(start, end + 1, step):
+        path = os.path.join(out_dir, f"{prefix}{f:04d}{ext}")
+        if skip_existing and os.path.exists(path) and os.path.getsize(path) > 0:
+            continue
         sc.frame_set(f)
-        sc.render.filepath = os.path.join(out_dir, f"{prefix}{f:04d}{ext}")
+        sc.render.filepath = path
         t = time.time()
         bpy.ops.render.render(write_still=True)
         times[f] = time.time() - t

@@ -522,7 +522,7 @@ def drop_list(ob, n=None):
 
 
 def frost_shell(src, name=None, coverage=0.8, wipes=1, radius=0.03, seed=0, offset=0.00012, coll=None, top_z=None,
-                holes=()):
+                holes=(), density=0.8):
     """Freezer frost: a copy of the OUTER faces of a glass mesh (point attribute inner < 0.6) pushed
     out by `offset` along the normals, shaded with materials.frost_layer.  Parented like `src`."""
     import bmesh
@@ -543,14 +543,15 @@ def frost_shell(src, name=None, coverage=0.8, wipes=1, radius=0.03, seed=0, offs
     ob.parent = src.parent
     ob.matrix_parent_inverse = src.matrix_parent_inverse.copy()
     ob.matrix_basis = src.matrix_basis.copy()
-    ob.data.materials.append(M.frost_layer(me.name + "_Mat", coverage, wipes, radius, seed, top_z=top_z, holes=holes))
+    ob.data.materials.append(M.frost_layer(me.name + "_Mat", coverage, wipes, radius, seed, top_z=top_z, holes=holes,
+                                           density=density))
     return ob
 
 
 # =========================================================================== shot glass
 def shot_glass(name="ShotGlass", location=(0, 0, 0), rotation_z_deg=0.0, frosted=False, fill=0.8,
                liquid="jager", seed=0, coll=None, melt_beads=90, smudge=0.06, segments=96, frost=0.85,
-               frost_wipes=1, liquid_material=None, glass_material=None):
+               frost_wipes=1, liquid_material=None, glass_material=None, frost_density=0.8):
     """Heavy-based straight shot glass: 60 mm tall, 44 mm across the rim, 2.6 mm wall, 16 mm base.
     fill: fraction of the cavity height (0.8 ~ 4 cl).  liquid: "jager" | None.
     frosted: freezer frost on the outside + `melt_beads` water beads."""
@@ -589,7 +590,7 @@ def shot_glass(name="ShotGlass", location=(0, 0, 0), rotation_z_deg=0.0, frosted
     if frosted:
         holes = drop_list(parts["beads"], 18) if parts["beads"] else ()
         parts["frost"] = frost_shell(g, coverage=frost, wipes=frost_wipes, radius=Rt, seed=seed, coll=coll, top_z=H,
-                                     holes=holes)
+                                     holes=holes, density=frost_density)
     if liquid:
         inner_up = list(reversed(inner_dn))
         fill_z = B + (H - t / 2 - B) * fill
