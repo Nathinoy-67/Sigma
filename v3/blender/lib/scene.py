@@ -331,7 +331,7 @@ def _light(kind, name, power, color, kelvin_, location, target, coll):
 
 def area_light(name="Area", size=(0.5, 0.5), power=50.0, kelvin=None, color=None, location=(0, 0, 1),
                target=(0, 0, 0), shape="RECTANGLE", spread_deg=180.0, camera_visible=False,
-               glossy_visible=True, coll=None, group=None):
+               glossy_visible=True, coll=None, group=None, transmission_visible=False):
     """Area light (power in W).  size=(x, y) metres.  spread_deg < 180 = gridded softbox."""
     ob = _light("AREA", name, power, color, kelvin, location, target, coll)
     ld = ob.data
@@ -340,6 +340,7 @@ def area_light(name="Area", size=(0.5, 0.5), power=50.0, kelvin=None, color=None
     ld.spread = math.radians(spread_deg)
     ob.visible_camera = camera_visible
     ob.visible_glossy = glossy_visible
+    ob.visible_transmission = transmission_visible     # seen through glass a softbox reads as a white slab
     if group:
         light_group(ob, group)
     return ob
