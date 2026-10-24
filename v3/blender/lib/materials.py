@@ -453,13 +453,26 @@ def frost_shader(t, seed, transmission=0.93):
     return t.principled(base=col, transmission=transmission, rough=0.36, ior=1.31, normal=nrm)
 
 
-def frost_layer(name="Frost", coverage=0.8, wipes=0, radius=0.03, seed=0, top_z=None, density=0.8, holes=()):
+def frost_layer(name="Frost", coverage=0.8, wipes=0, radius=0.03, seed=0, top_z=None, density=0.8, holes=(), track=None):
     """Hoarfrost as a separate thin shell over the glass (see props.frost_shell): white ice crystals
     with partial coverage over CLEAR glass, so the liquid behind keeps its colour where the frost is
     thin.  Opacity grows at grazing angles (longer path through the layer); thinner within 4 mm of
     top_z (the rim).  Alpha-mixed with Transparent; shadow rays see it as mostly transparent."""
     m, t = new_material(name)
     mask = frost_mask(t, seed, coverage, wipes, radius)
+    if track:
+        # a melt bead's run: clear glass in a wavy channel from z_top down to the keyed value 'MeltFront' (object space)
+        x, y, z = t.xyz(t.texco())
+        v = t.node("ShaderNodeValue")
+        v.name = "MeltFront"
+        v.outputs[0].default_value = track["z_top"]
+        wob = t.mul(t.math("SINE", t.mul(z, 700.0)), track["width"] * 0.25)
+        lat = t.math("ABSOLUTE", t.add(t.add(y, -track["y"]), wob))
+        w = t.map(z, track["z_top"] - 0.03, track["z_top"], track["width"] * 1.25, track["width"] * 0.7)
+        ch = t.math("SUBTRACT", 1.0, t.smooth(t.math("DIVIDE", lat, w), 0.75, 1.0))
+        ch = t.mul(ch, t.math("GREATER_THAN", x, track["x_min"]))
+        ch = t.mul(ch, t.mul(t.math("LESS_THAN", z, track["z_top"]), t.smooth(z, v.outputs[0], t.add(v.outputs[0], 0.001))))
+        mask = t.mul(mask, t.math("SUBTRACT", 1.0, ch))
     if top_z is not None:
         z = t.xyz(t.texco())[2]
         mask = t.mul(mask, t.map(z, top_z - 0.005, top_z, 1.0, 0.35))

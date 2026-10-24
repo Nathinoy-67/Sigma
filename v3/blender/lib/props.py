@@ -522,7 +522,7 @@ def drop_list(ob, n=None):
 
 
 def frost_shell(src, name=None, coverage=0.8, wipes=1, radius=0.03, seed=0, offset=0.00012, coll=None, top_z=None,
-                holes=(), density=0.8):
+                holes=(), density=0.8, track=None):
     """Freezer frost: a copy of the OUTER faces of a glass mesh (point attribute inner < 0.6) pushed
     out by `offset` along the normals, shaded with materials.frost_layer.  Parented like `src`."""
     import bmesh
@@ -544,7 +544,7 @@ def frost_shell(src, name=None, coverage=0.8, wipes=1, radius=0.03, seed=0, offs
     ob.matrix_parent_inverse = src.matrix_parent_inverse.copy()
     ob.matrix_basis = src.matrix_basis.copy()
     ob.data.materials.append(M.frost_layer(me.name + "_Mat", coverage, wipes, radius, seed, top_z=top_z, holes=holes,
-                                           density=density))
+                                           density=density, track=track))
     return ob
 
 
@@ -890,7 +890,7 @@ def label_art(seed=0, px_per_mm=25, size_mm=(64.0, 86.0)):
 
 def bottle(name="Bottle", location=(0, 0, 0), rotation_z_deg=0.0, frosted=False, fill=0.93, label=True, cap=True,
            seed=0, coll=None, n_around=128, frost=0.8, liquid_material=None, glass_color=(0.13, 0.30, 0.13),
-           glass_density=180.0):
+           glass_density=180.0, frost_track=None, frost_density=0.8):
     """Square-shouldered green glass bottle, ~0.7 L proportions: 72 mm square body with 11 mm corner
     radius, flat shoulders into a round neck, black knurled screw cap; 3.5 mm walls, 9 mm base.
     Total height ~243 mm.  The label faces -Y (before rotation_z_deg).
@@ -962,7 +962,8 @@ def bottle(name="Bottle", location=(0, 0, 0), rotation_z_deg=0.0, frosted=False,
     info = dict(height=ZL + 0.0016, body_half_width=A, shoulder_z=ZS, neck_z=ZN)
     parts = dict(glass=g, liquid=None, label=None, cap=None, frost=None)
     if frosted:
-        parts["frost"] = frost_shell(g, coverage=frost, wipes=2, radius=A, seed=seed, offset=0.00015, coll=coll)
+        parts["frost"] = frost_shell(g, coverage=frost, wipes=2, radius=A, seed=seed, offset=0.00015, coll=coll,
+                                     track=frost_track, density=frost_density)
     # liquid
     if fill:
         inner_up = list(reversed(i_res))
