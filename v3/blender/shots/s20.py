@@ -31,8 +31,8 @@ def build(res="look", samples=None, threshold=None, **kw):
     S.new_scene(res, PRESET, samples=samples, threshold=threshold, exposure=-0.25)
     sc = bpy.context.scene
     sc.frame_start, sc.frame_end = 0, FRAMES - 1
-    sc.cycles.volume_step_rate = 5.0
-    sc.cycles.volume_max_steps = 64
+    sc.cycles.volume_step_rate = 8.0
+    sc.cycles.volume_max_steps = 40
     coll = S.collection("S20")
     F.stage(coll)
     drink = M.liquid("BloomDrink", 1.34, (0.86, 0.92, 0.10), 14.0)
@@ -58,8 +58,8 @@ def build(res="look", samples=None, threshold=None, **kw):
                         fill=0.9, seed=22, coll=coll, liquid_material=M.jagermeister("JagerSunk", density=420.0))
     shot.root.rotation_euler = (math.radians(6.0), math.radians(-4.0), 0)
     shot.root.scale = (0.93, 0.93, 0.93)
-    F.plume(coll, [(f, eff_time(f)) for f in range(0, FRAMES, 3)] + [(FRAMES - 1, eff_time(FRAMES - 1))], fz,
-            mix_keys=[(0, 0.0), (30, 1.0), (FRAMES - 1, 6.0)])
+    F.ink_tendrils(coll, [(f, min(1.0, eff_time(f) / 1.1)) for f in range(0, FRAMES, 2)] + [(FRAMES - 1, 1.0)], fz,
+                   frames=FRAMES)
     tgt = F.HB + Vector((0.0, 0.0, 0.074))
     cam = C.add_camera("CAM_S20", lens=100, location=tgt + Vector((0.0, -0.55, 0.004)), target=tgt, fstop=4.0,
                        focus=F.HB + Vector((0, -0.006, 0.076)))

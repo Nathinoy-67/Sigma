@@ -27,7 +27,7 @@ HB = Vector((-0.07, 1.95, E.BAR_Z))
 BOT = Vector((0.085, 2.0, E.BAR_Z))
 BEAD_F0, BEAD_F1 = 60, 86
 TRACK = dict(x_min=0.012, y=0.007, width=0.0016, z_top=0.1845)
-REGIONS = {"fizz": (0.30, 0.56, 0.06, 0.86), "bead": (0.58, 0.80, 0.50, 0.95)}   # border (x0, x1, y0, y1)
+REGIONS = {"fizz": (0.25, 0.49, 0.04, 0.88), "bead": (0.56, 0.80, 0.50, 0.97)}   # border (x0, x1, y0, y1)
 
 
 def bead_path(u):

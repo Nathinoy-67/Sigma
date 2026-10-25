@@ -1,0 +1,23 @@
+# fast pass: 960x402 @ 8 spp; slow shots on twos (post interpolates the in-betweens); sim shots full cadence
+--shot s12 --res 2304x964 --samples 16 --frames 0 --fmt png --out ../frames/s12
+--shot s22 --res 1600x670 --samples 16 --frames 0 --fmt png --out ../frames/s22 --variant on
+--shot s22 --res 1600x670 --samples 16 --frames 0 --fmt png --out ../frames/s22 --variant off
+--shot s21 --res 2304x964 --samples 16 --frames 0 --fmt png --out ../frames/s21 --variant still
+--shot s23 --res 2048x858 --samples 16 --frames 0 --fmt png --out ../frames/s23
+--shot s07 --res 960x402 --samples 8 --threshold 0.07 --range 0-59 --step 2
+--shot s04 --res 960x402 --samples 8 --threshold 0.07 --range 0-44 --step 2
+--shot s11 --res 960x402 --samples 8 --threshold 0.07 --range 0-44
+--shot s13 --res 960x402 --samples 8 --threshold 0.07 --range 0-74 --step 2
+--shot s14 --res 960x402 --samples 8 --threshold 0.07 --range 0-59
+--shot s18 --res 1152x482 --samples 8 --threshold 0.07 --range 0-44
+--shot s19 --res 1152x482 --samples 8 --threshold 0.07 --range 0-29
+--shot s20 --res 960x402 --samples 8 --threshold 0.07 --range 0-59 --step 2
+--shot s17 --res 960x402 --samples 8 --threshold 0.07 --range 0-74 --step 2
+--shot s21 --res 2304x964 --samples 10 --threshold 0.07 --range 56-96 --variant bead
+--shot s21 --res 2304x964 --samples 10 --threshold 0.07 --range 0-179 --step 2 --variant fizz
+--shot s10 --res 960x402 --samples 8 --threshold 0.07 --range 0-29 --step 2
+--shot s15 --res 960x402 --samples 8 --threshold 0.07 --range 0-74 --step 2
+--shot s09 --res 960x402 --samples 8 --threshold 0.07 --range 0-74 --step 2
+--shot s02 --res 960x402 --samples 8 --threshold 0.07 --range 0-59
+--shot s16 --res 960x402 --samples 8 --threshold 0.07 --range 0-59 --step 2
+--shot s06 --res 1152x482 --samples 12 --threshold 0.06 --range 0-89

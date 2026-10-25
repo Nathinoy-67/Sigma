@@ -165,3 +165,66 @@ def plume(coll, clock_keys, fill_z, mouth=Vector((0.0, 0.0, 0.069)), mix_keys=((
     ob.data.materials.append(m)
     S.link(ob, coll)
     return ob
+
+
+def ink_tendrils(coll, grow_keys, fill_z, mouth=Vector((0.0, 0.0, 0.069)), n=52, seed=7, name="Ink", spin_deg=40.0,
+                 frames=60):
+    """The Jägermeister leaving the sunken shot glass as ink-like filaments: tapered tubes spiralling up from the lip,
+    curling over at the top like a vortex ring.  The tubes carry a HOMOGENEOUS absorption volume only (no surface),
+    which Cycles integrates analytically -- far cheaper than a ray-marched plume.  grow_keys: [(frame, 0..1)]."""
+    import random as _r
+    rng = _r.Random(seed)
+    m, t = M.new_material(name)
+    t.output(None, t.node("ShaderNodeVolumeAbsorption", {"Color": (0.42, 0.11, 0.04), "Density": 520.0}))
+    m2, t2 = M.new_material(name + "Haze")
+    t2.output(None, t2.node("ShaderNodeVolumeAbsorption", {"Color": (0.55, 0.22, 0.08), "Density": 60.0}))
+    root = S.empty(name + "Root", HB, coll=coll)
+    obs = []
+    top = fill_z - 0.004
+    for k in range(n):
+        a0 = rng.uniform(0, 2 * math.pi)
+        r0 = rng.uniform(0.012, 0.019)
+        hz = rng.uniform(0.55, 1.0) * (top - mouth.z)
+        turns = rng.uniform(0.25, 0.9) * rng.choice([-1, 1])
+        pts = []
+        steps = 28
+        for i in range(steps + 1):
+            u = i / steps
+            z = mouth.z + hz * (u ** 0.85)
+            a = a0 + turns * 2 * math.pi * u
+            r = r0 * (1 - 0.55 * math.sin(math.pi * min(u * 1.2, 1.0))) + 0.004 * math.sin(7 * u + k)
+            # curl over at the top (a vortex ring rolling outwards)
+            if u > 0.75:
+                c = (u - 0.75) / 0.25
+                r += 0.010 * math.sin(c * math.pi * 0.9)
+                z -= 0.006 * (1 - math.cos(c * math.pi * 0.9))
+            pts.append((r * math.cos(a), r * math.sin(a), z - HB.z))
+        cu = bpy.data.curves.new(f"{name}{k}", "CURVE")
+        cu.dimensions = "3D"
+        thick = rng.uniform(0.0004, 0.0016) if k % 5 else rng.uniform(0.002, 0.0035)
+        cu.bevel_depth = thick
+        cu.bevel_resolution = 3
+        cu.use_fill_caps = True
+        cu.bevel_factor_mapping_end = "SPLINE"
+        sp = cu.splines.new("NURBS")
+        sp.points.add(len(pts) - 1)
+        for i, p in enumerate(pts):
+            sp.points[i].co = (*p, 1)
+            sp.points[i].radius = 0.5 + 0.9 * math.sin(math.pi * min(i / steps * 1.1, 1.0))
+        sp.use_endpoint_u = True
+        sp.order_u = 4
+        ob = bpy.data.objects.new(f"{name}{k}", cu)
+        ob.data.materials.append(m if k % 5 else m2)
+        S.link(ob, coll)
+        ob.parent = root
+        delay = rng.uniform(0.0, 0.25)
+        for f, g in grow_keys:
+            cu.bevel_factor_end = max(0.0, min(1.0, (g - delay) / (1 - delay)))
+            cu.keyframe_insert("bevel_factor_end", frame=f)
+        obs.append(ob)
+    # the whole cloud turns slowly as it rises
+    root.rotation_euler = (0, 0, 0)
+    root.keyframe_insert("rotation_euler", frame=0)
+    root.rotation_euler = (0, 0, math.radians(spin_deg))
+    root.keyframe_insert("rotation_euler", frame=frames - 1)
+    return obs

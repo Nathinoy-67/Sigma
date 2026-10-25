@@ -157,9 +157,18 @@ def picture(f):
             return crop_move(a, a.shape[1] * (0.5 + 0.02 * u), a.shape[0] * 0.5, a.shape[1] * (0.97 - 0.03 * u))
         return np.full((PH, W, 3), 0.02, np.float32)
     p = seq_path(shot, local)
+    if shot in TWOS:
+        q = seq_path(shot, local, "24")
+        if os.path.exists(q):
+            p = q
+        elif not os.path.exists(p):
+            p = seq_path(shot, local - local % 2)             # not interpolated yet: hold the render
     if not os.path.exists(p):
         return placeholder(shot, local)
     return to_picture(load(p))
+
+
+TWOS = {"s07", "s09", "s10", "s13", "s15", "s16", "s17", "s20"}
 
 
 def still_s05(local, n):
@@ -221,6 +230,8 @@ def comp_s21(local, n):
         if not (f_lo <= local < f_hi):
             continue
         q = os.path.join(FR, f"s21_{variant}", f"{local:04d}.png")
+        if not os.path.exists(q):
+            q = os.path.join(FR, f"s21_{variant}", f"{local - local % 2:04d}.png")     # fizz rendered on twos
         if not os.path.exists(q):
             continue
         im = Image.open(q).convert("RGBA").resize((w, h), Image.LANCZOS)
