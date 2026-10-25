@@ -460,6 +460,20 @@ def encode(src, name):
     subprocess.run(base + ["-c:v", "libx265", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p", "-tag:v", "hvc1",
                            "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart", "-shortest",
                            os.path.join(out, f"{name}-hevc.mp4")], check=True)
+    # a lighter 1080p copy for phones and messaging
+    subprocess.run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "22", "-maxrate", "6M", "-bufsize", "12M",
+                           "-pix_fmt", "yuv420p", "-profile:v", "high", "-c:a", "aac", "-b:a", "192k",
+                           "-movflags", "+faststart", "-shortest", os.path.join(out, f"{name}-share.mp4")], check=True)
+    # sidecar subtitles (the burned-in ones, as SRT) and a poster frame from the hero shot
+    lines = json.load(open(os.path.join(V3, "audio", "vo", "lines.json")))["lines"]
+
+    def ts(t):
+        ms = int(round(t * 1000))
+        return f"{ms // 3600000:02d}:{ms // 60000 % 60:02d}:{ms // 1000 % 60:02d},{ms % 1000:03d}"
+    with open(os.path.join(out, f"{name}.en.srt"), "w") as fh:
+        for i, ln in enumerate(lines, 1):
+            fh.write(f"{i}\n{ts(ln['start'] - 2 / FPS)} --> {ts(ln['start'] + ln['dur'] + 6 / FPS)}\n{ln['text']}\n\n")
+    Image.open(os.path.join(src, "1290.jpg")).save(os.path.join(out, "poster.jpg"), quality=92)
     print("[encode] done", out)
 
 
