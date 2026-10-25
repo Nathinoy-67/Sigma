@@ -235,6 +235,9 @@ def still_push(shot, local, n, target, end_frac=None):
     return crop_move(a, cx, cy, cw)
 
 
+S21_REGIONS = {"fizz": (0.25, 0.49, 0.04, 0.88), "bead": (0.56, 0.80, 0.50, 0.97)}    # as blender/shots/s21.py
+
+
 def comp_s21(local, n):
     p = os.path.join(FR, "s21", "s21_still_0000.png")
     if not os.path.exists(p):
@@ -249,10 +252,16 @@ def comp_s21(local, n):
             q = os.path.join(FR, f"s21_{variant}", f"{local - local % 2:04d}.png")     # fizz rendered on twos
         if not os.path.exists(q):
             continue
-        im = Image.open(q).convert("RGBA").resize((w, h), Image.LANCZOS)
-        r = np.asarray(im, np.float32) / 255.0
-        al = r[..., 3:4]
-        al = gaussian_filter(al[..., 0] * (al[..., 0] > 0.99), 6)[..., None]     # feather the border-render edge
+        im = Image.open(q)
+        has_alpha = im.mode in ("RGBA", "LA")
+        r = np.asarray(im.convert("RGBA").resize((w, h), Image.LANCZOS), np.float32) / 255.0
+        if has_alpha:
+            al = r[..., 3] > 0.99
+        else:                               # saved without alpha: the border rectangle itself (inset 4 px)
+            x0, x1, y0, y1 = S21_REGIONS[variant]
+            al = np.zeros((h, w), bool)
+            al[int((1 - y1) * h) + 4:int((1 - y0) * h) - 4, int(x0 * w) + 4:int(x1 * w) - 4] = True
+        al = gaussian_filter(al.astype(np.float32), 6)[..., None]                 # feather the border-render edge
         base = base * (1 - al) + r[..., :3] * al
     u = ease_io(local / (n - 1), 1.5)
     return crop_move(base, w / 2, h * (0.5 + 0.01 * u), w * (1.0 - 0.06 * u))
