@@ -27,3 +27,5 @@
 --shot s07 --res 960x402 --samples 8 --threshold 0.07 --range 0-59
 --shot s12 --res 2304x964 --samples 16 --frames 0 --fmt png --out ../frames/s12
 --shot s20 --res 960x402 --samples 8 --threshold 0.07 --range 0-59 --step 2
+--shot s16 --res 960x402 --samples 8 --threshold 0.07 --range 0-59 --step 2
+--shot s09 --res 960x402 --samples 8 --threshold 0.07 --range 0-74 --step 2

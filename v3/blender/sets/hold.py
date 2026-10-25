@@ -185,10 +185,12 @@ def porthole(coll):
         b.data.materials.append(brass)
         S.link(b, coll)
     bpy.ops.mesh.primitive_cylinder_add(radius=PORT_R + 0.002, depth=0.018, vertices=64, location=PORT + Vector((0, 0.045, 0)),
-                                        rotation=(math.radians(90), 0, 0))
+                                        rotation=(math.radians(90), 0, 0), end_fill_type="TRIFAN")
     g = bpy.context.active_object
     g.name = "PortGlass"
-    g.data.materials.append(M.glass("PortGlass", smudge=0.35, wavy=0.1, radius=PORT_R, seed=8, absorb=(0.85, 0.95, 0.9), density=4.0))
+    for poly in g.data.polygons:            # flat faces: no smoothed-normal spokes across the fan
+        poly.use_smooth = False
+    g.data.materials.append(M.glass("PortGlass", smudge=0.0, wavy=0.0, radius=PORT_R, seed=8, absorb=(0.85, 0.95, 0.9), density=4.0))
     g.visible_shadow = False
     S.link(g, coll)
     # outside: the sea and the sky (only ever seen out of focus through the glass)

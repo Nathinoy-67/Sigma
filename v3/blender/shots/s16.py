@@ -45,19 +45,43 @@ def build(res="look", samples=None, threshold=None, **kw):
     film.scale = (1, 1, 0.9)
     film.data.materials.append(M.water("WetFilmWater"))
     S.link(film, coll)
+    # the wet mark the foot left: water darkens the lacquer in a ring and turns it mirror-glossy
+    sm, st = M.new_material("WetRing")
+    q = st.texco("Object")
+    qx, qy, qz = st.xyz(q)
+    rr = st.math("SQRT", st.add(st.mul(qx, qx), st.mul(qy, qy)))
+    wob = st.mul(st.add(st.noise(q, scale=400.0, detail=3.0), -0.5), 0.0012)
+    rr = st.add(rr, wob)
+    a_ring = st.mul(st.smooth(rr, 0.0186, 0.0196), st.math("SUBTRACT", 1.0, st.smooth(rr, 0.0230, 0.0242)))
+    wet = st.principled(base=(0.05, 0.018, 0.008), rough=0.04, coat=1.0, coat_rough=0.02)
+    st.output(st.mix_shader(st.mul(a_ring, 0.85), st.node("ShaderNodeBsdfTransparent"), wet))
+    bpy.ops.mesh.primitive_plane_add(size=0.06, location=c + Vector((0, 0, 0.00008)))
+    stain = bpy.context.active_object
+    stain.name = "WetRingStain"
+    stain.data.materials.append(sm)
+    stain.visible_shadow = False
+    S.link(stain, coll)
     # the beads tremble (the room hums; somebody just walked off)
     for f in range(FRAMES):
         k = 1.0 + 0.035 * math.sin(f * 1.9) * math.exp(-f / 40.0) + 0.01 * math.sin(f * 4.3)
         drops.scale = (1.0, 1.0, k)
         drops.location = (0, 0, (k - 1.0) * -0.0)
         drops.keyframe_insert("scale", frame=f)
-    S.area_light("PinkKick", size=(0.3, 0.3), power=1.2, color=(1.0, 0.18, 0.5), location=c + Vector((0.15, 0.6, 0.25)),
+    S.area_light("PinkKick", size=(0.3, 0.3), power=5.0, color=(1.0, 0.18, 0.5), location=c + Vector((0.15, 0.6, 0.25)),
                  target=c, coll=coll)
     d = (c - HB)
     d.z = 0
     d.normalize()
-    cam_p = c + d * 0.30 + Vector((0, 0, 0.06))
-    cam = C.add_camera("CAM_S16", lens=100, location=cam_p, target=c + Vector((0.0, 0.0, 0.012)) - d * 0.02, fstop=2.8, focus=c)
+    # a low warm strip behind the ring, out of frame: every bead carries its own glint
+    glint = S.area_light("BeadGlint", size=(1.2, 0.08), power=3.0, kelvin=3200, location=c - d * 0.45 + Vector((0, 0, 0.09)),
+                         target=c, coll=coll)
+    glint.visible_camera = False
+    rec = bpy.data.collections.new("GlintReceivers")          # light linking: only the beads and the film see it
+    rec.objects.link(drops)
+    rec.objects.link(film)
+    glint.light_linking.receiver_collection = rec
+    cam_p = c + d * 0.30 + Vector((0, 0, 0.10))
+    cam = C.add_camera("CAM_S16", lens=100, location=cam_p, target=c + Vector((0.0, 0.0, 0.004)) - d * 0.02, fstop=2.8, focus=c)
     C.rack_focus(cam, [(0, c + d * 0.021), (26, c + d * 0.021), (46, HB + Vector((0, -0.03, 0.06))),
                        (FRAMES - 1, HB + Vector((0, -0.03, 0.06)))], breathing=0.02)
     C.breathe(cam, amplitude_deg=0.02, period_frames=60, seed=16)
