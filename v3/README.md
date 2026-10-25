@@ -50,5 +50,13 @@ the 1970s; the Jägerbomb most often credited to bars around Lake Tahoe c. 1997,
   measured on the renders, upscale to 1920x804, halation, grade, vignette, grain, letterbox, era supers, title,
   tagline, subtitles in the bottom bar, end card; `--encode` muxes the final mix into H.264 and HEVC.
 
+## The film
+
+- `out/one-year-one-second.mp4` master, 1920x1080, H.264, 24 fps, 60 s, stereo AAC (-14 LUFS)
+- `out/one-year-one-second-hevc.mp4` the same in HEVC (smaller, best for Apple devices)
+- `out/one-year-one-second-share.mp4` a lighter copy for phones and messaging
+- `out/one-year-one-second.en.srt` the English subtitles as a sidecar file (they are also burned in)
+- `out/poster.jpg` a poster frame
+
 Jägermeister and its marks belong to Mast-Jägermeister SE. This is an unofficial spec piece; the label artwork is our
 own and no logo is shown. Please enjoy responsibly.

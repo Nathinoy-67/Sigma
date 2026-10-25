@@ -18,7 +18,7 @@ from functools import lru_cache
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
-from scipy.ndimage import gaussian_filter
+from scipy.ndimage import gaussian_filter, label
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 V3 = os.path.dirname(HERE)
@@ -80,10 +80,18 @@ def to_picture(a):
     return np.clip(np.stack(out, -1), 0, 1)
 
 
-def crop_move(a, cx, cy, cw):
-    """Crop a window of width cw (px, aspect 1920:804) centred at (cx, cy) from still a, resampled to the picture."""
+def crop_move(a, cx, cy, cw, overhang=False):
+    """Crop a window of width cw (px, aspect 1920:804) centred at (cx, cy) from still a, resampled to the picture.
+    overhang: a window leaving the still is filled by mirroring the still (match cuts must land exactly)."""
     h, w = a.shape[:2]
     ch = cw * PH / W
+    if overhang:
+        l, r = max(0, int(math.ceil(cw / 2 - cx)) + 2), max(0, int(math.ceil(cx + cw / 2 - w)) + 2)
+        t, b = max(0, int(math.ceil(ch / 2 - cy)) + 2), max(0, int(math.ceil(cy + ch / 2 - h)) + 2)
+        if l or r or t or b:
+            a = np.pad(a, ((t, b), (l, r), (0, 0)), mode="reflect")
+            cx, cy = cx + l, cy + t
+            h, w = a.shape[:2]
     if cw > w or ch > h:                   # window larger than the still: extend it with a soft mirrored border
         px, py = int(max(0, cw - w) / 2) + 2, int(max(0, ch - h) / 2) + 2
         pad = np.pad(a, ((py, py), (px, px), (0, 0)), mode="reflect")
@@ -125,20 +133,42 @@ def placeholder(shot, local):
     return np.asarray(img, np.float32) / 255.0
 
 
-@lru_cache(maxsize=1)
 @lru_cache(maxsize=2)
 def soft_plate(path):
     """The end-slate wood, thrown well out of focus: a calm, dark ground for the type."""
     return gaussian_filter(load(path), (5, 5, 0)) * 0.85
 
 
+def fit_arc(a, q, side):
+    """Circle through one edge of the largest bright region: its lowest ('bottom') or highest ('top') pixel per column.
+    For openings only partly lit (the oculus shows a crescent of sky; the porthole a bright sky over a darker sea)
+    the edge still lies on the opening's rim, where the area-based detect_disc would not."""
+    lum = a.mean(-1)
+    thr = max(np.quantile(lum, q), 0.6)
+    lab, n = label(lum >= thr * 0.92)
+    if n == 0:
+        return detect_disc(a, q)
+    m = lab == (np.argmax(np.bincount(lab.ravel())[1:]) + 1)
+    cols = np.nonzero(m.any(0))[0]
+    lo, hi = np.percentile(cols, [6, 94])
+    cols = cols[(cols >= lo) & (cols <= hi)]
+    rows = [np.nonzero(m[:, c])[0] for c in cols]
+    ys = np.array([r.max() if side == "bottom" else r.min() for r in rows], np.float64)
+    xs = cols.astype(np.float64)
+    A = np.stack([xs, ys, np.ones_like(xs)], 1)
+    D, E, F = np.linalg.lstsq(A, -(xs ** 2 + ys ** 2), rcond=None)[0]
+    cx, cy = -D / 2, -E / 2
+    return float(cx), float(cy), float(math.sqrt(max(cx * cx + cy * cy - F, 1.0)))
+
+
+@lru_cache(maxsize=1)
 def match_targets():
     """Screen positions for the circle match cuts, measured on the renders themselves."""
     t = {}
     p = seq_path("s09", 0)
     if os.path.exists(p):
         a = to_picture(load(p))
-        t["porthole"] = detect_disc(a, 0.98)
+        t["porthole"] = fit_arc(a, 0.98, "top")
     p = seq_path("s13", 0)
     if os.path.exists(p):
         a = to_picture(load(p))
@@ -157,7 +187,7 @@ def picture(f):
     if shot == "s05":
         return still_s05(local, n)
     if shot == "s08":
-        return still_push("s08", local, n, "porthole", end_frac=0.61)
+        return still_push("s08", local, n, "porthole", end_frac=None)
     if shot == "s12":
         return still_push("s12", local, n, "moon", end_frac=None)
     if shot == "s21":
@@ -214,7 +244,7 @@ def still_push(shot, local, n, target, end_frac=None):
         return placeholder(shot, local)
     a = load(p)
     h, w = a.shape[:2]
-    dx, dy, dr = detect_disc(a, 0.99 if shot == "s08" else 0.995)
+    dx, dy, dr = fit_arc(a, 0.99, "bottom") if shot == "s08" else detect_disc(a, 0.995)
     tg = match_targets().get(target)
     if tg is None:      # fall back: centre the disc
         tx, ty, tr = W / 2, PH / 2, PH * (end_frac or 0.3) / 2
@@ -232,7 +262,7 @@ def still_push(shot, local, n, target, end_frac=None):
     cw = cw0 * (cw_end / cw0) ** u
     cx = w / 2 + (cx_end - w / 2) * u
     cy = h / 2 + (cy_end - h / 2) * u
-    return crop_move(a, cx, cy, cw)
+    return crop_move(a, cx, cy, cw, overhang=True)
 
 
 S21_REGIONS = {"fizz": (0.25, 0.49, 0.04, 0.88), "bead": (0.56, 0.80, 0.50, 0.97)}    # as blender/shots/s21.py
@@ -344,6 +374,19 @@ SUPERS = [(3.00, 5.50, "WOLFENBÜTTEL · GERMANY", "1934", None, None),
           (28.10, 30.50, "LAKE TAHOE (ALLEGEDLY)", "c. 1997", None, None)]
 
 
+def sub_windows(lines):
+    """(on, off, line) per narration line: on 2 frames early, off 6 frames late, never overlapping the next one."""
+    ls = sorted(lines, key=lambda ln: ln["start"])
+    out = []
+    for i, ln in enumerate(ls):
+        a0 = ln["start"] - 2 / FPS
+        a1 = ln["start"] + ln["dur"] + 6 / FPS
+        if i + 1 < len(ls):
+            a1 = min(a1, ls[i + 1]["start"] - 3 / FPS)
+        out.append((a0, a1, ln))
+    return out
+
+
 def overlay(f, lines):
     """RGBA overlay for the 1920x1080 master (type only)."""
     ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -403,11 +446,9 @@ def overlay(f, lines):
                  "Energy drink shown is unbranded. For adults of legal drinking age only.")
         tracked(d, (W / 2, H - 52), legal, font("mono_light", 14), (242, 242, 242, int(255 * 0.55)), 0.0, center=True)
     # subtitles in the bottom bar (none for the end card's own word)
-    for ln in lines:
+    for a0, a1, ln in sub_windows(lines):
         if ln["key"] == "10":
             continue
-        a0 = ln["start"] - 2 / FPS
-        a1 = ln["start"] + ln["dur"] + 6 / FPS
         if a0 <= t < a1:
             tracked(d, (W / 2, 1020), ln["text"], font("inter_medium", 32), (242, 242, 242, int(255 * 0.92)), 0.0, center=True)
     return ov
@@ -469,14 +510,15 @@ def encode(src, name):
     os.makedirs(out, exist_ok=True)
     audio = os.path.join(V3, "audio", "mix", "final_mix.wav")
     base = ["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS), "-i", os.path.join(src, "%04d.jpg"), "-i", audio]
-    subprocess.run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "16", "-pix_fmt", "yuv420p", "-profile:v", "high",
+    subprocess.run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "17", "-maxrate", "11M", "-bufsize", "22M",
+                           "-pix_fmt", "yuv420p", "-profile:v", "high",
                            "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart", "-shortest",
                            os.path.join(out, f"{name}.mp4")], check=True)
     subprocess.run(base + ["-c:v", "libx265", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p", "-tag:v", "hvc1",
                            "-c:a", "aac", "-b:a", "256k", "-movflags", "+faststart", "-shortest",
                            os.path.join(out, f"{name}-hevc.mp4")], check=True)
     # a lighter 1080p copy for phones and messaging
-    subprocess.run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "22", "-maxrate", "6M", "-bufsize", "12M",
+    subprocess.run(base + ["-c:v", "libx264", "-preset", "slow", "-crf", "23", "-maxrate", "3500k", "-bufsize", "7M",
                            "-pix_fmt", "yuv420p", "-profile:v", "high", "-c:a", "aac", "-b:a", "192k",
                            "-movflags", "+faststart", "-shortest", os.path.join(out, f"{name}-share.mp4")], check=True)
     # sidecar subtitles (the burned-in ones, as SRT) and a poster frame from the hero shot
@@ -486,8 +528,8 @@ def encode(src, name):
         ms = int(round(t * 1000))
         return f"{ms // 3600000:02d}:{ms // 60000 % 60:02d}:{ms // 1000 % 60:02d},{ms % 1000:03d}"
     with open(os.path.join(out, f"{name}.en.srt"), "w") as fh:
-        for i, ln in enumerate(lines, 1):
-            fh.write(f"{i}\n{ts(ln['start'] - 2 / FPS)} --> {ts(ln['start'] + ln['dur'] + 6 / FPS)}\n{ln['text']}\n\n")
+        for i, (a0, a1, ln) in enumerate(sub_windows(lines), 1):
+            fh.write(f"{i}\n{ts(a0)} --> {ts(a1)}\n{ln['text']}\n\n")
     Image.open(os.path.join(src, "1290.jpg")).save(os.path.join(out, "poster.jpg"), quality=92)
     print("[encode] done", out)
 
