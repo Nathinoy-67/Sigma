@@ -93,6 +93,15 @@ def build(res="look", samples=None, threshold=None, **kw):
         for fc in C.fcurves(idb):
             for kp in fc.keyframe_points:
                 kp.interpolation = "LINEAR"
+    # the winter morning also fills the head softly (else the fresh '1935' sits in the dark)
+    fill = S.area_light("WinterFill", size=(0.6, 0.6), power=10.0, kelvin=8500, location=head + Vector((-0.85, -0.6, 0.4)),
+                        target=head + Vector((0, -0.2, 0.0)), coll=coll)
+    for f, e in ((0, 0.0), (29, 0.0), (30, 10.0)):
+        fill.data.energy = e
+        fill.data.keyframe_insert("energy", frame=f)
+    for fc in C.fcurves(fill.data):
+        for kp in fc.keyframe_points:
+            kp.interpolation = "CONSTANT"
     S.world((0.0015, 0.0017, 0.002), 1.0)
     # camera: 100 mm, ~1 m off the head, slightly from the aisle side; rack thread -> chalk around the reveal
     chalk_pt = head + Vector((0, -0.10, 0.02))

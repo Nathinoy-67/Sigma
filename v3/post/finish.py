@@ -84,6 +84,15 @@ def crop_move(a, cx, cy, cw):
     """Crop a window of width cw (px, aspect 1920:804) centred at (cx, cy) from still a, resampled to the picture."""
     h, w = a.shape[:2]
     ch = cw * PH / W
+    if cw > w or ch > h:                   # window larger than the still: extend it with a soft mirrored border
+        px, py = int(max(0, cw - w) / 2) + 2, int(max(0, ch - h) / 2) + 2
+        pad = np.pad(a, ((py, py), (px, px), (0, 0)), mode="reflect")
+        soft = gaussian_filter(pad, (12, 12, 0))
+        inner = np.zeros(pad.shape[:2], np.float32)
+        inner[py:py + h, px:px + w] = 1.0
+        inner = gaussian_filter(inner, 8)[..., None]
+        a, cx, cy = pad * inner + soft * (1 - inner), cx + px, cy + py
+        h, w = a.shape[:2]
     x0, y0 = cx - cw / 2, cy - ch / 2
     x0 = min(max(x0, 0), w - cw)
     y0 = min(max(y0, 0), h - ch)
@@ -168,7 +177,7 @@ def picture(f):
     return to_picture(load(p))
 
 
-TWOS = {"s07", "s09", "s10", "s13", "s15", "s16", "s17", "s20"}
+TWOS = {"s09", "s10", "s13", "s15", "s16", "s17", "s20"}
 
 
 def still_s05(local, n):

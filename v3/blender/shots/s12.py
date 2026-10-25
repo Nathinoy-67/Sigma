@@ -50,7 +50,7 @@ def build(res="look", samples=None, threshold=None, **kw):
     # focus on the mirrored disc (its virtual image lies as far below the surface as the pendant hangs above it);
     # the frosted rim falls soft
     pend = L["pendant"].matrix_world.translation.z - g.info["fill_z"] - D.GLASS.z
-    cam = C.add_camera("CAM_S12", lens=100, location=top + Vector((0.0, 0.0, 0.42)), rotation_deg=(0, 0, 0), fstop=5.6,
+    cam = C.add_camera("CAM_S12", lens=62, location=top + Vector((0.0, 0.0, 0.42)), rotation_deg=(0, 0, 0), fstop=5.6,
                        focus=0.42 + pend)
     L["tube"].data.energy = 22.0
     return dict(cam=cam)

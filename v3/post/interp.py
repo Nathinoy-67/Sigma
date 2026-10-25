@@ -33,6 +33,10 @@ def interp(shot):
     # the renders themselves stay authoritative on even frames
     for f in evens:
         shutil.copyfile(os.path.join(src, f"{f:04d}.png"), os.path.join(out, f"{f:04d}.png"))
+    # minterpolate stops short of the last pair: hold the previous frame over any gap (and the final odd frame)
+    for f in range(evens[0] + 1, evens[-1] + 2):
+        if not os.path.exists(os.path.join(out, f"{f:04d}.png")):
+            shutil.copyfile(os.path.join(out, f"{f - 1:04d}.png"), os.path.join(out, f"{f:04d}.png"))
     shutil.rmtree(tmp)
     print(shot, "->", len(os.listdir(out)), "frames")
 
