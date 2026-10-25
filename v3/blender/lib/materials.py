@@ -527,6 +527,33 @@ def energy_drink(name="EnergyDrink", density=12.0, scatter=0.0):
                   anisotropy=0.6)
 
 
+def foamy_energy_drink(name="FoamyDrink", density=14.0):
+    """The energy drink after the plunge: the liquid of energy_drink() under a churned head of pale foam.
+    Foam lies on upward-facing surface (world normal z) in bubble clusters; its amount is the Value node
+    'FoamAmount' (0 = clear, 1 = full head), keyed by the shot.  Shadow rays see the foam as half opaque."""
+    m, t = new_material(name)
+    bsdf = t.principled(base=(1.0, 1.0, 1.0), transmission=1.0, rough=0.0, ior=1.34)
+    amt = t.node("ShaderNodeValue")
+    amt.name = "FoamAmount"
+    amt.outputs[0].default_value = 0.0
+    p = t.texco("Object")
+    nz = t.xyz(t.geo("Normal"))[2]
+    up = t.smooth(nz, -0.1, 0.7)
+    clus = t.noise(p, scale=220.0, detail=4.0, rough=0.55)                         # ~4 mm clusters
+    lace = t.noise(p, scale=900.0, detail=2.0, rough=0.5)                          # ~1 mm lace between bubbles
+    cover = t.mul(up, t.smooth(t.add(t.add(clus, t.mul(lace, 0.35)), t.mul(amt.outputs[0], 0.22)), 0.86, 0.93))
+    cover = t.mul(cover, t.math("MINIMUM", t.mul(amt.outputs[0], 4.0), 1.0), clamp=True)
+    cells = t.voronoi(p, scale=2600.0, rand=1.0, out="Distance")                  # ~0.4 mm bubbles
+    foam = t.principled(base=t.mixc(lace, (0.80, 0.70, 0.42), (0.97, 0.93, 0.80)), rough=0.4, coat=0.6,
+                        coat_rough=0.05, sheen=0.4, normal=t.bump(cells, 0.6, 0.0004))
+    surf = t.mix_shader(cover, bsdf, foam)
+    lp = t.node("ShaderNodeLightPath")
+    tr = t.node("ShaderNodeBsdfTransparent", {"Color": t.mixc(t.mul(cover, 0.6), (1, 1, 1), (0, 0, 0))})
+    vol = t.node("ShaderNodeVolumeAbsorption", {"Color": (0.86, 0.92, 0.10), "Density": density})
+    t.output(t.mix_shader(lp.outputs["Is Shadow Ray"], surf, tr), vol)
+    return m
+
+
 def water(name="Water", roughness=0.0):
     """Condensation / melt water.  IOR 1.333, transparent to shadow rays."""
     m, t = new_material(name)

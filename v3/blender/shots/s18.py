@@ -49,7 +49,14 @@ def setup_glass_and_shot(coll, frame_fn, drink, shot_seed=12):
         shot.root.location = F.HB + Vector((0, 0, z))
         shot.root.keyframe_insert("location", frame=f)
     C.set_interpolation(shot.root, "location", "LINEAR")
-    liquid = FL.particle_liquid("Plunge", SIM_DIR, drink, coll=coll, frame_map=frame_fn, location=F.HB)
+    # the sim's liquid foams up after the impact (sim frame 12): a pale head builds over the churned surface
+    foamy = M.foamy_energy_drink("PlungeDrink", density=14.0)
+    amt = foamy.node_tree.nodes["FoamAmount"].outputs[0]
+    for f in range(sc.frame_start, sc.frame_end + 1):
+        amt.default_value = 0.95 * min(max((frame_fn(f) - 13) / 45.0, 0.0), 1.0) ** 0.7
+        amt.keyframe_insert("default_value", frame=f)
+    liquid = FL.particle_liquid("Plunge", SIM_DIR, foamy, coll=coll, frame_map=frame_fn, location=F.HB,
+                                radius=0.0009, smooth_iter=5)
     return hb, shot, liquid
 
 
