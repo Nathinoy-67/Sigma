@@ -175,7 +175,10 @@ def ink_tendrils(coll, grow_keys, fill_z, mouth=Vector((0.0, 0.0, 0.069)), n=52,
     import random as _r
     rng = _r.Random(seed)
     m, t = M.new_material(name)
-    t.output(None, t.node("ShaderNodeVolumeAbsorption", {"Color": (0.42, 0.11, 0.04), "Density": 520.0}))
+    t.output(None, t.node("ShaderNodeVolumeAbsorption", {"Color": (0.42, 0.11, 0.04), "Density": 380.0}))
+    # every filament carries a soft halo: the liqueur already diffusing into the drink around its core
+    m3, t3 = M.new_material(name + "Halo")
+    t3.output(None, t3.node("ShaderNodeVolumeAbsorption", {"Color": (0.66, 0.34, 0.14), "Density": 26.0}))
     m2, t2 = M.new_material(name + "Haze")
     t2.output(None, t2.node("ShaderNodeVolumeAbsorption", {"Color": (0.55, 0.22, 0.08), "Density": 60.0}))
     root = S.empty(name + "Root", HB, coll=coll)
@@ -222,6 +225,13 @@ def ink_tendrils(coll, grow_keys, fill_z, mouth=Vector((0.0, 0.0, 0.069)), n=52,
             cu.bevel_factor_end = max(0.0, min(1.0, (g - delay) / (1 - delay)))
             cu.keyframe_insert("bevel_factor_end", frame=f)
         obs.append(ob)
+        halo = bpy.data.objects.new(f"{name}Halo{k}", cu.copy())
+        halo.data.bevel_depth = thick * 3.0 + 0.0018
+        halo.data.materials.clear()
+        halo.data.materials.append(m3)
+        S.link(halo, coll)
+        halo.parent = root
+        obs.append(halo)
     # the whole cloud turns slowly as it rises
     root.rotation_euler = (0, 0, 0)
     root.keyframe_insert("rotation_euler", frame=0)
