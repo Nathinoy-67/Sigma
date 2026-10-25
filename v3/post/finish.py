@@ -126,6 +126,12 @@ def placeholder(shot, local):
 
 
 @lru_cache(maxsize=1)
+@lru_cache(maxsize=2)
+def soft_plate(path):
+    """The end-slate wood, thrown well out of focus: a calm, dark ground for the type."""
+    return gaussian_filter(load(path), (5, 5, 0)) * 0.85
+
+
 def match_targets():
     """Screen positions for the circle match cuts, measured on the renders themselves."""
     t = {}
@@ -161,7 +167,7 @@ def picture(f):
     if shot == "s23":
         p = os.path.join(FR, "s23", "s23_0000.png")
         if os.path.exists(p):
-            a = load(p)
+            a = soft_plate(p)
             u = local / n
             return crop_move(a, a.shape[1] * (0.5 + 0.02 * u), a.shape[0] * 0.5, a.shape[1] * (0.97 - 0.03 * u))
         return np.full((PH, W, 3), 0.02, np.float32)
