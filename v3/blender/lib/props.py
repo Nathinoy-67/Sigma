@@ -292,7 +292,9 @@ def _liquid_profile(inner_up, fill_z, meniscus=0.0012, men_len=0.0013, overlap=O
     last = men[-1][0] if men else r_wall
     for k in range(1, flat_steps + 1):
         out.append((last * (1 - k / flat_steps), fill_z))
-    return out
+    # densify long wall segments: with smooth shading a tall single face interpolates the normals of its corners
+    # (tilted up at the meniscus, down at the floor fillet) and bends every ray through the drink vertically
+    return resample(out, 0.002)[0]
 
 
 def _vol_ml(prof_up):

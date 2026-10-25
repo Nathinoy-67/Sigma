@@ -84,14 +84,14 @@ def stage(coll, moon=True, neon=True):
     gm, gt = M.new_material("GlowCard")
     g = gt.texco("Generated")
     gx, gy, gz = gt.xyz(g)
-    fall = gt.mul(gt.math("SUBTRACT", 1.0, gt.smooth(gt.math("ABSOLUTE", gt.add(gx, -0.5)), 0.15, 0.5)),
-                  gt.math("SUBTRACT", 1.0, gt.smooth(gt.math("ABSOLUTE", gt.add(gy, -0.5)), 0.15, 0.5)))
+    fall = gt.mul(gt.math("SUBTRACT", 1.0, gt.smooth(gt.math("ABSOLUTE", gt.add(gx, -0.5)), 0.12, 0.5)),
+                  gt.math("SUBTRACT", 1.0, gt.smooth(gt.math("ABSOLUTE", gt.add(gy, -0.5)), 0.12, 0.5)))
     gt.output(gt.add_shader(gt.node("ShaderNodeBsdfTransparent"),
-                            gt.node("ShaderNodeEmission", {"Color": (1.0, 0.78, 0.45), "Strength": gt.mul(fall, 2.2)})))
+                            gt.node("ShaderNodeEmission", {"Color": (1.0, 0.78, 0.45), "Strength": gt.mul(fall, 1.5)})))
     bpy.ops.mesh.primitive_plane_add(size=1.0, location=HB + Vector((0.0, 0.32, 0.075)), rotation=(math.radians(90), 0, 0))
     card = bpy.context.active_object
     card.name = "GlowCard"
-    card.scale = (0.30, 0.22, 1)
+    card.scale = (0.34, 0.26, 1)
     card.data.materials.append(gm)
     card.visible_shadow = False
     card.visible_diffuse = False
@@ -138,19 +138,19 @@ def plume(coll, clock_keys, fill_z, mouth=Vector((0.0, 0.0, 0.069)), mix_keys=((
     dx = t.add(t.add(x, t.mul(wx, grow)), t.mul(ax, -1.0))
     dy = t.add(t.add(y, t.mul(wy, grow)), t.mul(ay, -1.0))
     rad = t.math("SQRT", t.add(t.mul(dx, dx), t.mul(dy, dy)))
-    R = t.add(0.0035, t.add(t.mul(t.math("MAXIMUM", h, 0.0), 0.2), t.mul(T, 0.004)))
+    R = t.add(0.006, t.add(t.mul(t.math("MAXIMUM", h, 0.0), 0.25), t.mul(T, 0.004)))
     core = t.math("SUBTRACT", 1.0, t.smooth(t.math("DIVIDE", rad, R), 0.25, 1.0))
-    front = t.math("SUBTRACT", 1.0, t.smooth(h, t.mul(T, 0.032), t.add(t.mul(T, 0.032), 0.008)))
+    front = t.math("SUBTRACT", 1.0, t.smooth(h, t.mul(T, 0.05), t.add(t.mul(T, 0.05), 0.01)))
     start = t.smooth(h, -0.004, 0.003)
     turb = t.noise(t.mapping(p, scale=(300.0, 300.0, 200.0)), scale=1.0, detail=4.0, w=t.mul(T, 2.0), dims="4D")
-    lace = t.math("POWER", t.math("MAXIMUM", t.add(turb, -0.25), 0.0), 1.4)
-    dens = t.mul(t.mul(t.mul(core, front), start), t.add(0.25, t.mul(lace, 3.0)))
+    lace = t.math("POWER", t.math("MAXIMUM", t.add(turb, -0.3), 0.0), 2.0)
+    dens = t.mul(t.mul(t.mul(core, front), start), t.add(0.15, t.mul(lace, 6.0)))
     mixv = t.node("ShaderNodeValue")
     mixv.name = "PlumeMix"
     for f, v in mix_keys:
         mixv.outputs[0].default_value = v
         mixv.outputs[0].keyframe_insert("default_value", frame=f)
-    total = t.add(t.mul(dens, 70.0), mixv.outputs[0])
+    total = t.add(t.mul(dens, 380.0), mixv.outputs[0])
     vol = t.node("ShaderNodeVolumeAbsorption", {"Color": (0.42, 0.11, 0.04), "Density": total})
     t.output(None, vol)
     import camera as C
@@ -160,6 +160,7 @@ def plume(coll, clock_keys, fill_z, mouth=Vector((0.0, 0.0, 0.069)), mix_keys=((
     bpy.ops.mesh.primitive_cylinder_add(radius=0.0262, depth=fill_z - 0.009 - 0.0012, vertices=96,
                                         location=HB + Vector((0, 0, 0.009 + (fill_z - 0.009 - 0.0012) / 2)))
     ob = bpy.context.active_object
+    bpy.ops.object.transform_apply(location=True)          # object space = highball space (the plume field uses z)
     ob.name = name
     ob.data.materials.append(m)
     S.link(ob, coll)

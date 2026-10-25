@@ -62,6 +62,8 @@ def main():
             out = a.out or os.path.join(S.LOOKDEV, f"{a.shot.lower()}{tag}_{f:04d}.{a.fmt}")
             if a.out and os.path.isdir(a.out):
                 out = os.path.join(a.out, f"{a.shot.lower()}{tag}_{f:04d}.{a.fmt}")
+                if os.path.exists(out) and os.path.getsize(out) > 0:
+                    continue                       # finished stills are skipped (resumable queues)
             times[f] = S.render_still(out, frame=f, quiet=False)
     if a.range:
         f0, f1 = (int(v) for v in a.range.split("-"))

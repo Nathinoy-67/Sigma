@@ -31,13 +31,13 @@ def build(res="look", samples=None, threshold=None, **kw):
     S.new_scene(res, PRESET, samples=samples, threshold=threshold, exposure=-0.25)
     sc = bpy.context.scene
     sc.frame_start, sc.frame_end = 0, FRAMES - 1
-    sc.cycles.volume_step_rate = 3.0
-    sc.cycles.volume_max_steps = 96
+    sc.cycles.volume_step_rate = 5.0
+    sc.cycles.volume_max_steps = 64
     coll = S.collection("S20")
     F.stage(coll)
     drink = M.liquid("BloomDrink", 1.34, (0.86, 0.92, 0.10), 14.0)
     hb = P.highball("Highball", location=F.HB, fill=0.66, seed=5, coll=coll, drink_material=drink, cond_facing_deg=-90.0,
-                    n_streams=22, n_drops=2500, n_cling=160, n_free=80)
+                    n_streams=22, n_drops=1800, n_cling=160, n_free=80)
     fz = hb.info["fill_z"]
     # the drink warms from gold to amber-brown as the plume mixes in
     va = [n for n in drink.node_tree.nodes if n.bl_idname == "ShaderNodeVolumeAbsorption"][0]
@@ -60,8 +60,8 @@ def build(res="look", samples=None, threshold=None, **kw):
     shot.root.scale = (0.93, 0.93, 0.93)
     F.plume(coll, [(f, eff_time(f)) for f in range(0, FRAMES, 3)] + [(FRAMES - 1, eff_time(FRAMES - 1))], fz,
             mix_keys=[(0, 0.0), (30, 1.0), (FRAMES - 1, 6.0)])
-    tgt = F.HB + Vector((0.0, 0.0, 0.058))
-    cam = C.add_camera("CAM_S20", lens=85, location=tgt + Vector((0.0, -0.62, 0.012)), target=tgt, fstop=4.0,
-                       focus=F.HB + Vector((0, -0.01, 0.06)))
+    tgt = F.HB + Vector((0.0, 0.0, 0.074))
+    cam = C.add_camera("CAM_S20", lens=100, location=tgt + Vector((0.0, -0.55, 0.004)), target=tgt, fstop=4.0,
+                       focus=F.HB + Vector((0, -0.006, 0.076)))
     C.breathe(cam, amplitude_deg=0.02, period_frames=60, seed=20)
     return dict(cam=cam)

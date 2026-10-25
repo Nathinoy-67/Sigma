@@ -71,7 +71,7 @@ BOUNCES = {
     # non-glass sets (workroom, cellar, hold, lodge room)
     "default": dict(max=12, diffuse=3, glossy=3, transmission=6, transparent=8, volume=0),
     # glass shots (glass stage, back bar, packshot)
-    "glass": dict(max=16, diffuse=2, glossy=4, transmission=12, transparent=16, volume=0),
+    "glass": dict(max=12, diffuse=2, glossy=4, transmission=10, transparent=12, volume=0),
 }
 
 DEFAULT_LOOK = "AgX - Medium High Contrast"

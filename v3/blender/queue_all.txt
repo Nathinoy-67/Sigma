@@ -1,0 +1,18 @@
+# Set A/B (resumable: finished frames are skipped)
+--shot s01 --res hd --samples 24 --threshold 0.04 --range 0-74
+--shot s06 --res 1152x482 --samples 12 --threshold 0.06 --range 0-89
+--shot s07 --res 1152x482 --samples 12 --threshold 0.06 --range 0-59
+--shot s04 --res 1152x482 --samples 12 --threshold 0.06 --range 0-44 --step 2
+--shot s02 --res 1152x482 --samples 12 --threshold 0.06 --range 0-59
+# Sets C/D/E
+--shot s12 --res 2304x964 --samples 16 --frames 0 --fmt png --out ../frames/s12
+--shot s22 --res 1600x670 --samples 16 --frames 0 --fmt png --out ../frames/s22 --variant on
+--shot s22 --res 1600x670 --samples 16 --frames 0 --fmt png --out ../frames/s22 --variant off
+--shot s11 --res 1152x482 --samples 12 --threshold 0.06 --range 0-44
+--shot s10 --res 1152x482 --samples 12 --threshold 0.06 --range 0-29
+--shot s13 --res 1152x482 --samples 12 --threshold 0.06 --range 0-74
+--shot s14 --res 1152x482 --samples 12 --threshold 0.06 --range 0-59
+--shot s17 --res 1152x482 --samples 12 --threshold 0.06 --range 0-74
+--shot s15 --res 1152x482 --samples 12 --threshold 0.06 --range 0-74
+--shot s09 --res 1152x482 --samples 12 --threshold 0.06 --range 0-74
+--shot s16 --res 1152x482 --samples 12 --threshold 0.06 --range 0-59

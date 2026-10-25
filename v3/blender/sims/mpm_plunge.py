@@ -182,6 +182,13 @@ def main():
     t_wall = time.time()
     steps = 0
     vmax = 1.0
+    ck = os.path.join(a.out, "state.npz")
+    if os.path.exists(ck):            # resume after an interruption (the container can be recycled)
+        st = np.load(ck, allow_pickle=True)
+        x.from_numpy(st["x"]); v.from_numpy(st["v"]); C.from_numpy(st["C"]); J.from_numpy(st["J"])
+        t, f_out, steps = float(st["t"]), int(st["f_out"]), int(st["steps"])
+        meta = json.loads(str(st["meta"]))
+        print(f"[mpm] resumed at frame {f_out}, t={t * 1000:.1f} ms", flush=True)
     while f_out < len(times):
         if t >= times[f_out] - 1e-9:
             P = x.to_numpy() + ORIGIN.astype(np.float32)
@@ -191,6 +198,9 @@ def main():
             json.dump(meta, open(os.path.join(a.out, "meta.json"), "w"))
             print(f"[mpm] frame {f_out} t={t * 1000:.1f} ms  steps {steps}  {time.time() - t_wall:.0f}s", flush=True)
             f_out += 1
+            np.savez(ck + ".tmp.npz", x=x.to_numpy(), v=v.to_numpy(), C=C.to_numpy(), J=J.to_numpy(), t=t,
+                     f_out=f_out, steps=steps, meta=json.dumps(meta))
+            os.replace(ck + ".tmp.npz", ck)
             continue
         if steps % 50 == 0:
             vmax = float(np.abs(v.to_numpy()).max())
