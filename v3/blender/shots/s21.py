@@ -56,8 +56,8 @@ def build(res="look", samples=None, threshold=None, variant=None, **kw):
     shot.root.scale = (0.92, 0.92, 0.92)
     # the bottle: frosted, wet label, with the melt track keyed on the hero hit
     jager = M.jagermeister("JagerBottle", density=520.0)
-    bt = P.bottle("Bottle", location=BOT, rotation_z_deg=-28.0, frosted=True, fill=0.93, seed=4, coll=coll, frost=0.5,
-                  liquid_material=jager, frost_track=TRACK, frost_density=0.38)
+    bt = P.bottle("Bottle", location=BOT, rotation_z_deg=-28.0, frosted=True, fill=0.93, seed=4, coll=coll, frost=0.95,
+                  liquid_material=jager, frost_track=TRACK, frost_density=0.15)
     fm = bt.frost.data.materials[0]
     v = fm.node_tree.nodes["MeltFront"]
     for f, u in ((0, 0.0), (BEAD_F0, 0.0), (BEAD_F0 + 6, 0.35), (BEAD_F0 + 14, 0.7), (BEAD_F1, 1.0)):

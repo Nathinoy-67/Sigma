@@ -21,7 +21,7 @@ def build(res="look", samples=None, threshold=None, variant="on", **kw):
     sc = bpy.context.scene
     sc.frame_start, sc.frame_end = 0, 0
     coll = S.collection("S22")
-    out = E.build_room(coll, moon_z=10.5, moon_x=0.9, neon_c=Vector((0.40, E.WIN_Y - 0.06, 1.40)))
+    out = E.build_room(coll, moon_z=8.0, moon_x=0.9, neon_c=Vector((0.40, E.WIN_Y - 0.06, 1.40)))
     E.key_neon(out["neon"], [(0, 1.0 if (variant or "on") == "on" else 0.0)])
     cam_p = Vector((-0.55, -0.35, 1.42))
     cam = C.add_camera("CAM_S22", lens=35, location=cam_p, target=Vector((0.15, E.WIN_Y, 1.62)), fstop=4.0,

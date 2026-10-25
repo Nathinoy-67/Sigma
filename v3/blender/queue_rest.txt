@@ -21,3 +21,6 @@
 --shot s02 --res 960x402 --samples 8 --threshold 0.07 --range 0-59
 --shot s16 --res 960x402 --samples 8 --threshold 0.07 --range 0-59 --step 2
 --shot s06 --res 1152x482 --samples 12 --threshold 0.06 --range 0-89
+--shot s21 --res 2304x964 --samples 16 --frames 0 --fmt png --out ../frames/s21 --variant still
+--shot s22 --res 1600x670 --samples 16 --frames 0 --fmt png --out ../frames/s22 --variant on
+--shot s22 --res 1600x670 --samples 16 --frames 0 --fmt png --out ../frames/s22 --variant off
