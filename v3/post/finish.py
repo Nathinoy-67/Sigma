@@ -260,8 +260,8 @@ def comp_s21(local, n):
         else:                               # saved without alpha: the border rectangle itself (inset 4 px)
             x0, x1, y0, y1 = S21_REGIONS[variant]
             al = np.zeros((h, w), bool)
-            al[int((1 - y1) * h) + 4:int((1 - y0) * h) - 4, int(x0 * w) + 4:int(x1 * w) - 4] = True
-        al = gaussian_filter(al.astype(np.float32), 6)[..., None]                 # feather the border-render edge
+            al[int((1 - y1) * h) + 48:int((1 - y0) * h) - 48, int(x0 * w) + 48:int(x1 * w) - 48] = True
+        al = gaussian_filter(al.astype(np.float32), 18)[..., None]                # a wide feather hides the seam
         base = base * (1 - al) + r[..., :3] * al
     u = ease_io(local / (n - 1), 1.5)
     return crop_move(base, w / 2, h * (0.5 + 0.01 * u), w * (1.0 - 0.06 * u))
@@ -378,7 +378,7 @@ def overlay(f, lines):
     # title card
     if 1140 <= f < 1200:
         fade = min(1.0, (f - 1140) / 8.0) * (1.0 if t < 49.6 else max(0.0, (50.0 - t) / 0.4))
-        y = TOP + int(PH * 0.62)
+        y = TOP + int(PH * 0.11)
         tracked(d, (W / 2, y), "THE JÄGERBOMB", font("disp_semibold", 60), (*BONE, int(255 * fade)), 0.26, center=True)
         tracked(d, (W / 2, y + 44), "* Origin disputed. Usually credited to bars around Lake Tahoe, c. 1997.",
                 font("courier", 20), (*BONE, int(255 * 0.7 * fade)), 0.02, center=True)
@@ -387,7 +387,7 @@ def overlay(f, lines):
         if ts <= t < 55.0:
             fade = min(1.0, (t - ts) * FPS / 10) * (1.0 if t < 54.4 else max(0.0, (55.0 - t) / 0.6))
             tr = 0.32 - 0.06 * ease((t - 50.6) / 3.0)
-            y = TOP + int(PH * 0.26) + row * 62
+            y = TOP + int(PH * 0.09) + row * 62
             tracked(d, (W / 2, y), txt, font("disp_light", 44), (*BONE, int(255 * fade)), tr, center=True)
     # end card
     if f >= 1380:
@@ -413,6 +413,16 @@ def overlay(f, lines):
     return ov
 
 
+def scrim_fade(f):
+    t = f / FPS
+    a = 0.0
+    if 1140 <= f < 1200:
+        a = min(1.0, (f - 1140) / 8.0) * (1.0 if t < 49.6 else max(0.0, (50.0 - t) / 0.4))
+    if 50.6 <= t < 55.0:
+        a = max(a, min(1.0, (t - 50.6) * FPS / 10) * (1.0 if t < 54.4 else max(0.0, (55.0 - t) / 0.6)))
+    return a
+
+
 def frame(f, lines, scale=1.0):
     rng = np.random.default_rng(f * 7919 + 13)
     pic = finish(picture(f), f, rng)
@@ -420,6 +430,11 @@ def frame(f, lines, scale=1.0):
         pic = pic * (1440 - f) / 8.0
     if f < 2:
         pic = pic * 0.0                              # black, then the first hit
+    sf = scrim_fade(f)
+    if sf > 0:                                       # a soft dark band behind the title and tagline (top of S21)
+        yy = np.arange(PH, dtype=np.float32)
+        band = np.exp(-((yy - PH * 0.15) / (PH * 0.13)) ** 2)
+        pic = pic * (1 - 0.45 * sf * band)[:, None, None]
     master = np.zeros((H, W, 3), np.float32)
     master[TOP:TOP + PH] = pic
     img = Image.fromarray((master * 255 + 0.5).astype(np.uint8))
